@@ -3,7 +3,7 @@
     <BreadCrumbItem>
       <li class="breadcrumb-item">
         <router-link to="/dashboard">
-          <i class="fas fa-home"/>
+          <i class="fas fa-home" />
         </router-link>
       </li>
     </BreadCrumbItem>

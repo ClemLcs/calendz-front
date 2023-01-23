@@ -5,7 +5,8 @@
     <!-- ====================================== -->
     <div
       class="row cursor-pointer"
-      @click="$emit('select')">
+      @click="$emit('select')"
+    >
       <!-- left -->
       <div class="col-11">
         <h2>{{ title }}</h2>
@@ -28,17 +29,17 @@
     <collapse-transition>
       <div
         v-show="open"
-        class="collapse show">
+        class="collapse show"
+      >
         <slot />
         <hr class="my-5">
       </div>
     </collapse-transition>
-
   </div>
 </template>
 
 <script>
-import { CollapseTransition } from 'vue2-transitions'
+import { CollapseTransition } from 'vue3-transitions'
 
 export default {
   name: 'HelpSection',

@@ -2,13 +2,15 @@
   <div class="col-xl-3 col-md-3 col-sm-6 hover-animation">
     <div
       :class="`${background} ${selected ? 'border-selected ' : 'border-0'}`"
-      class="card cursor-pointer">
+      class="card cursor-pointer"
+    >
       <!-- Card body -->
       <div class="card-body mx-auto text-center">
         <span class="mx-auto text-white text-center">
           <i
             :class="icon"
-            class="fa-2x mb-4" />
+            class="fa-2x mb-4"
+          />
           <h3 class="card-title font-weight-bold mb-0 text-white">{{ title }}</h3>
         </span>
       </div>

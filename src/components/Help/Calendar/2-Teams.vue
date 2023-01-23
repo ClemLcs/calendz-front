@@ -13,6 +13,7 @@
     <img
       class="img-fluid mt-2 mb-5"
       src="https://i.imgur.com/fMGjTb9.png"
-      alt="Capture d'écran liens Teams">
+      alt="Capture d'écran liens Teams"
+    >
   </div>
 </template>

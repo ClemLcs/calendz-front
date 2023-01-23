@@ -6,8 +6,12 @@
         <div class="header-body text-center mb-5">
           <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-              <h1 class="text-white">Création d'un compte</h1>
-              <p class="text-lead text-white">Inscrivez-vous avec l'adresse mail de votre école afin d'accéder à votre tableau de bord.</p>
+              <h1 class="text-white">
+                Création d'un compte
+              </h1>
+              <p class="text-lead text-white">
+                Inscrivez-vous avec l'adresse mail de votre école afin d'accéder à votre tableau de bord.
+              </p>
             </div>
           </div>
         </div>
@@ -19,10 +23,12 @@
           viewBox="0 0 2560 100"
           preserveAspectRatio="none"
           version="1.1"
-          xmlns="http://www.w3.org/2000/svg">
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <polygon
             class="fill-default"
-            points="2560 0 2560 100 0 100"/>
+            points="2560 0 2560 100 0 100"
+          />
         </svg>
       </div>
     </div>
@@ -33,54 +39,61 @@
         <div class="col-lg-6 col-md-8">
           <div class="card bg-secondary border-0">
             <div class="card-header bg-transparent">
-              <div class="text-center mt-2 mb-2">Création d'un compte</div>
+              <div class="text-center mt-2 mb-2">
+                Création d'un compte
+              </div>
             </div>
             <div class="card-body px-lg-5 py-lg-5">
               <form
                 class="needs-validation"
-                @submit.prevent="handleSubmit">
-
+                @submit.prevent="handleSubmit"
+              >
                 <base-input
-                  v-validate="'required|min:3|max:32'"
                   v-model="registerForm.firstname"
+                  v-validate="'required|min:3|max:32'"
                   :error="getError('prénom')"
                   :valid="isValid('prénom')"
                   name="prénom"
                   class="mb-3"
                   prepend-icon="ni ni-single-02"
-                  placeholder="Prénom"/>
+                  placeholder="Prénom"
+                />
 
                 <base-input
-                  v-validate="'required|min:3|max:32'"
                   v-model="registerForm.lastname"
+                  v-validate="'required|min:3|max:32'"
                   :error="getError('nom')"
                   :valid="isValid('nom')"
                   name="nom"
                   class="mb-3"
                   prepend-icon="ni ni-single-02"
-                  placeholder="Nom"/>
+                  placeholder="Nom"
+                />
 
                 <base-input
-                  v-validate="'required|email|email_valid_school|min:12|max:64'"
                   v-model="registerForm.email"
+                  v-validate="'required|email|email_valid_school|min:12|max:64'"
                   :error="getError('email')"
                   :valid="isValid('email')"
                   name="email"
                   class="mb-3"
                   prepend-icon="ni ni-email-83"
                   placeholder="Adresse mail"
-                  autocapitalize="none"/>
+                  autocapitalize="none"
+                />
 
                 <GradeSelect
                   v-model="registerForm.grade"
                   :school="registerForm.email ? guessSchoolFromEmail(registerForm.email) : ''"
-                  :disabled="!registerForm.email"/>
+                  :disabled="!registerForm.email"
+                />
 
                 <GroupsSelect
                   v-model="registerForm.group"
                   :grade="registerForm.grade"
                   :disabled="!registerForm.grade"
-                  :legacy="true"/>
+                  :legacy="true"
+                />
 
                 <base-input
                   :error="getError('ville')"
@@ -89,13 +102,17 @@
                   prepend-icon="ni ni-hat-3"
                 >
                   <select
-                    v-validate="'required|valid_city'"
                     v-model="registerForm.city"
+                    v-validate="'required|valid_city'"
                     name="ville"
-                    class="form-control">
+                    class="form-control"
+                  >
                     <option
                       value=""
-                      hidden>Votre ville</option>
+                      hidden
+                    >
+                      Votre ville
+                    </option>
                     <option>Arras</option>
                     <option>Auxerre</option>
                     <option>Bordeaux</option>
@@ -113,29 +130,31 @@
                 </base-input>
 
                 <base-input
-                  v-validate="'required|min:6|max:64|contains_one_letter|contains_one_number'"
                   ref="mot de passe"
                   v-model="registerForm.password"
+                  v-validate="'required|min:6|max:64|contains_one_letter|contains_one_number'"
                   :error="getError('mot de passe')"
                   :valid="isValid('mot de passe')"
                   name="mot de passe"
                   class="mb-3"
                   prepend-icon="ni ni-lock-circle-open"
                   placeholder="Mot de passe"
-                  type="password"/>
+                  type="password"
+                />
 
                 <base-input
-                  v-validate="{ required: true, confirmed: 'mot de passe' }"
                   v-model="registerForm.password2"
+                  v-validate="{ required: true, confirmed: 'mot de passe' }"
                   :error="getError('confirmation du mot de passe')"
                   :valid="isValid('confirmation du mot de passe')"
                   name="confirmation du mot de passe"
                   class="mb-3"
                   prepend-icon="ni ni-lock-circle-open"
                   placeholder="Confirmer le mot de passe"
-                  type="password"/>
+                  type="password"
+                />
 
-                <password-strength :password="registerForm.password"/>
+                <password-strength :password="registerForm.password" />
 
                 <div class="row my-4">
                   <div class="col-12">
@@ -145,7 +164,8 @@
                     <div
                       v-show="!registerForm.agree && triedSubmit"
                       class="invalid-feedback"
-                      style="display: block;">
+                      style="display: block;"
+                    >
                       Vous devez accepter les conditions d'utilisation.
                     </div>
                   </div>
@@ -154,7 +174,8 @@
                 <api-errors
                   :multiple-errors="registerErrors"
                   :alert-classes="'py-2 mb-1'"
-                  dismissible/>
+                  dismissible
+                />
 
                 <div class="text-center">
                   <base-button
@@ -162,7 +183,10 @@
                     type="primary"
                     native-type="submit"
                     size="lg"
-                    class="mt-4">S'inscrire</base-button>
+                    class="mt-4"
+                  >
+                    S'inscrire
+                  </base-button>
                 </div>
               </form>
             </div>
@@ -171,12 +195,18 @@
             <div class="col-6">
               <router-link
                 to="/home"
-                class="text-light"><small>Retour à l'accueil</small></router-link>
+                class="text-light"
+              >
+                <small>Retour à l'accueil</small>
+              </router-link>
             </div>
             <div class="col-6 text-right">
               <router-link
                 to="/login"
-                class="text-light"><small>Vous êtes déjà inscrit ?</small></router-link>
+                class="text-light"
+              >
+                <small>Vous êtes déjà inscrit ?</small>
+              </router-link>
             </div>
           </div>
         </div>

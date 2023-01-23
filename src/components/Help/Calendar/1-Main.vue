@@ -12,20 +12,20 @@
         Vous pouvez revenir à la date actuelle à tout moment en cliquant sur le bouton "Revenir à aujourd'hui".<br>
         <br>
         Les informations affichées sont :
-      <ul>
-        <li>Intitulé du module</li>
-        <li>Heures de début/fin</li>
-        <li>Nom de l'intervenant</li>
-        <li>Salle du cours</li>
-        <li>BTS (facultatif, pour les options)</li>
-      </ul>
+        <ul>
+          <li>Intitulé du module</li>
+          <li>Heures de début/fin</li>
+          <li>Nom de l'intervenant</li>
+          <li>Salle du cours</li>
+          <li>BTS (facultatif, pour les options)</li>
+        </ul>
       </p>
 
       <img
         class="img-fluid py-3"
         src="https://i.imgur.com/1BtRpSI.png"
-        alt="Capture d'écran emploi du temps">
-
+        alt="Capture d'écran emploi du temps"
+      >
     </div>
 
     <br>
@@ -50,13 +50,15 @@
         <a
           href="https://github.com/calendz/calendz-api-calendar"
           target="_blank"
-          rel="noreferrer noopener">API-Calendar</a>)
+          rel="noreferrer noopener"
+        >API-Calendar</a>)
         va télécharger la page HTML de l'emploi du temps traditionnel de 360 Learning, puis en extraire les données (intitulé du cours, salle, heure etc.)
         pour ensuite les retourner au format JSON, et pour qu'elles soient ensuite affichées sur le site grâce à la librairie
         <a
           href="https://fullcalendar.io/"
           target="_blank"
-          rel="noreferrer noopener">FullCalendar</a>.
+          rel="noreferrer noopener"
+        >FullCalendar</a>.
       </p>
 
       <!-- <img

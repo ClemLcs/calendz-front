@@ -13,6 +13,7 @@
     <img
       class="img-fluid mt-3 rounded"
       src="https://i.imgur.com/VqrssTT.png"
-      alt="Capture d'écran ajout tâche">
+      alt="Capture d'écran ajout tâche"
+    >
   </div>
 </template>

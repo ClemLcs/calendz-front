@@ -1,7 +1,8 @@
 <template>
   <card
     :show-footer-line="true"
-    class="card-stats">
+    class="card-stats"
+  >
     <!-- ================================================ -->
     <!-- == Body ======================================== -->
     <!-- ================================================ -->
@@ -14,7 +15,7 @@
 
           <div style="height: 36px !important">
             <div v-show="isLoading">
-              <placeholder class="w-100"/>
+              <placeholder class="w-100" />
             </div>
             <div v-show="!isLoading">
               <span class="h2 font-weight-bold mt--1 mr-2 float-left">
@@ -31,7 +32,7 @@
       <div class="col-auto">
         <slot name="icon">
           <div :class="`icon icon-shape bg-info text-white rounded-circle shadow`">
-            <i class="fas fa-graduation-cap"/>
+            <i class="fas fa-graduation-cap" />
           </div>
         </slot>
       </div>
@@ -46,10 +47,10 @@
         <span v-show="isLoading">
           <div class="row">
             <div class="col-8 pb-1 pr-1">
-              <placeholder class="w-100"/>
+              <placeholder class="w-100" />
             </div>
             <div class="col-4 pl-1 text-right">
-              <placeholder class="w-100"/>
+              <placeholder class="w-100" />
             </div>
           </div>
         </span>

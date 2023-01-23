@@ -1,16 +1,19 @@
 <template>
   <div
     class="btn-group-toggle"
-    data-toggle="buttons">
+    data-toggle="buttons"
+  >
     <label
       :class="[{ active: value }, buttonClasses]"
-      class="btn">
+      class="btn"
+    >
       <input
         v-model="model"
         type="checkbox"
         checked=""
-        autocomplete="off">
-      <slot/>
+        autocomplete="off"
+      >
+      <slot />
     </label>
   </div>
 </template>

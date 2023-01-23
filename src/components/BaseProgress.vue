@@ -2,7 +2,8 @@
   <div class="wrapper">
     <div
       v-if="showLabel"
-      :class="`progress-${type}`">
+      :class="`progress-${type}`"
+    >
       <div class="progress-label">
         <slot name="label">
           <span>{{ label }}</span>
@@ -17,7 +18,8 @@
     <div
       :class="[{[`progress-${size}`]: size}, progressClasses]"
       :style="`height: ${height}px`"
-      class="progress">
+      class="progress"
+    >
       <div
         :class="computedClasses"
         :aria-valuenow="value"
@@ -25,7 +27,8 @@
         class="progress-bar"
         role="progressbar"
         aria-valuemin="0"
-        aria-valuemax="100"/>
+        aria-valuemax="100"
+      />
     </div>
   </div>
 </template>

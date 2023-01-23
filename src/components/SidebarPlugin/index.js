@@ -1,5 +1,6 @@
 import Sidebar from './SideBar.vue'
 import SidebarItem from './SidebarItem.vue'
+import { createApp } from 'vue'
 
 const SidebarStore = {
   showSidebar: false,
@@ -13,7 +14,7 @@ const SidebarStore = {
     }
     this.isMinimized = !value
     this.showSidebar = value
-    let docClasses = document.body.classList
+    const docClasses = document.body.classList
     if (value) {
       docClasses.add('g-sidenav-pinned')
       docClasses.add('g-sidenav-show')
@@ -26,7 +27,7 @@ const SidebarStore = {
   },
   toggleMinimize () {
     this.isMinimized = !this.isMinimized
-    let docClasses = document.body.classList
+    const docClasses = document.body.classList
     if (this.isMinimized) {
       docClasses.add('g-sidenav-hidden')
       docClasses.remove('g-sidenav-pinned')
@@ -50,7 +51,7 @@ const SidebarStore = {
   onMouseLeave () {
     this.hovered = false
     if (this.isMinimized) {
-      let docClasses = document.body.classList
+      const docClasses = document.body.classList
       docClasses.remove('g-sidenav-show')
       docClasses.add('g-sidenav-hide')
       setTimeout(() => {
@@ -62,18 +63,20 @@ const SidebarStore = {
 }
 
 const SidebarPlugin = {
-  install (Vue, options) {
+  install (app, options) {
     if (options && options.sidebarLinks) {
       SidebarStore.sidebarLinks = options.sidebarLinks
     }
-    let app = new Vue({
-      data: {
-        sidebarStore: SidebarStore
+    createApp({
+      data: function () {
+        return {
+          sidebarStore: SidebarStore
+        }
       }
     })
-    Vue.prototype.$sidebar = app.sidebarStore
-    Vue.component('side-bar', Sidebar)
-    Vue.component('sidebar-item', SidebarItem)
+    app.config.globalProperties.$sidebar = app.sidebarStore
+    app.component('SideBar', Sidebar)
+    app.component('SidebarItem', SidebarItem)
   }
 }
 

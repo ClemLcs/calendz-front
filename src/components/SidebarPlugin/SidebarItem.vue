@@ -16,12 +16,12 @@
     >
       <template v-if="addLink">
         <span class="nav-link-text">
-          {{ link.name }} <b class="caret"/>
+          {{ link.name }} <b class="caret" />
         </span>
       </template>
       <template v-else>
-        <i :class="link.icon"/>
-        <span class="nav-link-text">{{ link.name }} <b class="caret"/></span>
+        <i :class="link.icon" />
+        <span class="nav-link-text">{{ link.name }} <b class="caret" /></span>
       </template>
     </a>
 
@@ -32,7 +32,7 @@
         class="collapse show"
       >
         <ul class="nav nav-sm flex-column">
-          <slot/>
+          <slot />
         </ul>
       </div>
     </collapse-transition>
@@ -42,8 +42,8 @@
       name="title"
     >
       <component
-        :to="link.path"
         :is="elementType(link, false)"
+        :to="link.path"
         :class="{ active: link.active }"
         :target="link.target"
         :href="link.path"
@@ -54,7 +54,7 @@
           <span class="nav-link-text">{{ link.name }}</span>
         </template>
         <template v-else>
-          <i :class="link.icon"/>
+          <i :class="link.icon" />
           <span class="nav-link-text">{{ link.name }}</span>
         </template>
       </component>
@@ -62,12 +62,25 @@
   </component>
 </template>
 <script>
-import { CollapseTransition } from 'vue2-transitions'
+import { CollapseTransition } from 'vue3-transitions'
 
 export default {
   name: 'SidebarItem',
   components: {
     CollapseTransition
+  },
+  provide () {
+    return {
+      addLink: this.addChild,
+      removeLink: this.removeChild
+    }
+  },
+  inject: {
+    addLink: { default: null },
+    removeLink: { default: null },
+    autoClose: {
+      default: true
+    }
   },
   props: {
     menu: {
@@ -89,19 +102,6 @@ export default {
         'Sidebar link. Can contain name, path, icon and other attributes. See examples for more info'
     }
   },
-  provide () {
-    return {
-      addLink: this.addChild,
-      removeLink: this.removeChild
-    }
-  },
-  inject: {
-    addLink: { default: null },
-    removeLink: { default: null },
-    autoClose: {
-      default: true
-    }
-  },
   data () {
     return {
       children: [],
@@ -114,7 +114,7 @@ export default {
     },
     linkPrefix () {
       if (this.link.name) {
-        let words = this.link.name.split(' ')
+        const words = this.link.name.split(' ')
         return words.map(word => word.substring(0, 1)).join('')
       }
     },
@@ -123,7 +123,7 @@ export default {
     },
     isActive () {
       if (this.$route && this.$route.path) {
-        let matchingRoute = this.children.find(c =>
+        const matchingRoute = this.children.find(c =>
           this.$route.path.startsWith(c.link.path)
         )
         if (matchingRoute !== undefined) {

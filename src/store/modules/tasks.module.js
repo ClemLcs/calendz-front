@@ -92,7 +92,7 @@ const tasksModule = {
 
     create: ({ commit }, { title, type, subject, date, description, targets }) => {
       commit('TASK_CREATE_REQUEST')
-      let newTargets = []
+      const newTargets = []
       if (targets.length > 0) {
         targets.forEach(target => {
           newTargets.push({ email: target })
@@ -138,7 +138,7 @@ const tasksModule = {
         .then(
           res => {
             commit('TASK_DELETE_SUCCESS', taskId)
-            Vue.prototype.$notify({ type: 'success', message: `La tâche a bien été supprimée !` })
+            Vue.prototype.$notify({ type: 'success', message: 'La tâche a bien été supprimée !' })
           },
           err => {
             commit('TASK_DELETE_FAILURE', err.data.message)
@@ -149,7 +149,7 @@ const tasksModule = {
     modify: ({ commit }, { _id, title, type, subject, date, description, targets }) => {
       commit('TASK_MODIFY_REQUEST')
 
-      let newTargets = []
+      const newTargets = []
       targets.forEach(target => {
         if (newTargets.some(v => v.email === target)) return
         if (!target.email) newTargets.push({ email: target })
@@ -206,7 +206,7 @@ const tasksModule = {
     // all done tasks
     getAllDone: (state, getters, rootState) => {
       const doneTasks = rootState.account.user.tasks.done
-      let array = [...getters.getAll].filter(task => doneTasks.includes(task._id))
+      const array = [...getters.getAll].filter(task => doneTasks.includes(task._id))
       array.sort((a, b) => (a.date < b.date) ? -1 : 1)
       return array
     },

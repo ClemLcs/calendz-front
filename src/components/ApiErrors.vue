@@ -4,8 +4,9 @@
     <div v-show="singleError">
       <base-alert
         :class="alertClasses"
-        type="danger">
-        <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"/></span>
+        type="danger"
+      >
+        <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle" /></span>
         <span class="alert-inner--text"><strong> Erreur !</strong> {{ singleError }}.</span>
       </base-alert>
     </div>
@@ -16,13 +17,15 @@
       :key="index"
       :class="alertClasses"
       :dismissible="dismissible"
-      type="danger">
+      type="danger"
+    >
       <button
         v-if="dismissible"
         type="button"
         class="close"
         data-dismiss="alert"
-        aria-label="Close">
+        aria-label="Close"
+      >
         <span aria-hidden="true">&times;</span>
       </button>
       <strong>Erreur !</strong> {{ err }}.

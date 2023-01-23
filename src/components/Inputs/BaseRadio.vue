@@ -1,18 +1,20 @@
 <template>
   <div
     :class="[inlineClass, { disabled: disabled }]"
-    class="custom-control custom-radio">
+    class="custom-control custom-radio"
+  >
     <input
       :id="cbId"
+      v-model="model"
       :disabled="disabled"
       :value="name"
-      v-model="model"
       class="custom-control-input"
       type="radio"
     >
     <label
       :for="cbId"
-      class="custom-control-label">
+      class="custom-control-label"
+    >
       <slot>
         <span v-if="inline">&nbsp;</span>
       </slot>
@@ -60,7 +62,7 @@ export default {
     },
     inlineClass () {
       if (this.inline) {
-        return `form-check-inline`
+        return 'form-check-inline'
       }
       return ''
     }

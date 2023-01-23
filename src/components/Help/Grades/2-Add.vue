@@ -13,6 +13,7 @@
     <img
       class="img-fluid mt-3 rounded"
       src="https://i.imgur.com/2lfMOuQ.png"
-      alt="Capture d'écran ajout note">
+      alt="Capture d'écran ajout note"
+    >
   </div>
 </template>

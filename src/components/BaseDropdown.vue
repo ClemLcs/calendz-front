@@ -1,13 +1,14 @@
 <template>
   <component
-    v-click-outside="closeDropDown"
     :is="tag"
+    v-click-outside="closeDropDown"
     :class="[{ show: isOpen }, `drop${direction}`]"
     @click="toggleDropDown"
   >
     <slot
       :is-open="isOpen"
-      name="title-container">
+      name="title-container"
+    >
       <component
         :is="titleTag"
         :class="[{'dropdown-toggle': hasToggle}, titleClasses]"
@@ -17,11 +18,13 @@
       >
         <slot
           :is-open="isOpen"
-          name="title">
-          <i :class="icon"/> {{ title }}
+          name="title"
+        >
+          <i :class="icon" /> {{ title }}
           <span
             v-if="pillAmount > 0"
-            class="badge badge-sm badge-pill badge-danger badge-notification">{{ pillAmount }}</span>
+            class="badge badge-sm badge-pill badge-danger badge-notification"
+          >{{ pillAmount }}</span>
         </slot>
       </component>
     </slot>
@@ -33,7 +36,7 @@
       ]"
       class="dropdown-menu"
     >
-      <slot/>
+      <slot />
     </ul>
   </component>
 </template>

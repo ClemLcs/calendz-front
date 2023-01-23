@@ -10,7 +10,8 @@
     >
     <label
       class="custom-file-label"
-      for="customFileLang">
+      for="customFileLang"
+    >
       {{ label }}
     </label>
   </div>
@@ -38,8 +39,8 @@ export default {
       }
     },
     label () {
-      let fileNames = []
-      for (let file of this.files) {
+      const fileNames = []
+      for (const file of this.files) {
         fileNames.push(file.name)
       }
       return fileNames.length ? fileNames.join(', ') : this.initialLabel

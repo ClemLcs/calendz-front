@@ -6,7 +6,8 @@
         ? 'Tâche'
         : 'Contrôle'
     "
-    placement="top">
+    placement="top"
+  >
     <i
       :class="task.type === 'homework'
         ? 'fa-book bg-primary'
@@ -14,7 +15,8 @@
           ? 'fa-tasks bg-info'
           : 'fa-graduation-cap bg-warning'
       "
-      class="fas avatar avatar-sm rounded-circle"/>
+      class="fas avatar avatar-sm rounded-circle"
+    />
   </el-tooltip>
 </template>
 

@@ -4,7 +4,8 @@
       :show-footer-line="true"
       class="card-stats cursor-pointer"
       style="background: #5558AF;"
-      @click.native="openModal()">
+      @click.native="openModal()"
+    >
       <!-- Body -->
       <div class="row">
         <div class="col pr-0">
@@ -27,7 +28,8 @@
               <img
                 style="height: 25px"
                 src="/img/icons/teams.svg"
-                alt="Teams">
+                alt="Teams"
+              >
             </div>
           </slot>
         </div>
@@ -37,7 +39,7 @@
       <p class="mt-1 mb-0 text-sm">
         <slot name="footer">
           <span class="text-white">
-            <i class="fas fa-external-link-alt mr-1"/>
+            <i class="fas fa-external-link-alt mr-1" />
             Cliquez pour afficher les liens Teams
           </span>
         </slot>
@@ -49,15 +51,19 @@
     <!-- ================================================ -->
     <modal
       :show="showModal"
-      @close="closeModal()">
+      @close="closeModal()"
+    >
       <!-- header -->
       <template slot="header">
-        <h5 class="modal-title">Microsoft Teams</h5>
+        <h5 class="modal-title">
+          Microsoft Teams
+        </h5>
       </template>
 
       <base-alert
         type="primary"
-        class="mb-5">
+        class="mb-5"
+      >
         <b>Info : </b>les liens sont disponibles 15 minutes avant le début d'un cours, et disparaissent 15 minutes après sa fin.
       </base-alert>
 
@@ -67,13 +73,13 @@
           <div class="col-6">
             <h3>Intitulé :</h3>
             <span>
-              <placeholder class="w-100"/>
+              <placeholder class="w-100" />
             </span>
           </div>
           <div class="col-6">
             <h3>Horaire :</h3>
             <span>
-              <placeholder class="w-100"/>
+              <placeholder class="w-100" />
             </span>
           </div>
         </div>
@@ -81,14 +87,14 @@
         <div class="row mt-3">
           <div class="col-12">
             <h3>Liens :</h3>
-            <placeholder class="w-100 my-2"/>
+            <placeholder class="w-100 my-2" />
           </div>
         </div>
         <div class="row">
-          <div class="col-6 pr-1"><placeholder class="w-100 my-2"/></div>
-          <div class="col-6 pl-1"><placeholder class="w-100 my-2"/></div>
-          <div class="col-6 pr-1"><placeholder class="w-100 my-2"/></div>
-          <div class="col-6 pl-1"><placeholder class="w-100 my-2"/></div>
+          <div class="col-6 pr-1"><placeholder class="w-100 my-2" /></div>
+          <div class="col-6 pl-1"><placeholder class="w-100 my-2" /></div>
+          <div class="col-6 pr-1"><placeholder class="w-100 my-2" /></div>
+          <div class="col-6 pl-1"><placeholder class="w-100 my-2" /></div>
         </div>
       </span>
 
@@ -97,7 +103,8 @@
         <div
           v-for="(val, index) in teamsLinks"
           :key="index"
-          class="my-3">
+          class="my-3"
+        >
           <div class="row">
             <div class="col-6">
               <h3>Intitulé :</h3>
@@ -117,11 +124,13 @@
                   <a
                     :href="val.links[0]"
                     target="_blank"
-                    rel="noreferrer noopenner">
+                    rel="noreferrer noopenner"
+                  >
                     <img
                       style="height: 20px"
                       src="/img/icons/teams.svg"
-                      alt="Teams">
+                      alt="Teams"
+                    >
                     Lien du cours (cliquez pour accéder)
                   </a>
                 </div>
@@ -131,15 +140,18 @@
                 <div
                   v-for="(v, i) in groupLinks(val.links)"
                   :key="i"
-                  class="col-6 mb-0">
+                  class="col-6 mb-0"
+                >
                   <a
                     :href="v"
                     target="_blank"
-                    rel="noreferrer noopenner">
+                    rel="noreferrer noopenner"
+                  >
                     <img
                       style="height: 20px"
                       src="/img/icons/teams.svg"
-                      alt="Teams">
+                      alt="Teams"
+                    >
                     Groupe {{ (i+1) }}
                   </a>
                 </div>
@@ -162,7 +174,8 @@
         <base-button
           size="md"
           type="primary"
-          @click="closeModal()">
+          @click="closeModal()"
+        >
           Fermer
         </base-button>
       </template>

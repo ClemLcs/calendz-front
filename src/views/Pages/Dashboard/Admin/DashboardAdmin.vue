@@ -5,14 +5,18 @@
     <!-- ======================================= -->
     <base-header
       type="primary"
-      class="pb-6">
+      class="pb-6"
+    >
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
-          <h6 class="h2 text-white d-inline-block mb-0">Dashboard</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">
+            Dashboard
+          </h6>
           <nav
             aria-label="breadcrumb"
-            class="d-none d-md-inline-block ml-md-4">
-            <route-bread-crumb/>
+            class="d-none d-md-inline-block ml-md-4"
+          >
+            <route-bread-crumb />
           </nav>
         </div>
       </div>
@@ -24,41 +28,41 @@
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col-xl-3 col-md-6">
-          <toggle-register/>
+          <toggle-register />
         </div>
         <div class="col-xl-3 col-md-6">
-          <toggle-login/>
+          <toggle-login />
         </div>
         <div class="col-xl-3 col-md-6">
-          <disconnect-users/>
+          <disconnect-users />
         </div>
         <div class="col-xl-3 col-md-6">
-          <migrate-users/>
+          <migrate-users />
         </div>
 
         <div class="col-lg-6">
-          <create-notifications/>
+          <create-notifications />
         </div>
 
         <div class="col-lg-6">
           <div class="row">
             <div class="col-xl-6 col-md-12">
-              <delete-tasks/>
+              <delete-tasks />
             </div>
             <div class="col-xl-6 col-md-12">
-              <delete-grades/>
+              <delete-grades />
             </div>
           </div>
 
           <div class="row">
             <div class="col-12">
-              <create-email/>
+              <create-email />
             </div>
           </div>
         </div>
 
         <div class="col-xl-3 col-md-6">
-          <toggle-edit-group/>
+          <toggle-edit-group />
         </div>
       </div>
     </div>

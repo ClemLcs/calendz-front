@@ -5,14 +5,18 @@
     <!-- ======================================= -->
     <base-header
       type="primary"
-      class="pb-6">
+      class="pb-6"
+    >
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
-          <h6 class="h2 text-white d-inline-block mb-0">Paramètres</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">
+            Paramètres
+          </h6>
           <nav
             aria-label="breadcrumb"
-            class="d-none d-md-inline-block ml-md-4">
-            <route-bread-crumb/>
+            class="d-none d-md-inline-block ml-md-4"
+          >
+            <route-bread-crumb />
           </nav>
         </div>
       </div>
@@ -23,10 +27,8 @@
     <!-- ======================================= -->
     <div class="container-fluid mt--6 card-wrapper">
       <div class="card mb-4">
-
         <div class="container-fluid mt-4">
           <div class="row">
-
             <!-- ======================================= -->
             <!-- == Menu =============================== -->
             <!-- ======================================= -->
@@ -35,19 +37,22 @@
                 <li
                   :class="active === 1 ? 'bg-primary text-white' : 'bg-white text-primary'"
                   class="list-group-item d-flex justify-content-between align-items-center hover-click"
-                  @click="active = 1">
+                  @click="active = 1"
+                >
                   Thème
                 </li>
                 <li
                   :class="active === 2 ? 'bg-primary text-white' : 'bg-white text-primary'"
                   class="list-group-item d-flex justify-content-between align-items-center hover-click"
-                  @click="active = 2">
+                  @click="active = 2"
+                >
                   Emails
                 </li>
                 <li
                   :class="active === 3 ? 'bg-primary text-white' : 'bg-white text-primary'"
                   class="list-group-item d-flex justify-content-between align-items-center hover-click"
-                  @click="active = 3">
+                  @click="active = 3"
+                >
                   Export
                 </li>
               </ul>
@@ -55,8 +60,9 @@
                 size="md"
                 type="danger"
                 class="mt-4 w-100"
-                @click="deleteAccount">
-                <i class="fas fa-trash-alt text-white mr-1"/>
+                @click="deleteAccount"
+              >
+                <i class="fas fa-trash-alt text-white mr-1" />
                 Supprimer le compte
               </base-button>
             </div>
@@ -66,20 +72,28 @@
             <!-- ======================================= -->
             <div class="col-lg-10">
               <div class="card bg-white shadow">
-
                 <!-- header -->
                 <div class="card-header">
                   <div class="row align-items-center">
                     <div class="col">
                       <h3
                         v-show="active === 1"
-                        class="m-0">Personnalisez l'interface de Calendz à votre goût.</h3>
+                        class="m-0"
+                      >
+                        Personnalisez l'interface de Calendz à votre goût.
+                      </h3>
                       <h3
                         v-show="active === 2"
-                        class="m-0">Définissez vos préférences en matière de communication.</h3>
+                        class="m-0"
+                      >
+                        Définissez vos préférences en matière de communication.
+                      </h3>
                       <h3
                         v-show="active === 3"
-                        class="m-0">Exportez votre emploi du temps vers un service tiers.</h3>
+                        class="m-0"
+                      >
+                        Exportez votre emploi du temps vers un service tiers.
+                      </h3>
                     </div>
                   </div>
                 </div>
@@ -89,11 +103,11 @@
                 <!-- ============================== -->
                 <div
                   v-show="active === 1"
-                  class="mx-5 mt--1 mb-3">
-
+                  class="mx-5 mt--1 mb-3"
+                >
                   <div class="row mt-3">
                     <div class="col-lg-1 col-md-2 my-2 d-flex justify-content-center">
-                      <i class="fas fa-door-open my-auto"/>
+                      <i class="fas fa-door-open my-auto" />
                     </div>
 
                     <div class="col-lg-8 col-md-8 my-2">
@@ -107,13 +121,15 @@
                       <el-select
                         v-model="select.target"
                         class="select-danger w-100"
-                        @change="handleDefaultPageChange(select.target)">
+                        @change="handleDefaultPageChange(select.target)"
+                      >
                         <el-option
                           v-for="(option, index) in select.options"
+                          :key="index"
                           :value="option.value"
                           :label="option.label"
-                          :key="index"
-                          class="select-danger"/>
+                          class="select-danger"
+                        />
                       </el-select>
                     </div>
                   </div>
@@ -122,11 +138,13 @@
 
                   <div class="row mt-3">
                     <div class="col-lg-1 col-md-2 my-2 d-flex justify-content-center">
-                      <i class="fas fa-palette my-auto"/>
+                      <i class="fas fa-palette my-auto" />
                     </div>
 
                     <div class="col-lg-8 col-md-8 my-2">
-                      <p class="text-justify my-auto">Modifier la couleur principale de l'emploi du temps.</p>
+                      <p class="text-justify my-auto">
+                        Modifier la couleur principale de l'emploi du temps.
+                      </p>
                     </div>
 
                     <div class="col-lg-3 my-2 d-flex justify-content-center my-auto">
@@ -134,13 +152,15 @@
                         v-model="colorInput"
                         type="color"
                         class="col-8 form-control p-1"
-                        @change="handleCalendarColorChange($event)">
+                        @change="handleCalendarColorChange($event)"
+                      >
                       <base-button
                         outline
                         type="primary"
                         class="col-3 ml-3"
-                        @click="handleCalendarColorReset()">
-                        <i class="fas fa-undo"/>
+                        @click="handleCalendarColorReset()"
+                      >
+                        <i class="fas fa-undo" />
                       </base-button>
                     </div>
                   </div>
@@ -149,7 +169,7 @@
 
                   <div class="row mt-3">
                     <div class="col-lg-1 col-md-2 my-2 d-flex justify-content-center">
-                      <i class="fas fa-moon my-auto"/>
+                      <i class="fas fa-moon my-auto" />
                     </div>
 
                     <div class="col-lg-8 col-md-8 my-2">
@@ -161,13 +181,15 @@
                     <div class="col-lg-3 my-2 d-flex justify-content-center my-auto mx-auto">
                       <el-tooltip
                         content="Cette fonctionnalité n'est pas encore disponible !"
-                        placement="top">
+                        placement="top"
+                      >
                         <base-switch
                           :value="false"
                           type="primary"
                           on-text="Oui"
                           off-text="Non"
-                          disabled/>
+                          disabled
+                        />
                       </el-tooltip>
                     </div>
                   </div>
@@ -178,12 +200,12 @@
                 <!-- ============================== -->
                 <div
                   v-show="active === 2"
-                  class="mx-5 mt--1 mb-3">
-
+                  class="mx-5 mt--1 mb-3"
+                >
                   <!-- Emails d'informations -->
                   <div class="row mt-3">
                     <div class="col-lg-1 col-md-2 my-2 d-flex justify-content-center">
-                      <i class="fas fa-newspaper my-auto"/>
+                      <i class="fas fa-newspaper my-auto" />
                     </div>
 
                     <div class="col-lg-9 col-md-8 my-2">
@@ -198,7 +220,8 @@
                         type="primary"
                         on-text="Oui"
                         off-text="Non"
-                        @input="toggleInformationEmails($event)"/>
+                        @input="toggleInformationEmails($event)"
+                      />
                     </div>
                   </div>
 
@@ -207,7 +230,7 @@
                   <!-- Mail nouvelle tâche -->
                   <div class="row mt-3">
                     <div class="col-lg-1 col-md-2 my-2 d-flex justify-content-center">
-                      <i class="fas fa-tasks my-auto"/>
+                      <i class="fas fa-tasks my-auto" />
                     </div>
 
                     <div class="col-lg-9 col-md-8 my-2">
@@ -222,7 +245,8 @@
                         type="primary"
                         on-text="Oui"
                         off-text="Non"
-                        @input="toggleMailTaskCreate($event)"/>
+                        @input="toggleMailTaskCreate($event)"
+                      />
                     </div>
                   </div>
 
@@ -231,7 +255,7 @@
                   <!-- Nouvelles notifications -->
                   <div class="row mt-3">
                     <div class="col-lg-1 col-md-2 my-2 d-flex justify-content-center">
-                      <i class="fas fa-bell my-auto"/>
+                      <i class="fas fa-bell my-auto" />
                     </div>
 
                     <div class="col-lg-9 col-md-8 my-2">
@@ -243,13 +267,15 @@
                     <div class="col-m-2 d-flex justify-content-center my-auto mx-auto">
                       <el-tooltip
                         content="Cette fonctionnalité n'est pas encore disponible !"
-                        placement="top">
+                        placement="top"
+                      >
                         <base-switch
                           :value="false"
                           type="primary"
                           on-text="Oui"
                           off-text="Non"
-                          disabled/>
+                          disabled
+                        />
                       </el-tooltip>
                     </div>
                   </div>
@@ -259,7 +285,7 @@
                   <!-- Rappels des devoirs -->
                   <div class="row mt-3">
                     <div class="col-lg-1 col-md-2 my-2 d-flex justify-content-center">
-                      <i class="fas fa-history my-auto"/>
+                      <i class="fas fa-history my-auto" />
                     </div>
 
                     <div class="col-lg-9 col-md-8 my-2">
@@ -271,17 +297,18 @@
                     <div class="col-m-2 my-2 d-flex justify-content-center my-auto mx-auto">
                       <el-tooltip
                         content="Cette fonctionnalité n'est pas encore disponible !"
-                        placement="top">
+                        placement="top"
+                      >
                         <base-switch
                           :value="false"
                           type="primary"
                           on-text="Oui"
                           off-text="Non"
-                          disabled/>
+                          disabled
+                        />
                       </el-tooltip>
                     </div>
                   </div>
-
                 </div>
 
                 <!-- ============================== -->
@@ -290,11 +317,12 @@
 
                 <div
                   v-show="active === 3"
-                  class="mx-5 mt--1 mb-3">
+                  class="mx-5 mt--1 mb-3"
+                >
                   <!-- Emploi du temps -->
                   <div class="row mt-3">
                     <div class="col-lg-1 col-md-2 my-2 d-flex justify-content-center">
-                      <i class="fas fa-calendar my-auto"/>
+                      <i class="fas fa-calendar my-auto" />
                     </div>
 
                     <div class="col-lg-9 col-md-8 my-2">
@@ -303,7 +331,8 @@
                       </p>
                       <base-alert
                         type="warning"
-                        class="mt-2">
+                        class="mt-2"
+                      >
                         <strong>Attention : </strong>Cette fonctionnalité est encore en test, et risque de ne pas correctement fonctionner !
                       </base-alert>
                     </div>
@@ -312,7 +341,8 @@
                       <base-button
                         type="outline-primary"
                         size="sm"
-                        @click="copyCalendarUrl()">
+                        @click="copyCalendarUrl()"
+                      >
                         Copier l'URL
                       </base-button>
                     </div>
@@ -322,7 +352,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -330,7 +359,7 @@
 <script>
 import swal from 'sweetalert2'
 import { mapState } from 'vuex'
-import { Select, Option } from 'element-ui'
+import { Select, Option } from 'element-plus'
 
 export default {
   name: 'Settings',
@@ -401,7 +430,7 @@ export default {
     deleteAccount () {
       swal.fire({
         icon: 'warning',
-        title: `Êtes-vous sûr de vouloir supprimer votre compte ?`,
+        title: 'Êtes-vous sûr de vouloir supprimer votre compte ?',
         text: 'Vous pourrez toujours vous réinscrire plus tard, mais toutes vos données seront perdues...',
         customClass: {
           confirmButton: 'btn btn-warning mt-2',

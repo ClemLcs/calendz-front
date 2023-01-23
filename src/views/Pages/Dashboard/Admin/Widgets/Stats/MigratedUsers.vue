@@ -3,11 +3,13 @@
     <div class="row">
       <div class="col">
         <slot>
-          <h5 class="card-title text-uppercase text-muted mb-1">COMPTES MIGRÉS</h5>
+          <h5 class="card-title text-uppercase text-muted mb-1">
+            COMPTES MIGRÉS
+          </h5>
           <div class="row mt-2 mb--3">
             <div class="col-12 pr-0">
               <div v-if="!users">
-                <placeholder class="w-75"/>
+                <placeholder class="w-75" />
               </div>
 
               <div v-if="users">
@@ -26,7 +28,7 @@
       <div class="col-auto">
         <slot name="icon">
           <div class="icon icon-shape bg-gradient-danger text-white rounded-circle shadow">
-            <i class="fas fa-users"/>
+            <i class="fas fa-users" />
           </div>
         </slot>
       </div>
@@ -34,7 +36,7 @@
 
     <p class="mt-4 mb-1 text-sm">
       <slot name="footer">
-        <i class="fas fa-external-link-alt mr-2"/>
+        <i class="fas fa-external-link-alt mr-2" />
         <router-link to="/user-management">
           <span class="nav-link p-0 d-inline text-nowrap">accéder liste utilisateurs</span>
         </router-link>

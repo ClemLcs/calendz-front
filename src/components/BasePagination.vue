@@ -1,38 +1,47 @@
 <template>
   <ul
     :class="[size && `pagination-${size}`, align && `justify-content-${align}`]"
-    class="pagination">
+    class="pagination"
+  >
     <li
       :class="{disabled: value === 1}"
-      class="page-item prev-page">
+      class="page-item prev-page"
+    >
       <a
         class="page-link"
         aria-label="Previous"
-        @click="prevPage">
+        @click="prevPage"
+      >
         <span aria-hidden="true"><i
           class="fa fa-angle-left"
-          aria-hidden="true"/></span>
+          aria-hidden="true"
+        /></span>
       </a>
     </li>
     <li
       v-for="item in range(minPage, maxPage)"
-      :class="{active: value === item}"
       :key="item"
-      class="page-item">
+      :class="{active: value === item}"
+      class="page-item"
+    >
       <a
         class="page-link"
-        @click="changePage(item)">{{ item }}</a>
+        @click="changePage(item)"
+      >{{ item }}</a>
     </li>
     <li
       :class="{disabled: value === totalPages}"
-      class="page-item next-page">
+      class="page-item next-page"
+    >
       <a
         class="page-link"
         aria-label="Next"
-        @click="nextPage">
+        @click="nextPage"
+      >
         <span aria-hidden="true"><i
           class="fa fa-angle-right"
-          aria-hidden="true"/></span>
+          aria-hidden="true"
+        /></span>
       </a>
     </li>
   </ul>
@@ -130,7 +139,7 @@ export default {
   },
   methods: {
     range (min, max) {
-      let arr = []
+      const arr = []
       for (let i = min; i <= max; i++) {
         arr.push(i)
       }

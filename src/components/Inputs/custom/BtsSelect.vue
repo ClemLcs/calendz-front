@@ -3,35 +3,38 @@
     :error="getError(veeScope ? `${veeScope}.bts` : 'bts')"
     :valid="isValid(veeScope ? `${veeScope}.bts` : 'bts')"
     class="w-100"
-    label="Option BTS">
+    label="Option BTS"
+  >
     <el-select
-      v-validate="'required|boolean'"
       v-model="inputValue"
+      v-validate="'required|boolean'"
       :disabled="disabled"
-      name="bts">
+      name="bts"
+    >
       <el-option
         v-for="(option, index) in options"
         :key="index"
         :label="option.label"
-        :value="option.value"/>
+        :value="option.value"
+      />
     </el-select>
   </base-input>
 </template>
 
 <script>
 import store from '@/store'
-import { Select, Option } from 'element-ui'
+import { ElSelect, ElOption } from 'element-plus'
 
 export default {
   components: {
-    [Select.name]: Select,
-    [Option.name]: Option
+    [ElSelect.name]: ElSelect,
+    [ElOption.name]: ElOption
   },
   props: {
     value: {
       type: Boolean,
       default: false,
-      doc: `Select's value`
+      doc: 'Select\'s value'
     },
     disabled: {
       type: Boolean,

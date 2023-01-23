@@ -5,13 +5,13 @@
 import Chart from 'chart.js'
 
 Chart.elements.Rectangle.prototype.draw = function () {
-  let ctx = this._chart.ctx
-  let vm = this._view
+  const ctx = this._chart.ctx
+  const vm = this._view
   let left, right, top, bottom, signX, signY, borderSkipped
   let borderWidth = vm.borderWidth
   // Set Radius Here
   // If radius is large enough to cause drawing errors a max radius is imposed
-  let cornerRadius = 6
+  const cornerRadius = 6
 
   if (!vm.horizontal) {
     // bar
@@ -37,14 +37,14 @@ Chart.elements.Rectangle.prototype.draw = function () {
   // adjust the sizes to fit if we're setting a stroke on the line
   if (borderWidth) {
     // borderWidth shold be less than bar width and bar height.
-    let barSize = Math.min(Math.abs(left - right), Math.abs(top - bottom))
+    const barSize = Math.min(Math.abs(left - right), Math.abs(top - bottom))
     borderWidth = borderWidth > barSize ? barSize : borderWidth
-    let halfStroke = borderWidth / 2
+    const halfStroke = borderWidth / 2
     // Adjust borderWidth when bar top position is near vm.base(zero).
-    let borderLeft = left + (borderSkipped !== 'left' ? halfStroke * signX : 0)
-    let borderRight = right + (borderSkipped !== 'right' ? -halfStroke * signX : 0)
-    let borderTop = top + (borderSkipped !== 'top' ? halfStroke * signY : 0)
-    let borderBottom = bottom + (borderSkipped !== 'bottom' ? -halfStroke * signY : 0)
+    const borderLeft = left + (borderSkipped !== 'left' ? halfStroke * signX : 0)
+    const borderRight = right + (borderSkipped !== 'right' ? -halfStroke * signX : 0)
+    const borderTop = top + (borderSkipped !== 'top' ? halfStroke * signY : 0)
+    const borderBottom = bottom + (borderSkipped !== 'bottom' ? -halfStroke * signY : 0)
     // not become a vertical line?
     if (borderLeft !== borderRight) {
       top = borderTop
@@ -65,7 +65,7 @@ Chart.elements.Rectangle.prototype.draw = function () {
   // Corner points, from bottom-left to bottom-right clockwise
   // | 1 2 |
   // | 0 3 |
-  let corners = [
+  const corners = [
     [left, bottom],
     [left, top],
     [right, top],
@@ -73,7 +73,7 @@ Chart.elements.Rectangle.prototype.draw = function () {
   ]
 
   // Find first (starting) corner with fallback to 'bottom'
-  let borders = ['bottom', 'left', 'top', 'right']
+  const borders = ['bottom', 'left', 'top', 'right']
   let startCorner = borders.indexOf(borderSkipped, 0)
   if (startCorner === -1) {
     startCorner = 0
@@ -96,10 +96,10 @@ Chart.elements.Rectangle.prototype.draw = function () {
 
     // let nextCorner = cornerAt(nextCornerId)
 
-    let width = corners[2][0] - corners[1][0]
-    let height = corners[0][1] - corners[1][1]
-    let x = corners[1][0]
-    let y = corners[1][1]
+    const width = corners[2][0] - corners[1][0]
+    const height = corners[0][1] - corners[1][1]
+    const x = corners[1][0]
+    const y = corners[1][1]
 
     let radius = cornerRadius
 

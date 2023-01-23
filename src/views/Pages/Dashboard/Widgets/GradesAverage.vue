@@ -6,13 +6,18 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0">Moyennes</h3>
+          <h3 class="mb-0">
+            Moyennes
+          </h3>
         </div>
         <div class="col text-right">
           <router-link to="/grades">
             <base-button
               size="sm"
-              type="primary">Détail</base-button>
+              type="primary"
+            >
+              Détail
+            </base-button>
           </router-link>
         </div>
       </div>
@@ -26,12 +31,14 @@
         id="gradesAverageTable"
         :data="subjects"
         class="table-responsive table"
-        header-row-class-name="thead-light">
+        header-row-class-name="thead-light"
+      >
         <!-- matière -->
         <el-table-column
           label="Matière"
-          min-width="180px">
-          <template v-slot="{row}">
+          min-width="180px"
+        >
+          <template #default="{row}">
             <div class="d-flex">
               <div class="col-auto pl-1 pr-0">
                 {{ row }}
@@ -43,8 +50,9 @@
         <el-table-column
           label="Notes"
           width="40px"
-          min-width="40px">
-          <template v-slot="{row}">
+          min-width="40px"
+        >
+          <template #default="{row}">
             <div class="text-center">
               {{ amount(row) }}
             </div>
@@ -54,8 +62,9 @@
         <el-table-column
           width="215px"
           min-width="215px"
-          prop="progress">
-          <template v-slot="{row}">
+          prop="progress"
+        >
+          <template #default="{row}">
             <div class="d-flex align-items-center">
               <span class="mr-2">{{ average(row) }}/20</span>
               <base-progress
@@ -67,23 +76,22 @@
         </el-table-column>
       </el-table>
     </div>
-
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import { BaseProgress } from '@/components'
-import { Table, TableColumn, DropdownMenu, DropdownItem, Dropdown } from 'element-ui'
+import { ElTable, ElTableColumn, ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 
 export default {
   components: {
     BaseProgress,
-    [Table.name]: Table,
-    [TableColumn.name]: TableColumn,
-    [Dropdown.name]: Dropdown,
-    [DropdownItem.name]: DropdownItem,
-    [DropdownMenu.name]: DropdownMenu
+    [ElTable.name]: ElTable,
+    [ElTableColumn.name]: ElTableColumn,
+    [ElDropdown.name]: ElDropdown,
+    [ElDropdownMenu.name]: ElDropdownMenu,
+    [ElDropdownItem.name]: ElDropdownItem
   },
   computed: {
     ...mapGetters({

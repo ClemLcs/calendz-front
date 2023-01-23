@@ -5,14 +5,18 @@
     <!-- ======================================= -->
     <base-header
       type="primary"
-      class="pb-6">
+      class="pb-6"
+    >
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
-          <h6 class="h2 text-white d-inline-block mb-0">Gestion des notes</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">
+            Gestion des notes
+          </h6>
           <nav
             aria-label="breadcrumb"
-            class="d-none d-md-inline-block ml-md-4">
-            <route-bread-crumb/>
+            class="d-none d-md-inline-block ml-md-4"
+          >
+            <route-bread-crumb />
           </nav>
         </div>
       </div>
@@ -24,31 +28,31 @@
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col-xl-3 col-md-6">
-          <create-grade/>
+          <create-grade />
         </div>
         <div class="col-xl-3 col-md-6">
-          <grades-average/>
+          <grades-average />
         </div>
         <div class="col-xl-3 col-md-6">
-          <grades-catchup/>
+          <grades-catchup />
         </div>
         <div class="col-xl-3 col-md-6">
-          <total-number/>
+          <total-number />
         </div>
       </div>
 
       <div class="row">
         <div class="col-12">
-          <grades-table/>
+          <grades-table />
         </div>
       </div>
 
       <div class="row">
         <div class="col-xl-6">
-          <grades-line-chart/>
+          <grades-line-chart />
         </div>
         <div class="col-xl-6">
-          <fill-grade/>
+          <fill-grade />
         </div>
       </div>
     </div>

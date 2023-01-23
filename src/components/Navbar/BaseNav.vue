@@ -1,9 +1,10 @@
 <template>
   <nav
     :class="classes"
-    class="navbar">
+    class="navbar"
+  >
     <div :class="containerClasses">
-      <slot name="brand"/>
+      <slot name="brand" />
 
       <slot name="toggle-button">
         <button
@@ -14,24 +15,26 @@
           aria-label="Toggle navigation"
           @click="toggleMenu"
         >
-          <span class="navbar-toggler-bar navbar-kebab"/>
-          <span class="navbar-toggler-bar navbar-kebab"/>
-          <span class="navbar-toggler-bar navbar-kebab"/>
+          <span class="navbar-toggler-bar navbar-kebab" />
+          <span class="navbar-toggler-bar navbar-kebab" />
+          <span class="navbar-toggler-bar navbar-kebab" />
         </button>
       </slot>
 
       <button
         class="navbar-toggler"
-        @click.stop="toggleMenu">
-        <span class="navbar-toggler-icon"/>
+        @click.stop="toggleMenu"
+      >
+        <span class="navbar-toggler-icon" />
       </button>
 
       <div
-        v-click-outside="closeMenu"
         v-show="show"
+        v-click-outside="closeMenu"
         :class="menuClasses"
-        class="navbar-collapse navbar-custom-collapse collapse show">
-        <slot :close-menu="closeMenu"/>
+        class="navbar-collapse navbar-custom-collapse collapse show"
+      >
+        <slot :close-menu="closeMenu" />
       </div>
     </div>
   </nav>
@@ -94,8 +97,8 @@ export default {
   },
   computed: {
     classes () {
-      let color = `bg-${this.type}`
-      let classes = [
+      const color = `bg-${this.type}`
+      const classes = [
         { 'navbar-transparent': this.transparent },
         { [`navbar-expand-${this.expand}`]: this.expand }
       ]

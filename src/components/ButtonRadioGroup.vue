@@ -1,19 +1,22 @@
 <template>
   <div
     class="btn-group-toggle"
-    data-toggle="buttons">
+    data-toggle="buttons"
+  >
     <label
       v-for="(option, index) in options"
       :key="index"
       :class="[{ active: value === option.value }, buttonClasses]"
-      class="btn">
+      class="btn"
+    >
       <input
         id="option1"
-        :value="option.value"
         v-model="model"
+        :value="option.value"
         type="radio"
         autocomplete="off"
-        checked="">
+        checked=""
+      >
       {{ option.label }}
     </label>
   </div>

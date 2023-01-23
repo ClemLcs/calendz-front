@@ -5,32 +5,36 @@
     <!-- ======================================= -->
     <base-header
       type="primary"
-      class="pb-6">
+      class="pb-6"
+    >
       <div class="row align-items-center py-4">
         <div class="col-5">
-          <h6 class="h2 text-white d-inline-block mb-0">Emploi du temps</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">
+            Emploi du temps
+          </h6>
           <nav
             aria-label="breadcrumb"
-            class="d-none d-md-inline-block ml-md-4">
-            <route-bread-crumb/>
+            class="d-none d-md-inline-block ml-md-4"
+          >
+            <route-bread-crumb />
           </nav>
         </div>
         <div class="col-7 text-right">
-
           <form
             v-if="windowWidth > 1095"
             class="agenda-search navbar-search navbar-search-light d-inline-block mr-3"
             @submit.prevent
             @change="handleSearchInputChange"
             @mouseenter="handleSearchInputMouseEnter"
-            @mouseleave="handleSearchInputMouseLeave">
-
+            @mouseleave="handleSearchInputMouseLeave"
+          >
             <div class="form-group mb-0">
               <div class="input-group input-group-alternative input-group-merge">
                 <div class="input-group-prepend">
                   <span
                     class="input-group-text"
-                    style="padding: .9rem 1rem"><i class="fas fa-search"/></span>
+                    style="padding: .9rem 1rem"
+                  ><i class="fas fa-search" /></span>
                 </div>
                 <input
                   id="agenda-search-input"
@@ -39,11 +43,13 @@
                   class="form-control p-0"
                   placeholder="Entrez : prénom.nom"
                   type="text"
-                  style="width: 0">
+                  style="width: 0"
+                >
                 <div
                   class="input-group-text input-group-append text-black"
-                  @click="handleSearchInputClear">
-                  <i class="fas fa-times"/>
+                  @click="handleSearchInputClear"
+                >
+                  <i class="fas fa-times" />
                 </div>
               </div>
             </div>
@@ -53,45 +59,51 @@
             <a
               href=""
               class="fullcalendar-btn-prev btn btn-sm btn-default my-1"
-              @click.prevent="prev">
-              <i class="fas fa-angle-left"/>
+              @click.prevent="prev"
+            >
+              <i class="fas fa-angle-left" />
             </a>
             <a
               href=""
               class="fullcalendar-btn-next btn btn-sm btn-default my-1"
-              @click.prevent="next">
-              <i class="fas fa-angle-right"/>
+              @click.prevent="next"
+            >
+              <i class="fas fa-angle-right" />
             </a>
             <base-button
               :class="{'active': activeView === 'dayGridMonth'}"
               class="btn btn-sm btn-default my-1"
-              @click="changeView('dayGridMonth')">
+              @click="changeView('dayGridMonth')"
+            >
               Mois
             </base-button>
             <base-button
               :class="{'active': activeView === 'timeGridWeek'}"
               class="btn btn-sm btn-defaul my-1"
-              @click="changeView('timeGridWeek')">
+              @click="changeView('timeGridWeek')"
+            >
               Semaine
             </base-button>
             <base-button
               :class="{'active': activeView === 'timeGridDay'}"
               class="btn btn-sm btn-default mr-2 my-1"
-              @click="changeView('timeGridDay')">
+              @click="changeView('timeGridDay')"
+            >
               Jour
             </base-button>
             <el-tooltip
               content="Forcer la réactualisation"
-              placement="top">
+              placement="top"
+            >
               <base-button
                 type="default"
                 class="btn btn-sm py-2 my-1"
-                @click="reload()">
-                <i class="fas fa-sync-alt"/>
+                @click="reload()"
+              >
+                <i class="fas fa-sync-alt" />
               </base-button>
             </el-tooltip>
           </div>
-
         </div>
       </div>
     </base-header>
@@ -102,22 +114,25 @@
     <div
       v-touch:swipe.left="handleSwipeLeft"
       v-touch:swipe.right="handleSwipeRight"
-      class="container-fluid mt--6">
+      class="container-fluid mt--6"
+    >
       <div class="row">
         <div class="col">
           <!-- Fullcalendar -->
           <div class="card card-calendar">
-
             <!-- Card header -->
             <div class="card-header py-3">
               <div class="row align-items-center">
                 <div class="col-7">
-                  <h5 class="h3 mb-0">{{ headerDate }}</h5>
+                  <h5 class="h3 mb-0">
+                    {{ headerDate }}
+                  </h5>
                 </div>
                 <div class="col-5 text-right">
                   <base-button
                     class="btn btn-sm btn-default"
-                    @click="backToToday()">
+                    @click="backToToday()"
+                  >
                     Revenir à aujourd'hui
                   </base-button>
                 </div>
@@ -127,7 +142,8 @@
             <!-- Card body -->
             <div
               :class="{ 'bg-other-agenda': searchInput.includes('.') }"
-              class="card-body p-0 card-calendar-body">
+              class="card-body p-0 card-calendar-body"
+            >
               <full-calendar
                 id="calendar"
                 ref="fullCalendar"
@@ -164,11 +180,15 @@
     <!-- == Course detail modal ================= -->
     <!-- ======================================== -->
     <modal
-      :show.sync="showCourseModal">
+      :show.sync="showCourseModal"
+    >
       <template
         slot="header"
-        class="pb-0">
-        <h2 class="mb-0">Détail du cours</h2>
+        class="pb-0"
+      >
+        <h2 class="mb-0">
+          Détail du cours
+        </h2>
       </template>
 
       <div class="row">
@@ -195,7 +215,8 @@
 
       <div
         v-if="courseModal.remote"
-        class="row">
+        class="row"
+      >
         <hr class="mt-3 mb-4">
 
         <div class="col-12">
@@ -205,17 +226,21 @@
             v-if="courseModal.link"
             :href="courseModal.link"
             target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             <base-button
               type="primary"
-              size="sm">
+              size="sm"
+            >
               <div
                 class="bg-white rounded-circle shadow"
-                style="padding: 4px; margin-right: 6px">
+                style="padding: 4px; margin-right: 6px"
+              >
                 <img
                   style="height: 14px; width: 18px"
                   src="/img/icons/teams.svg"
-                  alt="Teams">
+                  alt="Teams"
+                >
               </div>
               Rejoindre le cours
             </base-button>
@@ -241,33 +266,37 @@
           v-for="(task, index) in courseModal.tasks"
           :key="index"
           :class="courseModal.tasks.length-1 !== index ? 'mb-4 pb-2' : ''"
-          class="row ">
+          class="row "
+        >
           <!-- type -->
           <div class="col-2 px-0 text-center my-auto">
-            <task-type :task="task"/>
+            <task-type :task="task" />
           </div>
 
           <!-- core -->
           <div class="col-8 px-2 my-auto">
-            <task-core :task="task"/>
+            <task-core :task="task" />
           </div>
 
           <!-- actions -->
           <div
             :class="windowWidth < 800 ? 'px-0' : ''"
-            class="col my-auto">
+            class="col my-auto"
+          >
             <div class="d-flex">
               <el-tooltip
                 :content="isTaskDone(task._id) ? 'Marquer comme non fait' : 'Marquer comme fait'"
-                placement="top">
+                placement="top"
+              >
                 <base-button
                   :outline="!isTaskDone(task._id)"
                   :class="isTaskDone(task._id) ? 'text-white' : 'text-success'"
                   size="sm"
                   type="success"
                   class="is-done-checkbox"
-                  @click="toggleTaskDone(task._id)">
-                  <i class="fas fa-check"/>
+                  @click="toggleTaskDone(task._id)"
+                >
+                  <i class="fas fa-check" />
                 </base-button>
               </el-tooltip>
             </div>
@@ -283,13 +312,15 @@
           type="secondary"
           size="md"
           class="text-default"
-          @click="gotoTaskCreation()">
+          @click="gotoTaskCreation()"
+        >
           Ajouter une tâche
         </base-button>
         <base-button
           type="primary"
           size="md"
-          @click="showCourseModal = false">
+          @click="showCourseModal = false"
+        >
           Fermer
         </base-button>
       </template>
@@ -301,43 +332,49 @@
     <modal :show.sync="showTaskModal">
       <template
         slot="header"
-        class="pb-0">
+        class="pb-0"
+      >
         <h2 class="mb-0">
           Tâche{{ taskModal.tasks && taskModal.tasks.length > 1 ? 's' : '' }}
-          du {{ taskModal.date }}</h2>
+          du {{ taskModal.date }}
+        </h2>
       </template>
 
       <div
         v-for="(task, index) in taskModal.tasks"
         :key="index"
         :class="taskModal.tasks.length-1 !== index ? 'mb-4 pb-2' : ''"
-        class="row ">
+        class="row "
+      >
         <!-- type -->
         <div class="col-2 px-0 text-center my-auto">
-          <task-type :task="task"/>
+          <task-type :task="task" />
         </div>
 
         <!-- core -->
         <div class="col-8 px-2 my-auto">
-          <task-core :task="task"/>
+          <task-core :task="task" />
         </div>
 
         <!-- actions -->
         <div
           :class="windowWidth < 800 ? 'px-0' : ''"
-          class="col my-auto">
+          class="col my-auto"
+        >
           <div class="d-flex">
             <el-tooltip
               :content="isTaskDone(task._id) ? 'Marquer comme non fait' : 'Marquer comme fait'"
-              placement="top">
+              placement="top"
+            >
               <base-button
                 :outline="!isTaskDone(task._id)"
                 :class="isTaskDone(task._id) ? 'text-white' : 'text-success'"
                 size="sm"
                 type="success"
                 class="is-done-checkbox"
-                @click="toggleTaskDone(task._id)">
-                <i class="fas fa-check"/>
+                @click="toggleTaskDone(task._id)"
+              >
+                <i class="fas fa-check" />
               </base-button>
             </el-tooltip>
           </div>
@@ -348,7 +385,10 @@
         <base-button
           type="primary"
           size="md"
-          @click="showTaskModal = false">Fermer</base-button>
+          @click="showTaskModal = false"
+        >
+          Fermer
+        </base-button>
       </template>
     </modal>
   </div>
@@ -356,7 +396,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { Modal } from '@/components'
-import FullCalendar from '@fullcalendar/vue'
+import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
@@ -374,7 +414,7 @@ export default {
     return {
       placeholderEvents: [{
         title: '',
-        daysOfWeek: [ '1' ],
+        daysOfWeek: ['1'],
         startTime: '14:00:00',
         endTime: '18:00:00',
         className: 'loading-event',
@@ -382,7 +422,7 @@ export default {
         room: ''
       }, {
         title: '',
-        daysOfWeek: [ '1' ],
+        daysOfWeek: ['1'],
         startTime: '09:00:00',
         endTime: '13:00:00',
         className: 'loading-event',
@@ -390,7 +430,7 @@ export default {
         room: ''
       }, {
         title: '',
-        daysOfWeek: [ '2' ],
+        daysOfWeek: ['2'],
         startTime: '08:00:00',
         endTime: '12:00:00',
         className: 'loading-event',
@@ -398,7 +438,7 @@ export default {
         room: ''
       }, {
         title: '',
-        daysOfWeek: [ '2' ],
+        daysOfWeek: ['2'],
         startTime: '13:00:00',
         endTime: '17:00:00',
         className: 'loading-event',
@@ -406,7 +446,7 @@ export default {
         room: ''
       }, {
         title: '',
-        daysOfWeek: [ '3' ],
+        daysOfWeek: ['3'],
         startTime: '14:00:00',
         endTime: '18:00:00',
         className: 'loading-event',
@@ -414,7 +454,7 @@ export default {
         room: ''
       }, {
         title: '',
-        daysOfWeek: [ '3' ],
+        daysOfWeek: ['3'],
         startTime: '09:00:00',
         endTime: '13:00:00',
         className: 'loading-event',
@@ -422,7 +462,7 @@ export default {
         room: ''
       }, {
         title: '',
-        daysOfWeek: [ '4' ],
+        daysOfWeek: ['4'],
         startTime: '08:00:00',
         endTime: '12:00:00',
         className: 'loading-event',
@@ -430,7 +470,7 @@ export default {
         room: ''
       }, {
         title: '',
-        daysOfWeek: [ '4' ],
+        daysOfWeek: ['4'],
         startTime: '13:00:00',
         endTime: '17:00:00',
         className: 'loading-event',
@@ -438,7 +478,7 @@ export default {
         room: ''
       }, {
         title: '',
-        daysOfWeek: [ '5' ],
+        daysOfWeek: ['5'],
         startTime: '14:00:00',
         endTime: '18:00:00',
         className: 'loading-event',
@@ -446,7 +486,7 @@ export default {
         room: ''
       }, {
         title: '',
-        daysOfWeek: [ '5' ],
+        daysOfWeek: ['5'],
         startTime: '09:00:00',
         endTime: '13:00:00',
         className: 'loading-event',
@@ -849,7 +889,7 @@ export default {
       if (date.getDay() === 0) date.setDate(date.getDate() + 1)
       date = this.dateToMonthDayYear(date)
       this.$store.dispatch('calendar/resetFetchedWeeks')
-      this.$store.dispatch('calendar/fetchDate', { date: date, force: true })
+      this.$store.dispatch('calendar/fetchDate', { date, force: true })
     },
     // ===========================================
     // == Task functions
@@ -916,16 +956,16 @@ export default {
       if (date.getDay() === 0) date.setDate(date.getDate() + 1)
       date = this.dateToMonthDayYear(date)
       this.$store.dispatch('calendar/resetFetchedWeeks')
-      this.$store.dispatch('calendar/fetchDate', { date: date })
+      this.$store.dispatch('calendar/fetchDate', { date })
     }
   }
 }
 </script>
 
 <style lang="scss">
-  @import "~@fullcalendar/core/main.css";
-  @import '~@fullcalendar/daygrid/main.css';
-  @import '~@fullcalendar/timegrid/main.css';
+  // @import "~@fullcalendar/core/main.css";
+  // @import '~@fullcalendar/daygrid/main.css';
+  // @import '~@fullcalendar/timegrid/main.css';
   @import "~@/assets/sass/core/vendors/fullcalendar";
 
   // =========================================

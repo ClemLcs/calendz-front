@@ -10,7 +10,10 @@
         <div class="col-4 text-right">
           <router-link
             to="/dashboard"
-            class="btn btn-sm btn-primary disabled">Ajouter</router-link>
+            class="btn btn-sm btn-primary disabled"
+          >
+            Ajouter
+          </router-link>
         </div>
       </div>
     </div>
@@ -23,13 +26,14 @@
         :theme="false"
         :default-view="defaultView"
         default-date="2018-12-01"
-        content-height="auto"/>
+        content-height="auto"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import FullCalendar from '@fullcalendar/vue'
+import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
@@ -83,7 +87,7 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "~@fullcalendar/core/main.css";
+  // @import "~@fullcalendar/core/main.css";
   @import "~@/assets/sass/core/vendors/fullcalendar";
 
   .blur {

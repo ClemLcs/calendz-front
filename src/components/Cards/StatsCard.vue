@@ -1,37 +1,45 @@
 <template>
   <card
     :show-footer-line="true"
-    class="card-stats">
+    class="card-stats"
+  >
     <div class="row">
-
       <div class="col">
         <slot>
           <h5
             v-if="title"
-            class="card-title text-muted mb-1">{{ title }}</h5>
+            class="card-title text-muted mb-1"
+          >
+            {{ title }}
+          </h5>
           <div
             v-if="subTitle"
-            style="height: 36px !important">
-            <p class="h3 mb-0 my-auto">{{ subTitle }}</p>
+            style="height: 36px !important"
+          >
+            <p class="h3 mb-0 my-auto">
+              {{ subTitle }}
+            </p>
           </div>
         </slot>
       </div>
 
       <div
         v-if="$slots.icon || icon"
-        class="col-auto">
+        class="col-auto"
+      >
         <slot name="icon">
           <div
             :class="[`bg-${type}`, iconClasses]"
-            class="icon icon-shape text-white rounded-circle shadow">
-            <i :class="icon"/>
+            class="icon icon-shape text-white rounded-circle shadow"
+          >
+            <i :class="icon" />
           </div>
         </slot>
       </div>
     </div>
 
     <p class="mt-1 mb-0 text-sm">
-      <slot name="footer"/>
+      <slot name="footer" />
     </p>
   </card>
 </template>

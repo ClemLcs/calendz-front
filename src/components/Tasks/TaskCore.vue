@@ -1,6 +1,5 @@
 <template>
   <div class="container p-0 task-core">
-
     <!-- title -->
     <span
       :class="getTitleClasses()"
@@ -14,12 +13,14 @@
       <el-tooltip
         :content="`${task.author && task.author.firstname || '?'} ${task.author && task.author.lastname || '?'}`"
         placement="top"
-        class="avatar avatar-sm rounded-circle bg-warning">
+        class="avatar avatar-sm rounded-circle bg-warning"
+      >
         <img
           :src="task.author && task.author.avatarUrl || 'img/theme/default-pp.png'"
           alt="Photo de profil"
           class="rounded-circle avatar rounded-circle"
-          style="width: 20px; height: 20px;">
+          style="width: 20px; height: 20px;"
+        >
       </el-tooltip>
       <br>
     </span>
@@ -30,21 +31,23 @@
         :class="isDone(task._id) ? 'text-strikethrough' : ''"
         class="mb-0 text-sm text-justify"
         style="font-size: 0.875rem !important"
-        v-html="getTaskDescription(task)"/>
+        v-html="getTaskDescription(task)"
+      />
       <a
         v-if="task.description && (task.description.length > showMoreLimit || task.description.includes('</p><p>') || task.description.includes('</li><li>'))"
         href="javascript:void(0)"
         class="text-sm"
-        @click="readMore = !readMore">
+        @click="readMore = !readMore"
+      >
         {{ readMore ? 'Afficher moins...' : 'Tout afficher...' }}
       </a>
       <footer
         v-if="task.subject"
-        class="blockquote-footer text-sm">
+        class="blockquote-footer text-sm"
+      >
         {{ task.subject }}
       </footer>
     </blockquote>
-
   </div>
 </template>
 
@@ -93,7 +96,7 @@ export default {
       return this.allDoneTasks.some(task => task._id === taskId)
     },
     getTaskDescription (task) {
-      if (!task.description) return `<span class='text-muted'>Aucune description...</span>`
+      if (!task.description) return '<span class=\'text-muted\'>Aucune description...</span>'
 
       // if readMore: return whole description
       if (this.readMore) return task.description

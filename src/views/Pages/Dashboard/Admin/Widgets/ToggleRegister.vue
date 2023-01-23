@@ -1,24 +1,28 @@
 <template>
   <card
     :show-footer-line="true"
-    class="card-stats">
+    class="card-stats"
+  >
     <div class="row">
-
       <div class="col">
         <slot>
-          <h5 class="card-title text-uppercase text-muted mb-1">TOGGLE INSCRIPTION</h5>
+          <h5 class="card-title text-uppercase text-muted mb-1">
+            TOGGLE INSCRIPTION
+          </h5>
           <div class="row mt-2 mb--3">
             <div class="col-12 pr-0">
               <span
                 class="h2 font-weight-bold mt--1 mr-2"
-                style="float:left">Statut :</span>
+                style="float:left"
+              >Statut :</span>
               <div>
                 <base-switch
                   :value="settings.registerEnabled"
                   type="primary"
                   on-text="On"
                   off-text="Off"
-                  @input="toggleRegister($event)"/>
+                  @input="toggleRegister($event)"
+                />
               </div>
             </div>
           </div>
@@ -29,8 +33,9 @@
         <slot name="icon">
           <div
             :class="settings.registerEnabled ? 'bg-success' : 'bg-danger'"
-            class="icon icon-shape text-white rounded-circle shadow">
-            <i class="fas fa-sign-in-alt"/>
+            class="icon icon-shape text-white rounded-circle shadow"
+          >
+            <i class="fas fa-sign-in-alt" />
           </div>
         </slot>
       </div>
@@ -40,9 +45,10 @@
       <slot name="footer">
         <i
           :class="settings.registerEnabled ? 'fa-toggle-on' : 'fa-toggle-off'"
-          class="fas  mr-1"/>
+          class="fas  mr-1"
+        />
         État actuel :
-        <span :class="settings.registerEnabled ? 'text-success' : 'text-danger'" >
+        <span :class="settings.registerEnabled ? 'text-success' : 'text-danger'">
           {{ settings.registerEnabled ? 'activé' : 'désactivé' }}
         </span>
       </slot>

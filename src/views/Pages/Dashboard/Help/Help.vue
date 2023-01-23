@@ -6,11 +6,14 @@
     <base-header type="secondary">
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
-          <h6 class="h2 d-inline-block mb-0">Aide et informations</h6>
+          <h6 class="h2 d-inline-block mb-0">
+            Aide et informations
+          </h6>
           <nav
             aria-label="breadcrumb"
-            class="d-none d-md-inline-block ml-md-4">
-            <route-bread-crumb light/>
+            class="d-none d-md-inline-block ml-md-4"
+          >
+            <route-bread-crumb light />
           </nav>
         </div>
       </div>
@@ -61,7 +64,7 @@
         <h1>{{ selectedLabel }}</h1>
         <span class="text-muted">{{ selectedDescription }}</span>
 
-        <div class="bg-pattern-dots"/>
+        <div class="bg-pattern-dots" />
       </div>
 
       <div class="row justify-content-center">
@@ -69,16 +72,20 @@
           <fade-transition group>
             <help-calendar
               v-if="selected === 'calendar'"
-              :key="1"/>
+              :key="1"
+            />
             <help-tasks
               v-if="selected === 'tasks'"
-              :key="2"/>
+              :key="2"
+            />
             <help-grades
               v-if="selected === 'grades'"
-              :key="3"/>
+              :key="3"
+            />
             <help-others
               v-if="selected === 'others'"
-              :key="4"/>
+              :key="4"
+            />
           </fade-transition>
         </div>
       </div>
@@ -87,7 +94,7 @@
 </template>
 
 <script>
-import { FadeTransition } from 'vue2-transitions'
+import { FadeTransition } from 'vue3-transitions'
 import HelpCategory from '@/components/Help/HelpCategory.vue'
 import HelpCalendar from './HelpCalendar.vue'
 import HelpTasks from './HelpTasks.vue'

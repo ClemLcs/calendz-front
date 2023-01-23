@@ -61,7 +61,7 @@ const accountModule = {
     },
     LOGIN_FAILURE: (state, { reason, userId = null }) => {
       state.user = null
-      state.status = { loginError: reason, userId: userId }
+      state.status = { loginError: reason, userId }
       state.attempts++
     },
 
@@ -231,8 +231,8 @@ const accountModule = {
               commit('LOGIN_FAILURE', { reason: err.message })
               swal.fire({
                 icon: 'success',
-                title: `Vous avez fini vos études !`,
-                text: `Ou du moins, vous en avez fini avec l'EPSI/WIS ! Félicitations ! Nous vous souhaitons une superbe carrière !`,
+                title: 'Vous avez fini vos études !',
+                text: 'Ou du moins, vous en avez fini avec l\'EPSI/WIS ! Félicitations ! Nous vous souhaitons une superbe carrière !',
                 buttonsStyling: false,
                 focusConfirm: true,
                 confirmButtonText: 'Merci',
@@ -245,8 +245,8 @@ const accountModule = {
             if (err && err.code === 'REQUIRE_MIGRATION') {
               swal.fire({
                 icon: 'info',
-                title: `Mise-à-jour requise`,
-                text: `Il semblerait que ça soit la première fois que vous vous connectez cette année. Vous devez mettre à jour certaines informations sur votre profil.`,
+                title: 'Mise-à-jour requise',
+                text: 'Il semblerait que ça soit la première fois que vous vous connectez cette année. Vous devez mettre à jour certaines informations sur votre profil.',
                 buttonsStyling: false,
                 focusConfirm: true,
                 confirmButtonText: 'Commencer',
@@ -270,8 +270,8 @@ const accountModule = {
             if (state.attempts >= 3) {
               swal.fire({
                 icon: 'question',
-                title: `Mot de passe oublié ?`,
-                text: `Pas de panique, indiquez votre adresse mail et nous vous enverrons un lien afin de réinitialiser votre mot de passe.`,
+                title: 'Mot de passe oublié ?',
+                text: 'Pas de panique, indiquez votre adresse mail et nous vous enverrons un lien afin de réinitialiser votre mot de passe.',
                 buttonsStyling: false,
                 focusConfirm: true,
                 confirmButtonText: 'Réinitialiser',
@@ -347,7 +347,7 @@ const accountModule = {
             user.bts = bts
             user.group = group
             localStorage.user = JSON.stringify(user)
-            Vue.prototype.$notify({ type: 'success', message: `Modification effectuée avec succès !` })
+            Vue.prototype.$notify({ type: 'success', message: 'Modification effectuée avec succès !' })
           },
           err => {
             commit('UPDATE_PROFILE_FAILURE', err.data.message)
@@ -383,7 +383,7 @@ const accountModule = {
             const user = JSON.parse(localStorage.user)
             user.hasInformationMails = value
             localStorage.user = JSON.stringify(user)
-            Vue.prototype.$notify({ type: 'success', message: `Changement effectué avec succès.` })
+            Vue.prototype.$notify({ type: 'success', message: 'Changement effectué avec succès.' })
           },
           err => {
             commit('CHANGE_PARAMETER_FAILURE', err.message)
@@ -400,7 +400,7 @@ const accountModule = {
             const user = JSON.parse(localStorage.user)
             user.settings.mail.taskCreate = value
             localStorage.user = JSON.stringify(user)
-            Vue.prototype.$notify({ type: 'success', message: `Changement effectué avec succès.` })
+            Vue.prototype.$notify({ type: 'success', message: 'Changement effectué avec succès.' })
           },
           err => {
             commit('CHANGE_SETTINGS_MAIL_TASK_CREATE_FAILURE', err.data.message)
@@ -417,7 +417,7 @@ const accountModule = {
             const user = JSON.parse(localStorage.user)
             user.settings.calendarColor = value
             localStorage.user = JSON.stringify(user)
-            Vue.prototype.$notify({ type: 'success', message: `Couleur de l'emploi du temps modifiée avec succès.` })
+            Vue.prototype.$notify({ type: 'success', message: 'Couleur de l\'emploi du temps modifiée avec succès.' })
           },
           err => {
             commit('CHANGE_CALENDAR_COLOR_FAILURE', err.message)
@@ -479,7 +479,7 @@ const accountModule = {
         .then(
           res => {
             commit('DELETE_USER_SUCCESS')
-            Vue.prototype.$notify({ type: 'success', message: `Votre compte a bien été supprimé...` })
+            Vue.prototype.$notify({ type: 'success', message: 'Votre compte a bien été supprimé...' })
             dispatch('logout', {})
           },
           err => {
@@ -502,7 +502,7 @@ const accountModule = {
             const user = JSON.parse(localStorage.user)
             user.avatarUrl = avatar
             localStorage.user = JSON.stringify(user)
-            Vue.prototype.$notify({ type: 'success', message: `Avatar modifié avec succès.` })
+            Vue.prototype.$notify({ type: 'success', message: 'Avatar modifié avec succès.' })
           },
           err => {
             commit('CHANGE_AVATAR_FAILURE', err.data.message)
@@ -519,7 +519,7 @@ const accountModule = {
             user.tasks.done = user.tasks.done.filter(id => id !== taskId)
             localStorage.user = JSON.stringify(user)
             commit('SET_NOTDONE_SUCCESS', taskId)
-            Vue.prototype.$notify({ type: 'success', message: `Tâche marquée comme non-faite !` })
+            Vue.prototype.$notify({ type: 'success', message: 'Tâche marquée comme non-faite !' })
           },
           err => {
             commit('SET_NOTDONE_FAILURE', err.data.message)
@@ -536,7 +536,7 @@ const accountModule = {
             user.tasks.done.push(taskId)
             localStorage.user = JSON.stringify(user)
             commit('SET_DONE_SUCCESS', taskId)
-            Vue.prototype.$notify({ type: 'success', message: `Tâche marquée comme faite !` })
+            Vue.prototype.$notify({ type: 'success', message: 'Tâche marquée comme faite !' })
           },
           err => {
             commit('SET_DONE_FAILURE', err.data.message)

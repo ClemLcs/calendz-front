@@ -1,6 +1,6 @@
 <template>
   <div>
-    <notifications/>
+    <notifications />
     <base-nav
       v-model="showMenu"
       :transparent="true"
@@ -11,14 +11,17 @@
     >
       <div
         slot="brand"
-        class="navbar-wrapper">
+        class="navbar-wrapper"
+      >
         <router-link
           class="navbar-brand"
-          to="/">
+          to="/"
+        >
           <img
             src="img/icons/android-chrome-256x256.png"
             alt="Logo"
-            style="height: 50px; width: 50px">
+            style="height: 50px; width: 50px"
+          >
         </router-link>
       </div>
 
@@ -29,16 +32,18 @@
               <router-link to="/">
                 <img
                   src="img/icons/android-chrome-256x256.png"
-                  alt="Logo">
+                  alt="Logo"
+                >
               </router-link>
             </div>
             <div class="col-6 collapse-close">
               <button
                 type="button"
                 class="navbar-toggler"
-                @click="showMenu = false">
-                <span/>
-                <span/>
+                @click="showMenu = false"
+              >
+                <span />
+                <span />
               </button>
             </div>
           </div>
@@ -49,26 +54,12 @@
           <li class="nav-item">
             <router-link
               to="/home"
-              class="nav-link">
+              class="nav-link"
+            >
               <span class="nav-link-inner--text">Accueil</span>
             </router-link>
           </li>
-          <li class="nav-item">
-            <a
-              href="https://docs.calendz.app"
-              target="_blank"
-              rel="noopenner noreferrer"
-              class="nav-link">
-              <span class="nav-link-inner--text">Documentation</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <router-link
-              to="/contact"
-              class="nav-link">
-              <span class="nav-link-inner--text">Contact</span>
-            </router-link>
-          </li>
+          <!-- TODO: delete route /contact-->
         </ul>
 
         <hr class="d-lg-none">
@@ -78,19 +69,12 @@
           <li class="nav-item  d-lg-block ml-lg-4">
             <router-link
               to="/login"
-              class="btn btn-neutral btn-icon">
+              class="btn btn-neutral btn-icon"
+            >
               <span class="btn-inner--icon">
-                <i class="fas fa-sign-in-alt mr-2"/>
+                <i class="fas fa-sign-in-alt mr-2" />
               </span>
               <span class="nav-link-inner--text">Connexion</span>
-            </router-link>
-            <router-link
-              to="/register"
-              class="btn btn-default btn-icon">
-              <span class="btn-inner--icon">
-                <i class="fas fa-sign-in-alt mr-2"/>
-              </span>
-              <span class="nav-link-inner--text">Inscription</span>
             </router-link>
           </li>
         </ul>
@@ -102,68 +86,41 @@
         :duration="pageTransitionDuration"
         mode="out-in"
       >
-        <router-view/>
+        <router-view />
       </zoom-center-transition>
     </div>
 
     <footer
       id="footer-main"
-      class="py-5">
+      class="py-5"
+    >
       <div class="container">
         <div class="row align-items-center justify-content-xl-between">
           <div class="col-xl-6">
             <div class="copyright text-center text-xl-left text-muted">
               © {{ year }} Créateurs : <a
-              href="https://arthurdufour.com/"
-              rel="noreferrer noopener"
-              class="font-weight-bold ml-1"
-              target="_blank">Arthur Dufour</a> &
+                href="https://arthurdufour.com/"
+                rel="noreferrer noopener"
+                class="font-weight-bold ml-1"
+                target="_blank"
+              >Arthur Dufour</a> &
               <a
                 href="https://alexandretuet.com/"
                 rel="noreferrer noopener"
                 class="font-weight-bold ml-1"
-                target="_blank">Alexandre Tuet</a>
-              <br> Développeurs actuels :
-              <a
-                rel="noreferrer noopener"
-                class="font-weight-bold ml-1"
-                target="_blank">Maxime Lemaire</a> &
-              <a
-                href="https://doryanchaigneau.fr/"
-                rel="noreferrer noopener"
-                class="font-weight-bold ml-1"
-                target="_blank">Doryan Chaigneau</a>
+                target="_blank"
+              >Alexandre Tuet</a>
             </div>
           </div>
           <div class="col-xl-6">
             <ul class="nav nav-footer justify-content-center justify-content-xl-end">
               <li class="nav-item">
                 <a
-                  :href="`https://github.com/calendz/calendz-front/releases/tag/v${version}`"
-                  rel="noreferrer noopener"
-                  class="nav-link"
-                  target="_blank">v{{ version }}</a>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="https://changelog.calendz.app"
-                  rel="noreferrer noopener"
-                  class="nav-link"
-                  target="_blank">Changelog</a>
-              </li>
-              <li class="nav-item">
-                <a
                   href="https://github.com/calendz"
                   rel="noreferrer noopener"
                   class="nav-link"
-                  target="_blank">Github</a>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="https://status.calendz.app"
                   target="_blank"
-                  rel="noreferrer noopener"
-                  class="nav-link">Status</a>
+                >Github</a>
               </li>
             </ul>
           </div>
@@ -174,13 +131,24 @@
 </template>
 <script>
 import { BaseNav } from '@/components'
-import { ZoomCenterTransition } from 'vue2-transitions'
+import { ZoomCenterTransition } from 'vue3-transitions'
 import packageJson from '../../../package.json'
 
 export default {
   components: {
     BaseNav,
     ZoomCenterTransition
+  },
+  beforeRouteUpdate (to, from, next) {
+    // Close the mobile menu first then transition to next page
+    if (this.showMenu) {
+      this.closeMenu()
+      setTimeout(() => {
+        next()
+      }, this.menuTransitionDuration)
+    } else {
+      next()
+    }
   },
   props: {
     backgroundColor: {
@@ -236,27 +204,18 @@ export default {
         this.removeBackgroundColor()
       }
     }
-  },
-  beforeRouteUpdate (to, from, next) {
-    // Close the mobile menu first then transition to next page
-    if (this.showMenu) {
-      this.closeMenu()
-      setTimeout(() => {
-        next()
-      }, this.menuTransitionDuration)
-    } else {
-      next()
-    }
   }
 }
 </script>
 <style lang="scss">
 $scaleSize: 0.8;
+
 @keyframes zoomIn8 {
   from {
     opacity: 0;
     transform: scale3d($scaleSize, $scaleSize, $scaleSize);
   }
+
   100% {
     opacity: 1;
   }
@@ -270,6 +229,7 @@ $scaleSize: 0.8;
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
     transform: scale3d($scaleSize, $scaleSize, $scaleSize);

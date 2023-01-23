@@ -3,12 +3,13 @@
     <slide-y-up-transition
       :duration="transitionDuration"
       group
-      mode="out-in">
+      mode="out-in"
+    >
       <notification
         v-for="notification in notifications"
         v-bind="notification"
-        :click-handler="notification.onClick"
         :key="notification.timestamp.getTime()"
+        :click-handler="notification.onClick"
         @close="removeNotification"
       />
     </slide-y-up-transition>
@@ -16,7 +17,7 @@
 </template>
 <script>
 import Notification from './Notification.vue'
-import { SlideYUpTransition } from 'vue2-transitions'
+import { SlideYUpTransition } from 'vue3-transitions'
 
 export default {
   components: {

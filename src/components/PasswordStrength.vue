@@ -3,13 +3,15 @@
     v-show="hideWhenEmpty ? password : true"
     :class="{ italic: 'font-italic' }"
     :style="`font-size: ${size};`"
-    class="text-muted">
+    class="text-muted"
+  >
     <small>Force du mot de passe :
       <span
         :class="{ 'text-danger': strength === 'faible' || strength === 'insuffisante',
                   'text-warning': strength === 'moyen',
                   'text-success': strength === 'fort' }"
-        class="font-weight-700">
+        class="font-weight-700"
+      >
         {{ strength }}
       </span>
     </small>

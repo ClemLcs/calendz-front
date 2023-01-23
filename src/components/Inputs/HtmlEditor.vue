@@ -2,25 +2,27 @@
   <div class="quill">
     <div :id="toolbarId">
       <div class="ql-formats">
-        <button class="ql-bold"/>
-        <button class="ql-italic"/>
-        <button class="ql-underline"/>
-        <button class="ql-link"/>
-        <button class="ql-blockquote"/>
-        <button class="ql-code"/>
+        <button class="ql-bold" />
+        <button class="ql-italic" />
+        <button class="ql-underline" />
+        <button class="ql-link" />
+        <button class="ql-blockquote" />
+        <button class="ql-code" />
         <button
           type="button"
           class="ql-list"
-          value="ordered"/>
+          value="ordered"
+        />
         <button
           type="button"
           class="ql-list"
-          value="bullet"/>
+          value="bullet"
+        />
       </div>
     </div>
     <div
-      ref="editor"
       :id="editorId"
+      ref="editor"
       :name="name"
     />
   </div>
@@ -78,8 +80,8 @@ export default {
         this.editor.pasteHTML(this.value)
       }
 
-      let editorRef = this.$refs.editor
-      let node = editorRef.children[0]
+      const editorRef = this.$refs.editor
+      const node = editorRef.children[0]
       this.editor.on('text-change', () => {
         let html = node.innerHTML
 
@@ -96,7 +98,7 @@ export default {
     },
     randomString () {
       let text = ''
-      let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+      const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 
       for (let i = 0; i < 5; i++) { text += possible.charAt(Math.floor(Math.random() * possible.length)) }
 

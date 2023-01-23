@@ -1,10 +1,12 @@
 <template>
   <div
     :class="[multiple ? 'dropzone-multiple': 'dropzone-single']"
-    class="dropzone mb-3 dz-clickable">
+    class="dropzone mb-3 dz-clickable"
+  >
     <div
       class="dz-message"
-      data-dz-message>
+      data-dz-message
+    >
       <span>Déposez votre image ici</span>
     </div>
     <div class="fallback">
@@ -13,29 +15,34 @@
           id="projectCoverUploads"
           :multiple="multiple"
           type="file"
-          class="custom-file-input">
+          class="custom-file-input"
+        >
         <label
           class="custom-file-label"
-          for="projectCoverUploads">Choose file</label>
+          for="projectCoverUploads"
+        >Choose file</label>
       </div>
     </div>
     <div
       v-if="!multiple"
       ref="previewSingle"
       :class="previewClasses"
-      class="dz-preview dz-preview-single">
+      class="dz-preview dz-preview-single"
+    >
       <div class="dz-preview-cover">
         <img
           class="dz-preview-img"
           alt="Image"
-          data-dz-thumbnail>
+          data-dz-thumbnail
+        >
       </div>
     </div>
     <ul
       v-else
       ref="previewMultiple"
       :class="previewClasses"
-      class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush">
+      class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush"
+    >
       <li class="list-group-item px-0">
         <div class="row align-items-center">
           <div class="col-auto">
@@ -43,22 +50,30 @@
               <img
                 class="avatar-img rounded"
                 alt="Image"
-                data-dz-thumbnail>
+                data-dz-thumbnail
+              >
             </div>
           </div>
           <div class="col ml--3">
             <h4
               class="mb-1"
-              data-dz-name>...</h4>
+              data-dz-name
+            >
+              ...
+            </h4>
             <p
               class="small text-muted mb-0"
-              data-dz-size>...</p>
+              data-dz-size
+            >
+              ...
+            </p>
           </div>
           <div class="col-auto">
             <button
               data-dz-remove="true"
-              class="btn btn-danger btn-sm">
-              <i class="fas fa-trash"/>
+              class="btn btn-danger btn-sm"
+            >
+              <i class="fas fa-trash" />
             </button>
           </div>
         </div>
@@ -111,9 +126,9 @@ export default {
       let Dropzone = await import('dropzone')
       Dropzone = Dropzone.default || Dropzone
       Dropzone.autoDiscover = false
-      let preview = this.multiple ? this.$refs.previewMultiple : this.$refs.previewSingle
-      let self = this
-      let finalOptions = {
+      const preview = this.multiple ? this.$refs.previewMultiple : this.$refs.previewSingle
+      const self = this
+      const finalOptions = {
         ...this.options,
         url: this.url,
         thumbnailWidth: null,
@@ -133,7 +148,7 @@ export default {
       }
       this.dropzone = new Dropzone(this.$el, finalOptions)
       preview.innerHTML = ''
-      let evtList = ['drop', 'dragstart', 'dragend', 'dragenter', 'dragover', 'addedfile', 'removedfile', 'thumbnail', 'error', 'processing', 'uploadprogress', 'sending', 'success', 'complete', 'canceled', 'maxfilesreached', 'maxfilesexceeded', 'processingmultiple', 'sendingmultiple', 'successmultiple', 'completemultiple', 'canceledmultiple', 'totaluploadprogress', 'reset', 'queuecomplete']
+      const evtList = ['drop', 'dragstart', 'dragend', 'dragenter', 'dragover', 'addedfile', 'removedfile', 'thumbnail', 'error', 'processing', 'uploadprogress', 'sending', 'success', 'complete', 'canceled', 'maxfilesreached', 'maxfilesexceeded', 'processingmultiple', 'sendingmultiple', 'successmultiple', 'completemultiple', 'canceledmultiple', 'totaluploadprogress', 'reset', 'queuecomplete']
       evtList.forEach(evt => {
         this.dropzone.on(evt, (data) => {
           this.$emit(evt, data)
@@ -142,7 +157,7 @@ export default {
             this.files.push(data)
             this.$emit('change', this.files)
           } else if (evt === 'removedfile') {
-            let index = this.files.findIndex(f => f.upload.uuid === data.upload.uuid)
+            const index = this.files.findIndex(f => f.upload.uuid === data.upload.uuid)
             if (index !== -1) {
               this.files.splice(index, 1)
             }

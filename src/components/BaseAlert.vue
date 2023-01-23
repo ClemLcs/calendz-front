@@ -9,20 +9,20 @@
       class="alert"
       role="alert"
     >
-      <slot v-if="!dismissible"/>
+      <slot v-if="!dismissible" />
       <template v-else>
-
         <template v-if="icon || $slots.icon">
           <slot name="icon">
             <span
               class="alert-icon"
-              data-notify="icon">
-              <i :class="icon"/>
+              data-notify="icon"
+            >
+              <i :class="icon" />
             </span>
           </slot>
         </template>
 
-        <span class="alert-text"> <slot/> </span>
+        <span class="alert-text"> <slot /> </span>
 
         <slot name="dismiss-icon">
           <button
@@ -30,7 +30,8 @@
             class="close"
             data-dismiss="alert"
             aria-label="Close"
-            @click="dismissAlert">
+            @click="dismissAlert"
+          >
             <span aria-hidden="true">×</span>
           </button>
         </slot>
@@ -39,7 +40,7 @@
   </fade-transition>
 </template>
 <script>
-import { FadeTransition } from 'vue2-transitions'
+import { FadeTransition } from 'vue3-transitions'
 
 export default {
   name: 'BaseAlert',

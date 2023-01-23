@@ -5,16 +5,19 @@
     class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white"
     style="overflow-x: hidden"
     @mouseenter="$sidebar.onMouseEnter()"
-    @mouseleave="$sidebar.onMouseLeave()">
+    @mouseleave="$sidebar.onMouseLeave()"
+  >
     <div
       ref="sidebarScrollArea"
-      class="scrollbar-inner">
+      class="scrollbar-inner"
+    >
       <div class="sidenav-header d-flex align-items-center">
         <router-link
           to="/dashboard"
           style="font-size: 30px; font-family: Catamaran;"
-          class="navbar-brand text-primary font-weight-900 py-0">
-          <i class="ni ni-calendar-grid-58"/>
+          class="navbar-brand text-primary font-weight-900 py-0"
+        >
+          <i class="ni ni-calendar-grid-58" />
           calendz
         </router-link>
         <div class="ml-auto">
@@ -22,16 +25,17 @@
           <div
             :class="{'active': !$sidebar.isMinimized }"
             class="sidenav-toggler d-none d-xl-block"
-            @click="minimizeSidebar">
+            @click="minimizeSidebar"
+          >
             <div class="sidenav-toggler-inner">
-              <i class="sidenav-toggler-line"/>
-              <i class="sidenav-toggler-line"/>
-              <i class="sidenav-toggler-line"/>
+              <i class="sidenav-toggler-line" />
+              <i class="sidenav-toggler-line" />
+              <i class="sidenav-toggler-line" />
             </div>
           </div>
         </div>
       </div>
-      <slot/>
+      <slot />
       <div class="navbar-inner">
         <ul class="navbar-nav">
           <slot name="links">
@@ -48,7 +52,7 @@
             </sidebar-item>
           </slot>
         </ul>
-        <slot name="links-after"/>
+        <slot name="links-after" />
       </div>
     </div>
   </div>
@@ -56,6 +60,11 @@
 <script>
 export default {
   name: 'Sidebar',
+  provide () {
+    return {
+      autoClose: this.autoClose
+    }
+  },
   props: {
     title: {
       type: String,
@@ -76,7 +85,7 @@ export default {
       type: String,
       default: 'vue',
       validator: value => {
-        let acceptedValues = [
+        const acceptedValues = [
           '',
           'vue',
           'blue',
@@ -101,11 +110,6 @@ export default {
       default: true,
       description:
         'Whether sidebar should autoclose on mobile when clicking an item'
-    }
-  },
-  provide () {
-    return {
-      autoClose: this.autoClose
     }
   },
   mounted () {

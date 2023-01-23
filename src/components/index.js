@@ -29,7 +29,7 @@ import BaseSlider from './BaseSlider.vue'
 
 import BasePagination from './BasePagination.vue'
 
-import SidebarPlugin from './SidebarPlugin'
+// import SidebarPlugin from './SidebarPlugin'
 
 export {
   BaseCheckbox,
@@ -47,7 +47,7 @@ export {
   StatsCard,
   BaseTable,
   BaseDropdown,
-  SidebarPlugin,
+  // SidebarPlugin,
   BaseNav,
   NavbarToggleButton,
   Breadcrumb,

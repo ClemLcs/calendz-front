@@ -8,7 +8,7 @@
     data-toggle="collapse"
     aria-label="Toggle navigation"
   >
-    <span class="navbar-toggler-icon"/>
+    <span class="navbar-toggler-icon" />
   </button>
 </template>
 <script>

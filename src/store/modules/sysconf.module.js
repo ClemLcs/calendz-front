@@ -152,7 +152,7 @@ const sysconfModule = {
           },
           err => {
             commit('FETCH_SETTINGS_FAILURE', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b>Une erreur est survenue, veuillez réessayer...` })
+            Vue.prototype.$notify({ type: 'danger', message: '<b>Erreur !</b>Une erreur est survenue, veuillez réessayer...' })
           })
     },
     fetchStats: ({ commit }) => {
@@ -192,8 +192,8 @@ const sysconfModule = {
         .then(
           res => {
             const message = value
-              ? `Les utilisateurs peuvent désormais s'inscrire !`
-              : `Les utilisateurs ne peuvent désormais plus s'inscrire !`
+              ? 'Les utilisateurs peuvent désormais s\'inscrire !'
+              : 'Les utilisateurs ne peuvent désormais plus s\'inscrire !'
             const type = value
               ? 'success'
               : 'warning'
@@ -230,7 +230,7 @@ const sysconfModule = {
         .then(
           res => {
             commit('DISCONNECT_USERS_SUCCESS')
-            Vue.prototype.$notify({ type: 'success', message: `Les utilisateurs ont bien été déconnectés.` })
+            Vue.prototype.$notify({ type: 'success', message: 'Les utilisateurs ont bien été déconnectés.' })
           },
           err => {
             commit('DISCONNECT_USERS_FAILURE', err.message)
@@ -243,7 +243,7 @@ const sysconfModule = {
         .then(
           res => {
             commit('MIGRATE_USERS_SUCCESS')
-            Vue.prototype.$notify({ type: 'success', message: `La migration a bien été effectuée.` })
+            Vue.prototype.$notify({ type: 'success', message: 'La migration a bien été effectuée.' })
           },
           err => {
             commit('MIGRATE_USERS_FAILURE', err.message)
@@ -256,7 +256,7 @@ const sysconfModule = {
         .then(
           res => {
             commit('SENDMAIL_SUCCESS')
-            Vue.prototype.$notify({ type: 'success', message: `Emails envoyés avec succès.` })
+            Vue.prototype.$notify({ type: 'success', message: 'Emails envoyés avec succès.' })
           },
           err => {
             commit('SENDMAIL_ERROR', err.message)
@@ -270,7 +270,7 @@ const sysconfModule = {
           res => {
             commit('grades/RESET', {}, { root: true })
             commit('DELETE_ALLGRADES_SUCCESS')
-            Vue.prototype.$notify({ type: 'success', message: `Notes supprimées avec succès.` })
+            Vue.prototype.$notify({ type: 'success', message: 'Notes supprimées avec succès.' })
           },
           err => {
             commit('DELETE_ALLGRADES_ERROR', err.message)
@@ -284,7 +284,7 @@ const sysconfModule = {
           res => {
             commit('tasks/RESET', {}, { root: true })
             commit('DELETE_ALLTASKS_SUCCESS')
-            Vue.prototype.$notify({ type: 'success', message: `Devoirs/tâches supprimés avec succès.` })
+            Vue.prototype.$notify({ type: 'success', message: 'Devoirs/tâches supprimés avec succès.' })
           },
           err => {
             commit('DELETE_ALLTASKS_ERROR', err.message)

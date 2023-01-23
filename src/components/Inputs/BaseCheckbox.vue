@@ -3,17 +3,20 @@
     :class="[
       {disabled: disabled},
       {[`custom-checkbox-${type}`]: type},inlineClass]"
-    class="custom-control custom-checkbox">
+    class="custom-control custom-checkbox"
+  >
     <input
       :id="cbId"
+      v-model="model"
       :class="inputClasses"
       :disabled="disabled"
-      v-model="model"
       class="custom-control-input"
-      type="checkbox">
+      type="checkbox"
+    >
     <label
       :for="cbId"
-      class="custom-control-label">
+      class="custom-control-label"
+    >
       <slot>
         <span v-if="inline">&nbsp;</span>
       </slot>
@@ -73,7 +76,7 @@ export default {
     },
     inlineClass () {
       if (this.inline) {
-        return `form-check-inline`
+        return 'form-check-inline'
       }
     }
   },

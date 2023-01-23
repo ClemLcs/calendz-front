@@ -27,12 +27,12 @@
 </template>
 
 <script>
-import { Tag } from 'element-ui'
+import { ElTag } from 'element-plus'
 
 export default {
   name: 'TagsInput',
   components: {
-    [Tag.name]: Tag
+    [ElTag.name]: ElTag
   },
   model: {
     prop: 'value',
@@ -47,7 +47,7 @@ export default {
     tagLabel: {
       type: String,
       default: 'default',
-      description: `Tag's label`
+      description: 'Tag\'s label'
     },
     tagType: {
       type: String,
@@ -57,7 +57,7 @@ export default {
     placeholder: {
       type: String,
       default: 'Entrez une valeur...',
-      description: `Input's placeholder`
+      description: 'Input\'s placeholder'
     }
   },
   data () {
@@ -89,7 +89,7 @@ export default {
     },
 
     handleInputConfirm () {
-      let inputValue = this.inputValue
+      const inputValue = this.inputValue
       if (inputValue) {
         this.dynamicTags.push(inputValue)
         this.$emit('change', this.dynamicTags)

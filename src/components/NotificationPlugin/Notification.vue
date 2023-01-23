@@ -17,24 +17,28 @@
       <slot name="icon">
         <span
           class="alert-icon"
-          data-notify="icon">
-          <i :class="icon"/>
+          data-notify="icon"
+        >
+          <i :class="icon" />
         </span>
       </slot>
     </template>
 
     <span
       class="alert-text my-auto"
-      style="font-size: 0.95rem;">
+      style="font-size: 0.95rem;"
+    >
 
       <span
         v-if="title"
-        class="title">
+        class="title"
+      >
         <b>{{ title }}<br></b>
       </span>
       <span
         v-if="message"
-        v-html="message"/>
+        v-html="message"
+      />
       <content-render
         v-if="!message && component"
         :component="component"
@@ -47,7 +51,8 @@
         class="close"
         data-dismiss="alert"
         aria-label="Close"
-        @click="close">
+        @click="close"
+      >
         <span aria-hidden="true">×</span>
       </button>
     </slot>
@@ -81,7 +86,7 @@ export default {
       type: String,
       default: 'top',
       validator: value => {
-        let acceptedValues = ['top', 'bottom']
+        const acceptedValues = ['top', 'bottom']
         return acceptedValues.indexOf(value) !== -1
       },
       description: 'Vertical alignment of notification (top|bottom)'
@@ -90,7 +95,7 @@ export default {
       type: String,
       default: 'right',
       validator: value => {
-        let acceptedValues = ['left', 'center', 'right']
+        const acceptedValues = ['left', 'center', 'right']
         return acceptedValues.indexOf(value) !== -1
       },
       description: 'Horizontal alignment of notification (left|center|right)'
@@ -158,8 +163,8 @@ export default {
       return `bg-${this.type}`
     },
     customPosition () {
-      let initialMargin = 20
-      let alertHeight = this.elmHeight + 10
+      const initialMargin = 20
+      const alertHeight = this.elmHeight + 10
       let sameAlertsCount = this.$notifications.state.filter(alert => {
         return (
           alert.horizontalAlign === this.horizontalAlign &&
@@ -170,8 +175,8 @@ export default {
       if (this.$notifications.settings.overlap) {
         sameAlertsCount = 1
       }
-      let pixels = (sameAlertsCount - 1) * alertHeight + initialMargin
-      let styles = {}
+      const pixels = (sameAlertsCount - 1) * alertHeight + initialMargin
+      const styles = {}
       if (this.verticalAlign === 'top') {
         styles.top = `${pixels}px`
       } else {

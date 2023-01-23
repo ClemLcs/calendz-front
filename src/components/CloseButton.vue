@@ -9,7 +9,7 @@
     aria-label="Toggle navigation"
     @click="handleClick"
   >
-    <span/> <span/>
+    <span /> <span />
   </button>
 </template>
 <script>

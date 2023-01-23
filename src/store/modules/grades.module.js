@@ -90,7 +90,7 @@ const gradesModule = {
         .then(
           res => {
             commit('GRADE_CREATE_SUCCESS', res.grade)
-            Vue.prototype.$notify({ type: 'success', message: `Note ajoutée avec succès !` })
+            Vue.prototype.$notify({ type: 'success', message: 'Note ajoutée avec succès !' })
           },
           err => {
             commit('GRADE_CREATE_FAILURE', err.data.message)
@@ -105,7 +105,7 @@ const gradesModule = {
         .then(
           res => {
             commit('GRADE_UPDATE_SUCCESS', { id: _id, grade: res.grade })
-            Vue.prototype.$notify({ type: 'success', message: `Note mise-à-jour avec succès !` })
+            Vue.prototype.$notify({ type: 'success', message: 'Note mise-à-jour avec succès !' })
           },
           err => {
             commit('GRADE_UPDATE_FAILURE', err.data.message)
@@ -119,7 +119,7 @@ const gradesModule = {
         .then(
           res => {
             commit('GRADE_DELETE_SUCCESS', gradeId)
-            Vue.prototype.$notify({ type: 'success', message: `La note a bien été supprimée !` })
+            Vue.prototype.$notify({ type: 'success', message: 'La note a bien été supprimée !' })
           },
           err => {
             commit('GRADE_DELETE_FAILURE', err.data.message)
@@ -134,7 +134,7 @@ const gradesModule = {
         .then(
           res => {
             commit('GRADE_FILL_SUCCESS', { id: _id, grade: res.grade })
-            Vue.prototype.$notify({ type: 'success', message: `Note mise-à-jour avec succès !` })
+            Vue.prototype.$notify({ type: 'success', message: 'Note mise-à-jour avec succès !' })
           },
           err => {
             commit('GRADE_FILL_FAILURE', err.data.message)

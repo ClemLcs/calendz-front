@@ -1,7 +1,10 @@
 <template>
   <li
     :class="{ active: active }"
-    class="breadcrumb-item"><slot/></li>
+    class="breadcrumb-item"
+  >
+    <slot />
+  </li>
 </template>
 <script>
 export default {

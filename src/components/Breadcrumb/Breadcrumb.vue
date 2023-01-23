@@ -2,8 +2,9 @@
   <nav aria-label="breadcrumb">
     <ol
       :class="[{[`bg-${type}`]: type}, listClasses]"
-      class="breadcrumb">
-      <slot/>
+      class="breadcrumb"
+    >
+      <slot />
     </ol>
   </nav>
 </template>

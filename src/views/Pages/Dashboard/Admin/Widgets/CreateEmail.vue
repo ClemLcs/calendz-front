@@ -4,14 +4,17 @@
     <div class="card-header">
       <div class="row align-items-center">
         <div class="col-8">
-          <h5 class="h3 mb-0">Envoyer un mail général</h5>
+          <h5 class="h3 mb-0">
+            Envoyer un mail général
+          </h5>
         </div>
         <div class="col text-right">
           <base-button
             size="sm"
             type="primary"
             native-type="submit"
-            form="create-email">
+            form="create-email"
+          >
             Envoyer
           </base-button>
         </div>
@@ -23,32 +26,35 @@
       <form
         id="create-email"
         role="form"
-        @submit.prevent="handleSubmit">
+        @submit.prevent="handleSubmit"
+      >
         <div class="row">
           <!-- subject -->
           <div class="col-md-6">
             <base-input
-              v-validate="'required'"
               v-model="mailForm.subject"
+              v-validate="'required'"
               :error="getError('objet')"
               :valid="isValid('objet')"
               name="objet"
               label="Objet"
               class="w-100"
-              placeholder="Entrez un objet"/>
+              placeholder="Entrez un objet"
+            />
           </div>
 
           <!-- title -->
           <div class="col-md-6">
             <base-input
-              v-validate="'required'"
               v-model="mailForm.title"
+              v-validate="'required'"
               :error="getError('titre')"
               :valid="isValid('titre')"
               name="titre"
               label="Titre"
               class="w-100"
-              placeholder="Entrez un titre"/>
+              placeholder="Entrez un titre"
+            />
           </div>
         </div>
 
@@ -59,14 +65,16 @@
               :error="getError('contenu')"
               :valid="isValid('contenu')"
               class="w-100"
-              label="Contenu">
+              label="Contenu"
+            >
               <textarea
-                v-validate="'required'"
                 v-model="mailForm.content"
+                v-validate="'required'"
                 name="content"
                 class="form-control"
                 rows="3"
-                placeholder="Entrez le contenu du mail..."/>
+                placeholder="Entrez le contenu du mail..."
+              />
             </base-input>
           </div>
         </div>
@@ -75,27 +83,29 @@
           <!-- CTA label -->
           <div class="col-md-6">
             <base-input
-              v-validate="'required'"
               v-model="mailForm.ctaLabel"
+              v-validate="'required'"
               :error="getError('cta-label')"
               :valid="isValid('cta-label')"
               name="cta-label"
               label="Label CTA"
               class="w-100"
-              placeholder="Entrez le label"/>
+              placeholder="Entrez le label"
+            />
           </div>
 
           <!-- CTA URL -->
           <div class="col-md-6">
             <base-input
-              v-validate="'required|url'"
               v-model="mailForm.ctaUrl"
+              v-validate="'required|url'"
               :error="getError('cta-url')"
               :valid="isValid('cta-url')"
               name="cta-url"
               label="URL CTA"
               class="w-100"
-              placeholder="Entrez un lien"/>
+              placeholder="Entrez un lien"
+            />
           </div>
         </div>
       </form>
@@ -104,12 +114,12 @@
 </template>
 
 <script>
-import { Select, Option } from 'element-ui'
+import { ElSelect, ElOption } from 'element-plus'
 
 export default {
   components: {
-    [Select.name]: Select,
-    [Option.name]: Option
+    [ElSelect.name]: ElSelect,
+    [ElOption.name]: ElOption
   },
   data () {
     return {

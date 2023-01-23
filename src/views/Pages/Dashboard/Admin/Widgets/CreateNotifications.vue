@@ -4,14 +4,17 @@
     <div class="card-header">
       <div class="row align-items-center">
         <div class="col-8">
-          <h5 class="h3 mb-0">Création de notifications</h5>
+          <h5 class="h3 mb-0">
+            Création de notifications
+          </h5>
         </div>
         <div class="col text-right">
           <base-button
             size="sm"
             type="primary"
             native-type="submit"
-            form="create-notification">
+            form="create-notification"
+          >
             Publier
           </base-button>
         </div>
@@ -23,19 +26,21 @@
       <form
         id="create-notification"
         role="form"
-        @submit.prevent="handleSubmit">
+        @submit.prevent="handleSubmit"
+      >
         <div class="row">
           <!-- title -->
           <div class="col-md-6">
             <base-input
-              v-validate="'required'"
               v-model="title"
+              v-validate="'required'"
               :error="getError('titre')"
               :valid="isValid('titre')"
               name="titre"
               label="Titre"
               class="w-100"
-              placeholder="Entrez un titre"/>
+              placeholder="Entrez un titre"
+            />
           </div>
 
           <!-- target -->
@@ -44,18 +49,21 @@
               :error="getError('cible')"
               :valid="isValid('cible')"
               class="w-100"
-              label="Séléctionnez la cible">
+              label="Séléctionnez la cible"
+            >
               <el-select
-                v-validate="'required'"
                 v-model="select.target"
+                v-validate="'required'"
                 name="cible"
                 multiple
-                filterable>
+                filterable
+              >
                 <el-option
                   v-for="group in select.groups"
                   :key="group.label"
                   :label="group.label"
-                  :value="group.value"/>
+                  :value="group.value"
+                />
               </el-select>
             </base-input>
           </div>
@@ -68,15 +76,17 @@
               :error="getError('message')"
               :valid="isValid('message')"
               class="w-100"
-              label="Message">
+              label="Message"
+            >
               <textarea
-                v-validate="'required'"
                 v-model="message"
+                v-validate="'required'"
                 name="message"
                 class="form-control"
                 rows="3"
                 resize="none"
-                placeholder="Entrez le message à faire passer..."/>
+                placeholder="Entrez le message à faire passer..."
+              />
             </base-input>
           </div>
         </div>
@@ -85,27 +95,29 @@
           <!-- icon -->
           <div class="col-md-6">
             <base-input
-              v-validate="'required'"
               v-model="icon"
+              v-validate="'required'"
               :error="getError('icône')"
               :valid="isValid('icône')"
               name="icône"
               class="w-100"
               label="Icône"
-              placeholder="fas fa-bell"/>
+              placeholder="fas fa-bell"
+            />
           </div>
 
           <!-- type -->
           <div class="col-md-6">
             <base-input
-              v-validate="'required'"
               v-model="type"
+              v-validate="'required'"
               :error="getError('type')"
               :valid="isValid('type')"
               name="type"
               class="w-100"
               label="Type"
-              placeholder="primary"/>
+              placeholder="primary"
+            />
           </div>
         </div>
 
@@ -116,26 +128,27 @@
 
             <div
               class="card mb-3"
-              style="border-radius: 10px">
+              style="border-radius: 10px"
+            >
               <div class="card-body">
-
                 <div class="row align-items-center">
                   <div class="col-auto">
                     <i
                       :class="`${icon || 'fas fa-bell'} bg-${type || 'grey'}`"
-                      class="avatar rounded-circle"/>
+                      class="avatar rounded-circle"
+                    />
                   </div>
                   <div class="col container ml--2">
-
                     <div class="row">
                       <div class="col">
                         <h4
                           class="mb-0 text-sm"
-                          v-html="title || `Le titre de la notification !`"/>
+                          v-html="title || `Le titre de la notification !`"
+                        />
                       </div>
                       <div class="col-auto text-right">
                         <small class="text-muted">
-                          <i class="fas fa-clock mr-1"/>
+                          <i class="fas fa-clock mr-1" />
                           2h
                         </small>
                       </div>
@@ -144,13 +157,13 @@
                     <div class="row mt-1 px-3">
                       <p
                         class="text-sm mb-0"
-                        v-html="message || `Commencez à taper votre message pour voir la prévisualisation s'actualiser.`"/>
+                        v-html="message || `Commencez à taper votre message pour voir la prévisualisation s'actualiser.`"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </form>
@@ -159,12 +172,12 @@
 </template>
 
 <script>
-import { Select, Option } from 'element-ui'
+import { ElSelect, ElOption } from 'element-plus'
 
 export default {
   components: {
-    [Select.name]: Select,
-    [Option.name]: Option
+    [ElSelect.name]: ElSelect,
+    [ElOption.name]: ElOption
   },
   data () {
     return {

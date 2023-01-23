@@ -124,14 +124,14 @@ const calendarModule = {
                     err2 => {
                       commit('FETCH_FAILURE', { currentWeek, reason: err2.message })
                       Vue.prototype.$notifications.removeNotification(notificationTimestamp)
-                      Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err2.message || `Erreur lors du chargement de l'emploi du temps...`}` })
+                      Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err2.message || 'Erreur lors du chargement de l\'emploi du temps...'}` })
                     })
               }
             },
             err => {
               commit('FETCH_FAILURE', { currentWeek, reason: err.message })
               Vue.prototype.$notifications.removeNotification(notificationTimestamp)
-              Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || `Erreur lors du chargement de l'emploi du temps...`}` })
+              Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Erreur lors du chargement de l\'emploi du temps...'}` })
             })
       } else {
         if (process.env.NODE_ENV === 'development') console.log(`Year ${currentWeek.year}, week ${currentWeek.number}: ALREADY FETCHED`)
@@ -165,7 +165,7 @@ const calendarModule = {
           err => {
             commit('FETCH_TEAMS_FAILURE', { reason: err.message })
             Vue.prototype.$notifications.removeNotification(notificationTimestamp)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || `Erreur lors de la récupération des liens Teams...`}` })
+            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Erreur lors de la récupération des liens Teams...'}` })
           }
         )
     }
@@ -228,7 +228,7 @@ const reformatWeek = (week, weekNumber) => {
   const customCourses = []
 
   // for each day of the week
-  for (let [, courses] of Object.entries(week || [])) {
+  for (const [, courses] of Object.entries(week || [])) {
     // for each course of the day
     courses.forEach((course) => {
       customCourses.push({

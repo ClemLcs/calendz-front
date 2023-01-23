@@ -5,57 +5,64 @@
     <!-- ======================================= -->
     <base-header
       type="primary"
-      class="pb-6">
+      class="pb-6"
+    >
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
-          <h6 class="h2 text-white d-inline-block mb-0">Statistiques (utilisateurs)</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">
+            Statistiques (utilisateurs)
+          </h6>
           <nav
             aria-label="breadcrumb"
-            class="d-none d-md-inline-block ml-md-4">
-            <route-bread-crumb/>
+            class="d-none d-md-inline-block ml-md-4"
+          >
+            <route-bread-crumb />
           </nav>
         </div>
       </div>
     </base-header>
 
     <div class="container-fluid mt--6">
-
       <div class="row">
         <div class="col-xl-9">
           <div class="row">
             <div class="col-xl-4 col-md-6">
               <!-- total users  -->
-              <total-users :users="stats.users"/>
+              <total-users :users="stats.users" />
               <!-- active users -->
-              <active-users :users="stats.users"/>
+              <active-users :users="stats.users" />
               <!-- epsi / wis repartition -->
-              <repartition-users :users="stats.users"/>
+              <repartition-users :users="stats.users" />
             </div>
 
             <div class="col-xl-4 col-md-6">
               <!-- inactive users -->
-              <inactive-users :users="stats.users"/>
+              <inactive-users :users="stats.users" />
               <!-- new users -->
-              <new-users :users="stats.users"/>
+              <new-users :users="stats.users" />
               <!-- users doing bts -->
-              <bts-users :users="stats.users"/>
+              <bts-users :users="stats.users" />
             </div>
 
             <div class="col-xl-4 col-md-12">
               <!-- migrated users -->
-              <migrated-users :users="stats.users"/>
+              <migrated-users :users="stats.users" />
               <!-- old accounts, will never be migrated (old i2) -->
-              <old-users :users="stats.users"/>
+              <old-users :users="stats.users" />
               <!-- users that are accepting mails -->
-              <mail-users :users="stats.users"/>
+              <mail-users :users="stats.users" />
             </div>
           </div>
-          <div >
+          <div>
             <!-- campus + grade repartition -->
             <card>
               <template slot="header">
-                <h6 class="surtitle">UTILISATEURS</h6>
-                <h5 class="h3 mb-0">Répartion des campus (et des classes)</h5>
+                <h6 class="surtitle">
+                  UTILISATEURS
+                </h6>
+                <h5 class="h3 mb-0">
+                  Répartion des campus (et des classes)
+                </h5>
               </template>
               <div class="chart-area">
                 <bar-chart
@@ -70,12 +77,16 @@
 
         <div class="col-xl-3">
           <!-- derniers utilisateurs inscrits -->
-          <last-registers :users="stats.users"/>
+          <last-registers :users="stats.users" />
           <!-- grades repartition -->
           <card>
             <template slot="header">
-              <h6 class="surtitle">UTILISATEURS</h6>
-              <h5 class="h3 mb-0">Répartition des classes</h5>
+              <h6 class="surtitle">
+                UTILISATEURS
+              </h6>
+              <h5 class="h3 mb-0">
+                Répartition des classes
+              </h5>
             </template>
             <div class="chart">
               <pie-chart
@@ -147,11 +158,11 @@ export default {
               this.stats.grades ? this.stats.grades.i2 : 0
             ],
             backgroundColor: [
-              Charts.colors.theme['info'],
-              Charts.colors.theme['primary'],
-              Charts.colors.theme['success'],
-              Charts.colors.theme['warning'],
-              Charts.colors.theme['danger']
+              Charts.colors.theme.info,
+              Charts.colors.theme.primary,
+              Charts.colors.theme.success,
+              Charts.colors.theme.warning,
+              Charts.colors.theme.danger
             ]
           }]
         },
@@ -171,7 +182,7 @@ export default {
           datasets: [{
             label: 'SN1',
             maxBarThickness: 10,
-            backgroundColor: Charts.colors.theme['info'],
+            backgroundColor: Charts.colors.theme.info,
             data: [
               this.stats.cities ? this.stats.cities.arras.sn1 : 0,
               this.stats.cities ? this.stats.cities.auxerre.sn1 : 0,
@@ -190,7 +201,7 @@ export default {
           }, {
             label: 'SN2',
             maxBarThickness: 10,
-            backgroundColor: Charts.colors.theme['primary'],
+            backgroundColor: Charts.colors.theme.primary,
             data: [
               this.stats.cities ? this.stats.cities.arras.sn2 : 0,
               this.stats.cities ? this.stats.cities.auxerre.sn2 : 0,
@@ -209,7 +220,7 @@ export default {
           }, {
             label: 'B3',
             maxBarThickness: 10,
-            backgroundColor: Charts.colors.theme['success'],
+            backgroundColor: Charts.colors.theme.success,
             data: [
               this.stats.cities ? this.stats.cities.arras.b3 : 0,
               this.stats.cities ? this.stats.cities.auxerre.b3 : 0,
@@ -228,7 +239,7 @@ export default {
           }, {
             label: 'I1 ',
             maxBarThickness: 10,
-            backgroundColor: Charts.colors.theme['warning'],
+            backgroundColor: Charts.colors.theme.warning,
             data: [
               this.stats.cities ? this.stats.cities.arras.i1 : 0,
               this.stats.cities ? this.stats.cities.auxerre.i1 : 0,
@@ -247,7 +258,7 @@ export default {
           }, {
             label: 'I2 ',
             maxBarThickness: 10,
-            backgroundColor: Charts.colors.theme['danger'],
+            backgroundColor: Charts.colors.theme.danger,
             data: [
               this.stats.cities ? this.stats.cities.arras.i2 : 0,
               this.stats.cities ? this.stats.cities.auxerre.i2 : 0,

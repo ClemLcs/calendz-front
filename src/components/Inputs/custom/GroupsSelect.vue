@@ -1,25 +1,27 @@
 <template>
   <div>
-
     <!-- =================================== -->
-    <!-- == ELEMENT-UI'S SELECT ============ -->
+    <!-- == element-plus'S SELECT ============ -->
     <!-- =================================== -->
     <base-input
       v-if="!legacy"
       :error="getError(veeScope ? `${veeScope}.groupe` : 'groupe')"
       :valid="isValid(veeScope ? `${veeScope}.groupe` : 'groupe')"
       :label="label"
-      class="w-100">
+      class="w-100"
+    >
       <el-select
-        v-validate="'required|valid_group'"
         v-model="inputValue"
+        v-validate="'required|valid_group'"
         :disabled="disabled"
-        name="groupe">
+        name="groupe"
+      >
         <el-option
           v-for="(option, index) in options"
           :key="index"
           :label="option.value"
-          :value="option.value"/>
+          :value="option.value"
+        />
       </el-select>
     </base-input>
 
@@ -32,31 +34,39 @@
       :valid="isValid('groupe')"
       :label="label"
       class="mb-3"
-      prepend-icon="ni ni-hat-3">
+      prepend-icon="ni ni-hat-3"
+    >
       <select
-        v-validate="'required|valid_group'"
         v-model="inputValue"
+        v-validate="'required|valid_group'"
         :disabled="disabled"
         name="groupe"
-        class="form-control">
+        class="form-control"
+      >
         <option
           value=""
-          hidden>Votre groupe</option>
+          hidden
+        >
+          Votre groupe
+        </option>
         <option
           v-for="(option, index) in options"
           :key="index"
-          :value="option.value">{{ option.value }}</option>
+          :value="option.value"
+        >
+          {{ option.value }}
+        </option>
       </select>
     </base-input>
   </div>
 </template>
 
 <script>
-import { Select, Option } from 'element-ui'
+import { ElSelect, ElOption } from 'element-plus'
 
 export default {
   components: {
-    [Select.name]: Select,
+    [ElSelect.name]: ElOption,
     [Option.name]: Option
   },
   props: {
@@ -73,17 +83,17 @@ export default {
     label: {
       type: String,
       default: '',
-      doc: `Ìnput's label`
+      doc: 'Ìnput\'s label'
     },
     grade: {
       type: String,
       default: null,
-      doc: `Previously selected grade`
+      doc: 'Previously selected grade'
     },
     legacy: {
       type: Boolean,
       default: false,
-      doc: `Whether we should use a legacy select or element-ui's select`
+      doc: 'Whether we should use a legacy select or element-plus\'s select'
     },
     veeScope: {
       type: String,

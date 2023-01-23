@@ -1,9 +1,9 @@
 <template>
   <card
     :show-footer-line="true"
-    class="card-stats">
+    class="card-stats"
+  >
     <div class="row">
-
       <div class="col pr-0">
         <slot>
           <h5 class="card-title text-muted mb-1">
@@ -12,12 +12,13 @@
 
           <div style="height: 36px !important">
             <span v-show="calendarLoading">
-              <placeholder class="w-100"/>
+              <placeholder class="w-100" />
             </span>
             <p
               v-show="!calendarLoading"
               class="h3 mb-0 my-auto h-100"
-              style="line-height: 18px; overflow: hidden;">
+              style="line-height: 18px; overflow: hidden;"
+            >
               {{ nextCourse ? nextCourse.title : 'Aucun cours à venir...' }}
             </p>
           </div>
@@ -27,9 +28,10 @@
       <div class="col-auto">
         <slot name="icon">
           <router-link
-            :to="nextCourse ? `/calendar?date=${dateToDayMonthYear(nextCourse.start)}` : '/calendar'">
+            :to="nextCourse ? `/calendar?date=${dateToDayMonthYear(nextCourse.start)}` : '/calendar'"
+          >
             <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-              <i class="fas fa-calendar-week"/>
+              <i class="fas fa-calendar-week" />
             </div>
           </router-link>
         </slot>
@@ -40,16 +42,16 @@
       <slot name="footer">
         <router-link
           :to="nextCourse ? `/calendar?date=${dateToDayMonthYear(nextCourse.start)}` : '/calendar'"
-          class="nav-link p-0">
-
+          class="nav-link p-0"
+        >
           <!-- loading -->
           <span v-show="calendarLoading">
             <div class="row">
               <div class="col-8 pb-1 pr-1">
-                <placeholder class="w-100"/>
+                <placeholder class="w-100" />
               </div>
               <div class="col-4 pl-1 text-right">
-                <placeholder class="w-100"/>
+                <placeholder class="w-100" />
               </div>
             </div>
           </span>
@@ -59,13 +61,14 @@
             <!-- next course -->
             <div
               v-if="nextCourse"
-              class="row">
+              class="row"
+            >
               <div class="col-8 pr-0">
-                <i class="fas fa-clock mr-1"/>
+                <i class="fas fa-clock mr-1" />
                 {{ `${dateToShortFullString(nextCourse.start)} - ${dateToTimeString(nextCourse.start, 'h').slice(0, -5)}` }}
               </div>
               <div class="col-4 pl-0 text-right">
-                <i class="fas fa-door-open text-primary"/>
+                <i class="fas fa-door-open text-primary" />
                 {{ nextCourse.room }}
               </div>
             </div>
@@ -74,7 +77,6 @@
               cliquez pour accéder aux détails
             </span>
           </span>
-
         </router-link>
       </slot>
     </p>

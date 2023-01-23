@@ -11,10 +11,12 @@
         <div class="col-4 text-right">
           <base-button
             type="default"
-            @click="toggle()">
+            @click="toggle()"
+          >
             <i
               :class="{ 'fa-rotate-90': expand }"
-              class="fas fa-chevron-right custom-transform"/>
+              class="fas fa-chevron-right custom-transform"
+            />
           </base-button>
         </div>
       </div>
@@ -22,7 +24,8 @@
 
     <ul
       v-if="users"
-      class="list-group list-group-flush list my--4 ">
+      class="list-group list-group-flush list my--4 "
+    >
       <li
         v-for="(user, index) in list.slice(0, Math.max(0, users.lastRegisters.length - 7))"
         :key="index"
@@ -33,10 +36,13 @@
             <img
               :src="user.avatarUrl === 'img/theme/default-pp.png' ? '/img/theme/default-pp.png' : user.avatarUrl"
               alt="Photo de profil"
-              class="avatar avatar-sm rounded-circle">
+              class="avatar avatar-sm rounded-circle"
+            >
           </div>
           <div class="col pr-0 ml--2">
-            <h5 class="mb-0">{{ `${user.firstname} ${user.lastname}` }}</h5>
+            <h5 class="mb-0">
+              {{ `${user.firstname} ${user.lastname}` }}
+            </h5>
             <span :class="`text-${user.isActive ? 'success' : 'danger'}`">● </span>
             <small>{{ `${user.grade} - ${user.city}` }}</small>
           </div>
@@ -44,7 +50,8 @@
             <base-button
               disabled
               size="sm"
-              type="info">
+              type="info"
+            >
               {{ dateToDayMonthYear(timestampToDate(user.creationDate)) }}
             </base-button>
           </div>
@@ -63,10 +70,13 @@
                 <img
                   :src="user.avatarUrl === 'img/theme/default-pp.png' ? '/img/theme/default-pp.png' : user.avatarUrl"
                   alt="Photo de profil"
-                  class="avatar avatar-sm rounded-circle">
+                  class="avatar avatar-sm rounded-circle"
+                >
               </div>
               <div class="col pr-0 ml--2">
-                <h5 class="mb-0">{{ `${user.firstname} ${user.lastname}` }}</h5>
+                <h5 class="mb-0">
+                  {{ `${user.firstname} ${user.lastname}` }}
+                </h5>
                 <span :class="`text-${user.isActive ? 'success' : 'danger'}`">● </span>
                 <small>{{ `${user.grade} - ${user.city}` }}</small>
               </div>
@@ -74,7 +84,8 @@
                 <base-button
                   disabled
                   size="sm"
-                  type="info">
+                  type="info"
+                >
                   {{ dateToDayMonthYear(timestampToDate(user.creationDate)) }}
                 </base-button>
               </div>
@@ -88,7 +99,7 @@
 
 <script>
 import dateUtilMixin from '@/mixins/dateUtilMixin'
-import { CollapseTransition } from 'vue2-transitions'
+import { CollapseTransition } from 'vue3-transitions'
 
 export default {
   components: {

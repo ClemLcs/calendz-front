@@ -42,7 +42,7 @@ const UserService = {
 
   // user self updates its profile
   updateProfile: (data) => {
-    return ApiService.patch(`/user/profile`, data)
+    return ApiService.patch('/user/profile', data)
       .then(res => res.data)
       .catch(err => Promise.reject(err))
   },
@@ -83,7 +83,7 @@ const UserService = {
   },
 
   deleteSelf: () => {
-    return ApiService.delete(`/user`)
+    return ApiService.delete('/user')
       .then(res => res.data)
       .catch(err => Promise.reject(err))
   },

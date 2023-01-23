@@ -3,20 +3,24 @@
     <div class="row">
       <div class="col">
         <slot>
-          <h5 class="card-title text-uppercase text-muted mb-1">INSCRIPTIONS</h5>
+          <h5 class="card-title text-uppercase text-muted mb-1">
+            INSCRIPTIONS
+          </h5>
           <div class="row mt-2 mb--3">
             <div class="col-12 pr-0">
               <div v-if="!users">
-                <placeholder class="w-75"/>
+                <placeholder class="w-75" />
               </div>
 
               <div v-if="users">
                 <span
                   :class="isPositive() ? 'text-success' : ''"
-                  class="h2 font-weight-bold mt--1 mr-2 float-left">
+                  class="h2 font-weight-bold mt--1 mr-2 float-left"
+                >
                   <i
                     v-if="isPositive()"
-                    class="fa fa-arrow-up"/>
+                    class="fa fa-arrow-up"
+                  />
                   {{ newUsers === 1 ? `${users.creationAccount.lastDay}` : newUsers === 3 ? `${users.creationAccount.lastThreeDays}` : `${users.creationAccount.lastWeek}` }}
                 </span>
               </div>
@@ -28,7 +32,7 @@
       <div class="col-auto">
         <slot name="icon">
           <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-            <i class="fas fa-users"/>
+            <i class="fas fa-users" />
           </div>
         </slot>
       </div>
@@ -40,17 +44,26 @@
           :class="newUsers != 1 ? 'btn-outline-primary mt-1' :'mt-1'"
           size="sm"
           type="primary"
-          @click="newUsers = 1">Aujourd'hui</base-button>
+          @click="newUsers = 1"
+        >
+          Aujourd'hui
+        </base-button>
         <base-button
           :class="newUsers != 3 ? 'btn-outline-primary mt-1' :'mt-1'"
           size="sm"
           type="primary"
-          @click="newUsers = 3">3 Jours</base-button>
+          @click="newUsers = 3"
+        >
+          3 Jours
+        </base-button>
         <base-button
           :class="newUsers != 7 ? 'btn-outline-primary mt-1' :'mt-1'"
           size="sm"
           type="primary"
-          @click="newUsers = 7">7 Jours</base-button>
+          @click="newUsers = 7"
+        >
+          7 Jours
+        </base-button>
       </slot>
     </p>
   </card>

@@ -12,7 +12,8 @@
       <img
         class="img-fluid mt-2 mb-5"
         src="https://i.imgur.com/zSfU5Dz.png"
-        alt="Capture d'écran modification tâche">
+        alt="Capture d'écran modification tâche"
+      >
     </div>
 
     <div>
@@ -26,7 +27,8 @@
       <img
         class="img-fluid mt-2"
         src="https://i.imgur.com/Zeq33L7.png"
-        alt="Capture d'écran suppression tâche">
+        alt="Capture d'écran suppression tâche"
+      >
     </div>
 
     <div>
@@ -38,7 +40,8 @@
       <img
         class="img-fluid mt-2"
         src="https://i.imgur.com/EJxx6nx.png"
-        alt="Capture d'écran tâche faite">
+        alt="Capture d'écran tâche faite"
+      >
     </div>
   </div>
 </template>

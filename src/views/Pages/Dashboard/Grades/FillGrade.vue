@@ -3,7 +3,9 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0">Notes en attente</h3>
+          <h3 class="mb-0">
+            Notes en attente
+          </h3>
         </div>
         <!-- <div class="col text-right">
           <base-button
@@ -17,14 +19,18 @@
       <el-table
         :data="grades"
         class="table-responsive table"
-        header-row-class-name="thead-light">
+        header-row-class-name="thead-light"
+      >
         <el-table-column
           label="Matière"
           width="160px"
           min-width="160px"
-          prop="subject">
-          <template v-slot="{row}">
-            <div class="font-weight-600">{{ row.subject }}</div>
+          prop="subject"
+        >
+          <template #default="{row}">
+            <div class="font-weight-600">
+              {{ row.subject }}
+            </div>
           </template>
         </el-table-column>
 
@@ -32,8 +38,9 @@
           label="Date"
           width="120px"
           min-width="120px"
-          prop="date">
-          <template v-slot="{row}">
+          prop="date"
+        >
+          <template #default="{row}">
             {{ dateToDayMonthYear(timestampToDate(row.date)) }}
           </template>
         </el-table-column>
@@ -41,8 +48,9 @@
         <el-table-column
           min-width="250px"
           label="Description"
-          prop="description">
-          <template v-slot="{row}">
+          prop="description"
+        >
+          <template #default="{row}">
             {{ row.description || 'Aucune description...' }}
           </template>
         </el-table-column>
@@ -50,11 +58,13 @@
         <el-table-column
           label="Note"
           width="115px"
-          min-width="115px">
-          <template v-slot="{row}">
+          min-width="115px"
+        >
+          <template #default="{row}">
             <base-button
               type="primary"
-              @click="addValue(row)">
+              @click="addValue(row)"
+            >
               Ajouter
             </base-button>
           </template>
@@ -68,10 +78,12 @@
     <form
       v-if="currentGrade"
       class="needs-validation"
-      @submit.prevent>
+      @submit.prevent
+    >
       <modal
         :show="showModal"
-        @close="closeModal()">
+        @close="closeModal()"
+      >
         <template slot="header">
           <h5 class="modal-title">
             Note de {{ currentGrade.subject }} du {{ dateToDayMonthYear(timestampToDate(currentGrade.date)) }}
@@ -79,8 +91,8 @@
         </template>
 
         <base-input
-          v-validate="'required|min_value:0|max_value:20'"
           v-model="currentGrade.value"
+          v-validate="'required|min_value:0|max_value:20'"
           :error="getError('note')"
           :valid="isValid('note')"
           type="number"
@@ -89,19 +101,22 @@
           max="20"
           name="note"
           label="Votre note (sur 20)"
-          placeholder="0"/>
+          placeholder="0"
+        />
 
         <template slot="footer">
           <base-button
             size="md"
             type="secondary"
-            @click="closeModal()">
+            @click="closeModal()"
+          >
             Annuler
           </base-button>
           <base-button
             size="md"
             type="primary"
-            @click="save()">
+            @click="save()"
+          >
             Enregistrer
           </base-button>
         </template>
@@ -112,18 +127,18 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { BaseProgress } from '@/components'
-import { Table, TableColumn, DropdownMenu, DropdownItem, Dropdown } from 'element-ui'
+// import { BaseProgress } from '@/components'
+import { ElTable, ElTableColumn, ElDropdownMenu, ElDropdownItem, ElDropdown } from 'element-plus'
 import dateUtilMixin from '@/mixins/dateUtilMixin'
 
 export default {
   components: {
-    BaseProgress,
-    [Table.name]: Table,
-    [TableColumn.name]: TableColumn,
-    [Dropdown.name]: Dropdown,
-    [DropdownItem.name]: DropdownItem,
-    [DropdownMenu.name]: DropdownMenu
+    // BaseProgress,
+    [ElTable.name]: ElTable,
+    [ElTableColumn.name]: ElTableColumn,
+    [ElDropdown.name]: ElDropdown,
+    [ElDropdownItem.name]: ElDropdownItem,
+    [ElDropdownMenu.name]: ElDropdownMenu
   },
   mixins: [dateUtilMixin],
   data () {

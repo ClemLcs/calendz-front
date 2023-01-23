@@ -7,29 +7,32 @@
       {[`bg-gradient-${gradient}`]: gradient},
       {[`bg-${type}`]: type}
     ]"
-    class="card">
-
-    <slot name="image"/>
+    class="card"
+  >
+    <slot name="image" />
     <div
       v-if="$slots.header"
       :class="headerClasses"
-      class="card-header">
-      <slot name="header"/>
+      class="card-header"
+    >
+      <slot name="header" />
     </div>
     <div
       v-if="!noBody"
       :class="bodyClasses"
-      class="card-body">
-      <slot/>
+      class="card-body"
+    >
+      <slot />
     </div>
 
-    <slot v-if="noBody"/>
+    <slot v-if="noBody" />
 
     <div
       v-if="$slots.footer"
       :class="footerClasses"
-      class="card-footer">
-      <slot name="footer"/>
+      class="card-footer"
+    >
+      <slot name="footer" />
     </div>
   </div>
 </template>

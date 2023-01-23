@@ -1,3 +1,4 @@
+import { createApp } from 'vue'
 import Notifications from './Notifications.vue'
 
 const NotificationStore = {
@@ -56,10 +57,12 @@ const NotificationStore = {
 }
 
 const NotificationsPlugin = {
-  install (Vue, options) {
-    let app = new Vue({
-      data: {
-        notificationStore: NotificationStore
+  install (app, options) {
+    createApp({
+      data: function () {
+        return {
+          notificationStore: NotificationStore
+        }
       },
       methods: {
         notify (notification) {
@@ -67,9 +70,9 @@ const NotificationsPlugin = {
         }
       }
     })
-    Vue.prototype.$notify = app.notify
-    Vue.prototype.$notifications = app.notificationStore
-    Vue.component('Notifications', Notifications)
+    app.config.globalProperties.$notify = app.notify
+    app.config.globalProperties.$notifications = app.notificationStore
+    app.component('Notifications', Notifications)
     if (options) {
       NotificationStore.setOptions(options)
     }

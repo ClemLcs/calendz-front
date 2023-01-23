@@ -5,14 +5,18 @@
     <!-- ======================================= -->
     <base-header
       type="primary"
-      className="pb-6">
+      class-name="pb-6"
+    >
       <div className="row align-items-center py-4">
         <div className="col-lg-6 col-7">
-          <h6 className="h2 text-white d-inline-block mb-0">Statistiques (tâches)</h6>
+          <h6 className="h2 text-white d-inline-block mb-0">
+            Statistiques (tâches)
+          </h6>
           <nav
             aria-label="breadcrumb"
-            className="d-none d-md-inline-block ml-md-4">
-            <route-bread-crumb/>
+            className="d-none d-md-inline-block ml-md-4"
+          >
+            <route-bread-crumb />
           </nav>
         </div>
       </div>
@@ -24,11 +28,13 @@
             <div className="row">
               <div className="col">
                 <slot>
-                  <h5 className="card-title text-uppercase text-muted mb-1">TÂCHES</h5>
+                  <h5 className="card-title text-uppercase text-muted mb-1">
+                    TÂCHES
+                  </h5>
                   <div className="row mt-2 mb--3">
                     <div className="col-12 pr-0">
                       <div v-if="!stats.tasks">
-                        <placeholder className="w-75"/>
+                        <placeholder class-name="w-75" />
                       </div>
 
                       <div v-if="stats.tasks">
@@ -47,7 +53,7 @@
               <div className="col-auto">
                 <slot name="icon">
                   <div className="icon icon-shape bg-gradient-success text-white rounded-circle shadow">
-                    <i className="fas fa-users"/>
+                    <i className="fas fa-users" />
                   </div>
                 </slot>
               </div>
@@ -55,7 +61,7 @@
 
             <p className="mt-3 mb-0 text-sm">
               <slot name="footer">
-                <i className="fas fa-external-link-alt mr-2"/>
+                <i className="fas fa-external-link-alt mr-2" />
                 <router-link to="/user-management">
                   <span className="nav-link p-0 d-inline text-nowrap">accéder liste utilisateurs</span>
                 </router-link>
@@ -70,11 +76,13 @@
             <div className="row">
               <div className="col">
                 <slot>
-                  <h5 className="card-title text-uppercase text-muted mb-1">TÂCHES À VENIR</h5>
+                  <h5 className="card-title text-uppercase text-muted mb-1">
+                    TÂCHES À VENIR
+                  </h5>
                   <div className="row mt-2 mb--3">
                     <div className="col-12 pr-0">
                       <div v-if="!stats.tasks">
-                        <placeholder className="w-75"/>
+                        <placeholder class-name="w-75" />
                       </div>
 
                       <div v-if="stats.tasks">
@@ -93,7 +101,7 @@
               <div className="col-auto">
                 <slot name="icon">
                   <div className="icon icon-shape bg-gradient-success text-white rounded-circle shadow">
-                    <i className="fas fa-users"/>
+                    <i className="fas fa-users" />
                   </div>
                 </slot>
               </div>
@@ -101,7 +109,7 @@
 
             <p className="mt-3 mb-0 text-sm">
               <slot name="footer">
-                <i className="fas fa-external-link-alt mr-2"/>
+                <i className="fas fa-external-link-alt mr-2" />
                 <router-link to="/user-management">
                   <span className="nav-link p-0 d-inline text-nowrap">accéder liste utilisateurs</span>
                 </router-link>
@@ -121,8 +129,12 @@
         <div className="col-xl-4">
           <card>
             <template slot="header">
-              <h6 className="surtitle">TÂCHES</h6>
-              <h5 className="h3 mb-0">Répartition par classes</h5>
+              <h6 className="surtitle">
+                TÂCHES
+              </h6>
+              <h5 className="h3 mb-0">
+                Répartition par classes
+              </h5>
             </template>
             <div className="chart">
               <pie-chart
@@ -138,8 +150,12 @@
         <div className="col-xl-8">
           <card>
             <template slot="header">
-              <h6 className="surtitle">TÂCHES</h6>
-              <h5 className="h3 mb-0">Répartion par campus (et classes)</h5>
+              <h6 className="surtitle">
+                TÂCHES
+              </h6>
+              <h5 className="h3 mb-0">
+                Répartion par campus (et classes)
+              </h5>
             </template>
             <div className="chart-area">
               <bar-chart
@@ -156,10 +172,10 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 import BarChart from '@/components/Charts/BarChart'
 import PieChart from '@/components/Charts/PieChart'
-import {Charts} from '@/components/Charts/config'
+import { Charts } from '@/components/Charts/config'
 
 export default {
   components: {
@@ -170,7 +186,7 @@ export default {
     ...mapGetters({
       stats: 'sysconf/getTasksStats'
     }),
-    pieChart() {
+    pieChart () {
       return {
         chartData: {
           labels: [
@@ -189,11 +205,11 @@ export default {
               this.stats.grades ? this.stats.grades.i2 : 0
             ],
             backgroundColor: [
-              Charts.colors.theme['info'],
-              Charts.colors.theme['primary'],
-              Charts.colors.theme['success'],
-              Charts.colors.theme['warning'],
-              Charts.colors.theme['danger']
+              Charts.colors.theme.info,
+              Charts.colors.theme.primary,
+              Charts.colors.theme.success,
+              Charts.colors.theme.warning,
+              Charts.colors.theme.danger
             ]
           }]
         },
@@ -206,14 +222,14 @@ export default {
         }
       }
     },
-    barChartStacked() {
+    barChartStacked () {
       return {
         chartData: {
           labels: ['Arras', 'Auxerre', 'Bordeaux', 'Brest', 'Grenoble', 'Lille', 'Lyon', 'Montpellier', 'Nantes', 'Rennes', 'Toulouse', 'Paris', 'Dakar'],
           datasets: [{
             label: 'SN1',
             maxBarThickness: 10,
-            backgroundColor: Charts.colors.theme['info'],
+            backgroundColor: Charts.colors.theme.info,
             data: [
               this.stats.cities ? this.stats.cities.arras.sn1 : 0,
               this.stats.cities ? this.stats.cities.auxerre.sn1 : 0,
@@ -232,7 +248,7 @@ export default {
           }, {
             label: 'SN2',
             maxBarThickness: 10,
-            backgroundColor: Charts.colors.theme['primary'],
+            backgroundColor: Charts.colors.theme.primary,
             data: [
               this.stats.cities ? this.stats.cities.arras.sn2 : 0,
               this.stats.cities ? this.stats.cities.auxerre.sn2 : 0,
@@ -251,7 +267,7 @@ export default {
           }, {
             label: 'B3',
             maxBarThickness: 10,
-            backgroundColor: Charts.colors.theme['success'],
+            backgroundColor: Charts.colors.theme.success,
             data: [
               this.stats.cities ? this.stats.cities.arras.b3 : 0,
               this.stats.cities ? this.stats.cities.auxerre.b3 : 0,
@@ -270,7 +286,7 @@ export default {
           }, {
             label: 'I1 ',
             maxBarThickness: 10,
-            backgroundColor: Charts.colors.theme['warning'],
+            backgroundColor: Charts.colors.theme.warning,
             data: [
               this.stats.cities ? this.stats.cities.arras.i1 : 0,
               this.stats.cities ? this.stats.cities.auxerre.i1 : 0,
@@ -289,7 +305,7 @@ export default {
           }, {
             label: 'I2 ',
             maxBarThickness: 10,
-            backgroundColor: Charts.colors.theme['danger'],
+            backgroundColor: Charts.colors.theme.danger,
             data: [
               this.stats.cities ? this.stats.cities.arras.i2 : 0,
               this.stats.cities ? this.stats.cities.auxerre.i2 : 0,
@@ -326,7 +342,7 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     this.$store.dispatch('sysconf/fetchStats')
   }
 }

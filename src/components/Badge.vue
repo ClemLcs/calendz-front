@@ -6,12 +6,14 @@
        rounded ? `badge-pill` : '',
        circle && 'badge-circle',
        {[`badge-${size}`]: size},
-    ]"
-    class="badge">
+      ]"
+    class="badge"
+  >
     <slot>
       <i
         v-if="icon"
-        :class="icon"/>
+        :class="icon"
+      />
     </slot>
   </component>
 </template>

@@ -20,9 +20,10 @@
     <slot name="loading">
       <i
         v-if="loading"
-        class="fas fa-spinner fa-spin"/>
+        class="fas fa-spinner fa-spin"
+      />
     </slot>
-    <slot/>
+    <slot />
   </component>
 </template>
 <script>

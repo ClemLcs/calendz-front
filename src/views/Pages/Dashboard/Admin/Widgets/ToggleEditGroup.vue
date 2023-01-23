@@ -1,24 +1,28 @@
 <template>
   <card
     :show-footer-line="true"
-    class="card-stats">
+    class="card-stats"
+  >
     <div class="row">
-
       <div class="col">
         <slot>
-          <h5 class="card-title text-uppercase text-muted mb-1">TOGGLE MODIFICATION GROUPE</h5>
+          <h5 class="card-title text-uppercase text-muted mb-1">
+            TOGGLE MODIFICATION GROUPE
+          </h5>
           <div class="row mt-2 mb--3">
             <div class="col-12 pr-0">
               <span
                 class="h2 font-weight-bold mt--1 mr-2"
-                style="float:left">Statut :</span>
+                style="float:left"
+              >Statut :</span>
               <div>
                 <base-switch
                   :value="settings.editGroupEnabled"
                   type="primary"
                   on-text="On"
                   off-text="Off"
-                  @input="toggleEditGroup($event)"/>
+                  @input="toggleEditGroup($event)"
+                />
               </div>
             </div>
           </div>
@@ -29,10 +33,12 @@
         <slot name="icon">
           <div
             :class="settings.editGroupEnabled ? 'bg-success' : 'bg-danger'"
-            class="icon icon-shape text-white rounded-circle shadow">
+            class="icon icon-shape text-white rounded-circle shadow"
+          >
             <i
               :class="settings.editGroupEnabled ? 'fa-toggle-on' : 'fa-toggle-off'"
-              class="fas"/>
+              class="fas"
+            />
           </div>
         </slot>
       </div>
@@ -42,9 +48,10 @@
       <slot name="footer">
         <i
           :class="settings.editGroupEnabled ? 'fa-toggle-on' : 'fa-toggle-off'"
-          class="fas  mr-1"/>
+          class="fas  mr-1"
+        />
         État actuel :
-        <span :class="settings.editGroupEnabled ? 'text-success' : 'text-danger'" >
+        <span :class="settings.editGroupEnabled ? 'text-success' : 'text-danger'">
           {{ settings.editGroupEnabled ? 'activé' : 'désactivé' }}
         </span>
       </slot>

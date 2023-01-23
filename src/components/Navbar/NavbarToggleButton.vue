@@ -8,9 +8,9 @@
     aria-expanded="false"
     aria-label="Toggle navigation"
   >
-    <span class="navbar-toggler-bar bar1"/>
-    <span class="navbar-toggler-bar bar2"/>
-    <span class="navbar-toggler-bar bar3"/>
+    <span class="navbar-toggler-bar bar1" />
+    <span class="navbar-toggler-bar bar2" />
+    <span class="navbar-toggler-bar bar3" />
   </button>
 </template>
 <script>

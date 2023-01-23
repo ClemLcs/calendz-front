@@ -7,14 +7,14 @@ const SysconfService = {
 
   // get system's settings
   getSettings: () => {
-    return ApiService.get(`/sysconf/settings`)
+    return ApiService.get('/sysconf/settings')
       .then(res => res)
       .catch(err => Promise.reject(err.data))
   },
 
   // get statistics
   getStats: () => {
-    return ApiService.get(`/sysconf/stats`)
+    return ApiService.get('/sysconf/stats')
       .then(res => res)
       .catch(err => Promise.reject(err))
   },
@@ -38,13 +38,13 @@ const SysconfService = {
   },
 
   disconnectAllUsers: () => {
-    return ApiService.delete(`/sysconf/refresh-tokens/all`)
+    return ApiService.delete('/sysconf/refresh-tokens/all')
       .then(res => res)
       .catch(err => Promise.reject(err.data))
   },
 
   migrateAllUsers: () => {
-    return ApiService.patch(`/sysconf/migrate/all`)
+    return ApiService.patch('/sysconf/migrate/all')
       .then(res => res)
       .catch(err => Promise.reject(err.data))
   },

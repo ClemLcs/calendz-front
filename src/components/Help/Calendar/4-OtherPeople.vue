@@ -14,7 +14,8 @@
         class="img-fluid px-3"
         style="max-height: 500px"
         src="https://i.imgur.com/FAZB7PB.png"
-        alt="Capture d'écran emploi du temps">
+        alt="Capture d'écran emploi du temps"
+      >
     </div>
 
     <base-alert type="primary">

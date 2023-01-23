@@ -5,14 +5,18 @@
     <!-- ======================================= -->
     <base-header
       type="primary"
-      class="pb-6">
+      class="pb-6"
+    >
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
-          <h6 class="h2 text-white d-inline-block mb-0">Dashboard</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">
+            Dashboard
+          </h6>
           <nav
             aria-label="breadcrumb"
-            class="d-none d-md-inline-block ml-md-4">
-            <route-bread-crumb/>
+            class="d-none d-md-inline-block ml-md-4"
+          >
+            <route-bread-crumb />
           </nav>
         </div>
       </div>
@@ -23,43 +27,47 @@
     <!-- ======================================= -->
     <div class="container-fluid mt--6 card-wrapper">
       <div class="card mb-4">
-
         <div class="container-fluid mt-4">
           <div class="row">
-
             <!-- menu -->
             <div class="col-lg-2 mb-4">
               <ul class="list-group cursor-pointer">
                 <li
                   :class="active === 1 ? 'bg-primary text-white' : 'bg-white text-primary'"
                   class="list-group-item d-flex justify-content-between align-items-center"
-                  @click="active = 1">
+                  @click="active = 1"
+                >
                   Non-lues
                   <badge
                     type="primary"
-                    pill>
+                    pill
+                  >
                     {{ notReadNotifications.length || 0 }}
                   </badge>
                 </li>
                 <li
                   :class="active === 2 ? 'bg-primary text-white' : 'bg-white text-primary'"
                   class="list-group-item d-flex justify-content-between align-items-center"
-                  @click="active = 2">
+                  @click="active = 2"
+                >
                   Lues
                   <badge
                     type="primary"
-                    pill>
+                    pill
+                  >
                     {{ readNotifications.length || 0 }}
                   </badge>
                 </li>
                 <li
                   :class="active === 3 ? 'bg-primary text-white' : 'bg-white text-primary'"
                   class="list-group-item d-flex justify-content-between align-items-center"
-                  @click="active = 3">
+                  @click="active = 3"
+                >
                   Toutes
                   <badge
                     type="primary"
-                    pill>
+                    pill
+                  >
                     {{ allNotifications.length || 0 }}
                   </badge>
                 </li>
@@ -72,14 +80,17 @@
                 <div class="card-header border-0">
                   <div class="row align-items-center">
                     <div class="col">
-                      <h3 class="mb-0">Gérez vos notifications</h3>
+                      <h3 class="mb-0">
+                        Gérez vos notifications
+                      </h3>
                     </div>
                     <div class="col text-right">
                       <base-button
                         :disabled="active === 2 || notReadNotifications.length < 1"
                         type="primary"
                         size="sm"
-                        @click="readAllNotifications()">
+                        @click="readAllNotifications()"
+                      >
                         Tout lire
                       </base-button>
                     </div>
@@ -91,18 +102,20 @@
                     :data="queriedData"
                     row-key="id"
                     class="table-responsive table-light"
-                    header-row-class-name="thead-light">
-
+                    header-row-class-name="thead-light"
+                  >
                     <!-- icon -->
                     <el-table-column
                       width="62px"
                       min-width="62px"
-                      class="text-center">
-                      <template v-slot="{row}">
+                      class="text-center"
+                    >
+                      <template #default="{row}">
                         <div class="d-flex justify-content-center">
                           <i
                             :class="`${row.icon} bg-${row.type}`"
-                            class="avatar avatar-sm rounded-circle"/>
+                            class="avatar avatar-sm rounded-circle"
+                          />
                         </div>
                       </template>
                     </el-table-column>
@@ -111,11 +124,12 @@
                     <el-table-column
                       label="Titre"
                       min-width="120px"
-                      class="text-center">
-                      <template v-slot="{row}">
+                      class="text-center"
+                    >
+                      <template #default="{row}">
                         <div class="d-flex">
                           <div class="col-auto text-left pl-1 pr-0">
-                            <span v-html="row.title"/>
+                            <span v-html="row.title" />
                           </div>
                         </div>
                       </template>
@@ -125,11 +139,12 @@
                     <el-table-column
                       label="Message"
                       min-width="200px"
-                      class="text-center">
-                      <template v-slot="{row}">
+                      class="text-center"
+                    >
+                      <template #default="{row}">
                         <div class="d-flex">
                           <div class="col-auto text-left pl-1 pr-0">
-                            <span v-html="row.message"/>
+                            <span v-html="row.message" />
                           </div>
                         </div>
                       </template>
@@ -140,11 +155,12 @@
                       label="Date"
                       width="130px"
                       min-width="130px"
-                      class="text-center">
-                      <template v-slot="{row}">
+                      class="text-center"
+                    >
+                      <template #default="{row}">
                         <div class="d-flex">
                           <div class="col-auto text-left pl-1 pr-0">
-                            <i class="fas fa-clock mr-1"/>
+                            <i class="fas fa-clock mr-1" />
                             {{ getFuzzyTime(row.timestamp) }}
                           </div>
                         </div>
@@ -155,14 +171,16 @@
                     <el-table-column
                       width="120px"
                       min-width="120px"
-                      class="text-center">
-                      <template v-slot="{row}">
+                      class="text-center"
+                    >
+                      <template #default="{row}">
                         <div class="d-flex justify-content-center">
                           <base-switch
                             :value="row.isRead"
                             on-text="Lue"
                             off-text="Lue"
-                            @input="toggleRead($event, row._id)"/>
+                            @input="toggleRead($event, row._id)"
+                          />
                         </div>
                       </template>
                     </el-table-column>
@@ -170,7 +188,8 @@
                 </div>
                 <div
                   slot="footer"
-                  class="col-12 d-flex justify-content-center justify-content-sm-between flex-wrap pt-4 pb-2">
+                  class="col-12 d-flex justify-content-center justify-content-sm-between flex-wrap pt-4 pb-2"
+                >
                   <div>
                     <p class="card-category text-sm mt-2 mb-3">
                       Affichage de  {{ from + 1 }} à {{ to }} d'un total de {{ total }} entrées
@@ -180,15 +199,13 @@
                     v-model="pagination.currentPage"
                     :per-page="pagination.perPage"
                     :total="total"
-                    class="pagination-no-border"/>
+                    class="pagination-no-border"
+                  />
                 </div>
               </div>
-
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -197,7 +214,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { BasePagination } from '@/components'
-import { Table, TableColumn, Option } from 'element-ui'
+import { ElTable, ElTableColumn, ElOption } from 'element-plus'
 import clientPaginationMixin from '@/mixins/clientPaginationMixin'
 import dateUtilMixin from '@/mixins/dateUtilMixin'
 
@@ -205,9 +222,9 @@ export default {
   name: 'Settings',
   components: {
     BasePagination,
-    [Option.name]: Option,
-    [Table.name]: Table,
-    [TableColumn.name]: TableColumn
+    [ElOption.name]: ElOption,
+    [ElTable.name]: ElTable,
+    [ElTableColumn.name]: ElTableColumn
   },
   mixins: [clientPaginationMixin, dateUtilMixin],
   data () {

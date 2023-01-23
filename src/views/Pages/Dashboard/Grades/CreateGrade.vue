@@ -3,7 +3,8 @@
     <card
       :show-footer-line="true"
       class="card-stats bg-gradient-default cursor-pointer"
-      @click.native="openModal()">
+      @click.native="openModal()"
+    >
       <!-- ================================================ -->
       <!-- == Body ======================================== -->
       <!-- ================================================ -->
@@ -25,7 +26,7 @@
         <div class="col-auto">
           <slot name="icon">
             <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
-              <i class="fas fa-plus-circle"/>
+              <i class="fas fa-plus-circle" />
             </div>
           </slot>
         </div>
@@ -37,7 +38,7 @@
       <p class="mt-1 mb-0 text-sm">
         <slot name="footer">
           <span class="text-white">
-            <i class="fas fa-external-link-alt mr-1"/>
+            <i class="fas fa-external-link-alt mr-1" />
             Cliquez pour ajouter une note
           </span>
         </slot>
@@ -49,17 +50,21 @@
     <!-- =============================== -->
     <form
       class="needs-validation"
-      @submit.prevent>
+      @submit.prevent
+    >
       <modal
         :show="showModal"
-        @close="closeModal()">
+        @close="closeModal()"
+      >
         <template slot="header">
-          <h5 class="modal-title">Nouvelle note</h5>
+          <h5 class="modal-title">
+            Nouvelle note
+          </h5>
         </template>
 
         <div class="row">
           <base-alert type="secondary">
-            <i class="fas fa-lightbulb mr-2"/>
+            <i class="fas fa-lightbulb mr-2" />
             <strong>Astuce : </strong>
             Lorsque vous venez de passer une évaluation, vous pouvez pré-créer la note et la remplir une fois que vous l'aurez.
           </base-alert>
@@ -68,8 +73,8 @@
         <div class="row">
           <div class="col-md-6">
             <base-input
-              v-validate="'min_value:0|max_value:20'"
               v-model="gradeCreationForm.value"
+              v-validate="'min_value:0|max_value:20'"
               :error="getError('note')"
               :valid="isValid('note')"
               type="number"
@@ -77,13 +82,14 @@
               max="20"
               name="note"
               label="Note (facultatif)"
-              placeholder="Votre note (sur 20)"/>
+              placeholder="Votre note (sur 20)"
+            />
           </div>
 
           <div class="col-md-6">
             <base-input
-              v-validate="'min_value:0|max_value:10'"
               v-model="gradeCreationForm.coefficient"
+              v-validate="'min_value:0|max_value:10'"
               :error="getError('coefficient')"
               :valid="isValid('coefficient')"
               type="number"
@@ -91,7 +97,8 @@
               max="10"
               name="coefficient"
               label="Coefficient (facultatif)"
-              placeholder="Coefficient (1 par défaut)"/>
+              placeholder="Coefficient (1 par défaut)"
+            />
           </div>
         </div>
 
@@ -100,20 +107,23 @@
             <base-input
               :error="getError('matière')"
               :valid="isValid('matière')"
-              label="Matière">
+              label="Matière"
+            >
               <el-select
-                v-validate="'required|min:1|max:50'"
                 v-model="gradeCreationForm.subject"
+                v-validate="'required|min:1|max:50'"
                 filterable
                 allow-create
                 default-first-option
                 name="matière"
-                placeholder="Nom de la matière">
+                placeholder="Nom de la matière"
+              >
                 <el-option
                   v-for="(subject, index) in subjects"
                   :key="index"
                   :label="subject"
-                  :value="subject"/>
+                  :value="subject"
+                />
               </el-select>
             </base-input>
           </div>
@@ -123,15 +133,17 @@
               :error="getError('date')"
               :valid="isValid('date')"
               autocomplete="off"
-              label="Date">
+              label="Date"
+            >
               <flat-picker
-                slot-scope="{focus, blur}"
                 v-model="gradeCreationForm.date"
+                slot-scope="{focus, blur}"
                 :config="flatPickerConfig"
                 name="date"
                 class="form-control datepicker"
                 @on-open="focus"
-                @on-close="blur"/>
+                @on-close="blur"
+              />
             </base-input>
           </div>
         </div>
@@ -142,14 +154,16 @@
               :error="getError('description')"
               :valid="isValid('description')"
               class="w-100"
-              label="Description (facultatif)">
+              label="Description (facultatif)"
+            >
               <textarea
-                v-validate="'max:250'"
                 v-model="gradeCreationForm.description"
+                v-validate="'max:250'"
                 name="description"
                 class="form-control"
                 rows="4"
-                placeholder="Décrivez à quoi correspond cette note..."/>
+                placeholder="Décrivez à quoi correspond cette note..."
+              />
             </base-input>
           </div>
         </div>
@@ -158,13 +172,15 @@
           <base-button
             size="md"
             type="secondary"
-            @click="closeModal()">
+            @click="closeModal()"
+          >
             Fermer
           </base-button>
           <base-button
             size="md"
             type="primary"
-            @click="handleGradeCreateSubmit()">
+            @click="handleGradeCreateSubmit()"
+          >
             Ajouter
           </base-button>
         </template>
@@ -179,13 +195,13 @@ import FlatPicker from 'vue-flatpickr-component'
 import 'flatpickr/dist/flatpickr.css'
 import { French } from 'flatpickr/dist/l10n/fr.js'
 import dateUtilMixin from '@/mixins/dateUtilMixin'
-import { Select, Option } from 'element-ui'
+import { ElSelect, ElOption } from 'element-plus'
 
 export default {
   components: {
     FlatPicker,
-    [Select.name]: Select,
-    [Option.name]: Option
+    [ElSelect.name]: ElSelect,
+    [ElOption.name]: ElOption
   },
   mixins: [dateUtilMixin],
   data () {

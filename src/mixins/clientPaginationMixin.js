@@ -49,8 +49,8 @@ export default {
     sortChange ({ prop, order }) {
       if (prop) {
         this.tableData.sort((a, b) => {
-          let aVal = a[prop]
-          let bVal = b[prop]
+          const aVal = a[prop]
+          const bVal = b[prop]
           if (order === 'ascending') {
             return aVal > bVal ? 1 : -1
           }

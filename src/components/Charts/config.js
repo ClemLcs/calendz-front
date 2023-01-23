@@ -19,13 +19,13 @@ export const Charts = {
       900: '#212529'
     },
     theme: {
-      'default': '#172b4d',
-      'primary': '#5e72e4',
-      'secondary': '#f4f5f7',
-      'info': '#11cdef',
-      'success': '#2dce89',
-      'danger': '#f5365c',
-      'warning': '#fb6340'
+      default: '#172b4d',
+      primary: '#5e72e4',
+      secondary: '#f4f5f7',
+      info: '#11cdef',
+      success: '#2dce89',
+      danger: '#f5365c',
+      warning: '#fb6340'
     },
     black: '#12263F',
     white: '#FFFFFF',
@@ -34,9 +34,9 @@ export const Charts = {
 }
 
 function chartOptions () {
-  let { colors, mode, fonts } = Charts
+  const { colors, mode, fonts } = Charts
   // Options
-  let options = {
+  const options = {
     defaults: {
       global: {
         responsive: true,
@@ -59,20 +59,20 @@ function chartOptions () {
         elements: {
           point: {
             radius: 0,
-            backgroundColor: colors.theme['primary']
+            backgroundColor: colors.theme.primary
           },
           line: {
             tension: 0.4,
             borderWidth: 4,
-            borderColor: colors.theme['primary'],
+            borderColor: colors.theme.primary,
             backgroundColor: colors.transparent,
             borderCapStyle: 'rounded'
           },
           rectangle: {
-            backgroundColor: colors.theme['warning']
+            backgroundColor: colors.theme.warning
           },
           arc: {
-            backgroundColor: colors.theme['primary'],
+            backgroundColor: colors.theme.primary,
             borderColor: (mode === 'dark') ? colors.gray[800] : colors.white,
             borderWidth: 4
           }
@@ -94,11 +94,11 @@ function chartOptions () {
         },
         cutoutPercentage: 83,
         legendCallback: function (chart) {
-          let data = chart.data
+          const data = chart.data
           let content = ''
 
           data.labels.forEach(function (label, index) {
-            let bgColor = data.datasets[0].backgroundColor[index]
+            const bgColor = data.datasets[0].backgroundColor[index]
 
             content += '<span class="chart-legend-item">'
             content += '<i class="chart-legend-indicator" style="background-color: ' + bgColor + '"></i>'
@@ -171,7 +171,7 @@ export const basicOptions = {
   },
   responsive: true
 }
-export let blueChartOptions = {
+export const blueChartOptions = {
   scales: {
     yAxes: [{
       gridLines: {
@@ -182,7 +182,7 @@ export let blueChartOptions = {
   }
 }
 
-export let lineChartOptionsBlue = {
+export const lineChartOptionsBlue = {
   ...basicOptions,
   tooltips: {
     backgroundColor: '#f5f5f5',
@@ -230,7 +230,7 @@ export let lineChartOptionsBlue = {
   }
 }
 
-export let barChartOptionsGradient = {
+export const barChartOptionsGradient = {
   ...basicOptions,
   tooltips: {
     backgroundColor: '#f5f5f5',
@@ -276,7 +276,7 @@ export let barChartOptionsGradient = {
   }
 }
 
-export let pieChartOptions = {
+export const pieChartOptions = {
   ...basicOptions,
   cutoutPercentage: 70,
   tooltips: {
@@ -322,7 +322,7 @@ export let pieChartOptions = {
   }
 }
 
-export let purpleChartOptions = {
+export const purpleChartOptions = {
   ...basicOptions,
   tooltips: {
     backgroundColor: '#f5f5f5',
@@ -369,7 +369,7 @@ export let purpleChartOptions = {
   }
 }
 
-export let orangeChartOptions = {
+export const orangeChartOptions = {
   ...basicOptions,
   tooltips: {
     backgroundColor: '#f5f5f5',
@@ -415,7 +415,7 @@ export let orangeChartOptions = {
     ]
   }
 }
-export let greenChartOptions = {
+export const greenChartOptions = {
   ...basicOptions,
   tooltips: {
     backgroundColor: '#f5f5f5',
@@ -462,7 +462,7 @@ export let greenChartOptions = {
   }
 }
 
-export let barChartOptions = {
+export const barChartOptions = {
   ...basicOptions,
   tooltips: {
     backgroundColor: '#f5f5f5',

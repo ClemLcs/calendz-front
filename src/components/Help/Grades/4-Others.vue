@@ -9,7 +9,8 @@
       <img
         class="img-fluid mt-2 mb-5"
         src="https://i.imgur.com/G9mj5Ut.png"
-        alt="Capture d'écran évolution notes">
+        alt="Capture d'écran évolution notes"
+      >
     </div>
 
     <div>
@@ -22,7 +23,8 @@
       <img
         class="img-fluid mt-2"
         src="https://i.imgur.com/j5gXGeg.png"
-        alt="Capture d'écran notes en attente">
+        alt="Capture d'écran notes en attente"
+      >
     </div>
   </div>
 </template>

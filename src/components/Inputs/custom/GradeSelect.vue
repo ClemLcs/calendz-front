@@ -8,18 +8,25 @@
       prepend-icon="ni ni-hat-3"
     >
       <select
-        v-validate="'required|valid_grade'"
         v-model="inputValue"
+        v-validate="'required|valid_grade'"
         :disabled="disabled"
         name="classe"
-        class="form-control">
+        class="form-control"
+      >
         <option
           value=""
-          hidden>Votre niveau</option>
+          hidden
+        >
+          Votre niveau
+        </option>
         <option
           v-for="(option, index) in options"
           :key="index"
-          :value="option.value">{{ option.value }}</option>
+          :value="option.value"
+        >
+          {{ option.value }}
+        </option>
       </select>
     </base-input>
   </div>
@@ -41,12 +48,12 @@ export default {
     label: {
       type: String,
       default: '',
-      doc: `Input's label`
+      doc: 'Input\'s label'
     },
     school: {
       type: String,
       default: null,
-      doc: `Previously selected school`
+      doc: 'Previously selected school'
     }
   },
   data () {

@@ -3,7 +3,8 @@
     <!-- card header -->
     <div
       slot="header"
-      class="h3 mb-0">
+      class="h3 mb-0"
+    >
       <div class="row align-items-center">
         <div class="col-8">
           <h5 class="h3 mb-0">
@@ -13,7 +14,10 @@
         <div class="col-4 text-right">
           <router-link
             to="/tasks"
-            class="btn btn-sm btn-primary">Détail</router-link>
+            class="btn btn-sm btn-primary"
+          >
+            Détail
+          </router-link>
         </div>
       </div>
     </div>
@@ -21,28 +25,32 @@
     <!-- card body loading -->
     <ul
       v-if="homeworksRetrieving"
-      class="list-group list-group-flush">
+      class="list-group list-group-flush"
+    >
       <li
         v-for="(number, index) in [1, 2, 3]"
         :key="index"
         :class="(index === 0) ? 'pt-0' : index === 3 - 1 ? 'pb-1' : ''"
-        class="list-group-item px-0">
+        class="list-group-item px-0"
+      >
         <div class="checklist-item">
           <div class="checklist-info w-100 mr-3">
-            <placeholder class="w-75"/>
-            <placeholder class="mt-2 w-100"/>
+            <placeholder class="w-75" />
+            <placeholder class="mt-2 w-100" />
             <placeholder
               v-if="index === 2"
-              class="mt-1 w-100"/>
+              class="mt-1 w-100"
+            />
             <small class="text-muted">
-              <placeholder class="mt-1 w-50"/>
+              <placeholder class="mt-1 w-50" />
             </small>
           </div>
           <div>
             <base-checkbox
               :checked="false"
               :type="'primary'"
-              @input="toggleHomeworkDone($event, homework._id)"/>
+              @input="toggleHomeworkDone($event, homework._id)"
+            />
           </div>
         </div>
       </li>
@@ -51,25 +59,30 @@
     <!-- card body not-loading -->
     <ul
       v-if="!homeworksRetrieving"
-      class="list-group list-group-flush">
+      class="list-group list-group-flush"
+    >
       <li
         v-for="(homework, index) in homeworks"
         :key="index"
         :class="(index === 0) ? 'pt-0' : index === homeworks.length - 1 ? 'pb-1' : ''"
-        class="list-group-item px-0">
+        class="list-group-item px-0"
+      >
         <div
           :class="{'checklist-item-checked': false, [`checklist-item-${ homework.type === 'homework' ? 'primary' : homework.type === 'task' ? 'info' : 'warning' }`]: homework.type }"
-          class="checklist-item">
+          class="checklist-item"
+        >
           <div class="checklist-info w-100 mr-3 text-justify">
             <task-core
               :task="homework"
-              :title-classes="'checklist-title mb-0'"/>
+              :title-classes="'checklist-title mb-0'"
+            />
           </div>
           <div>
             <base-checkbox
               :checked="isDone(homework._id)"
               :type="homework.type === 'homework' ? 'primary' : homework.type === 'task' ? 'info' : 'warning'"
-              @input="toggleHomeworkDone($event, homework._id)"/>
+              @input="toggleHomeworkDone($event, homework._id)"
+            />
           </div>
         </div>
       </li>
@@ -77,14 +90,14 @@
 
     <span
       v-if="!homeworksRetrieving && !homeworks[0]"
-      class="h3">
+      class="h3"
+    >
       <div class="text-center">
         <span>
           Vous n'avez aucun devoir à venir
         </span>
       </div>
     </span>
-
   </card>
 </template>
 <script>

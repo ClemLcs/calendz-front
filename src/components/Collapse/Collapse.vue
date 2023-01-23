@@ -5,13 +5,22 @@
     aria-multiselectable="true"
     class="accordion"
   >
-    <slot/>
+    <slot />
   </div>
 </template>
 
 <script>
 export default {
   name: 'Collapse',
+  provide () {
+    return {
+      animationDuration: this.animationDuration,
+      multipleActive: this.multipleActive,
+      addItem: this.addItem,
+      removeItem: this.removeItem,
+      deactivateAll: this.deactivateAll
+    }
+  },
   props: {
     animationDuration: {
       type: Number,
@@ -27,15 +36,6 @@ export default {
       type: Number,
       default: -1,
       description: 'Active collapse item index'
-    }
-  },
-  provide () {
-    return {
-      animationDuration: this.animationDuration,
-      multipleActive: this.multipleActive,
-      addItem: this.addItem,
-      removeItem: this.removeItem,
-      deactivateAll: this.deactivateAll
     }
   },
   data () {

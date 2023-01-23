@@ -1,14 +1,16 @@
 <template>
   <div class="wrapper">
-    <notifications/>
+    <notifications />
     <side-bar>
       <template
-        slot="links-after">
+        slot="links-after"
+      >
         <hr class="mt-0 mb-3">
-        <h6 class="navbar-heading p-0 text-muted">Menu principal</h6>
+        <h6 class="navbar-heading p-0 text-muted">
+          Menu principal
+        </h6>
 
         <ul class="navbar-nav mb-md-3">
-
           <!-- dashboard -->
           <sidebar-item
             :link="{
@@ -42,7 +44,8 @@
               name: 'Gestion des notes',
               icon: 'fas fa-graduation-cap text-default',
               path: '/grades'
-          }"/>
+            }"
+          />
 
           <!-- profile -->
           <sidebar-item
@@ -75,9 +78,12 @@
 
       <template
         v-if="user && user.permissionLevel === 'ADMIN'"
-        slot="links-after">
+        slot="links-after"
+      >
         <hr class="my-3">
-        <h6 class="navbar-heading p-0 text-muted">Admin</h6>
+        <h6 class="navbar-heading p-0 text-muted">
+          Admin
+        </h6>
 
         <ul class="navbar-nav mb-md-3">
           <!-- dashboard admin -->
@@ -86,7 +92,8 @@
               name: 'Dashboard admin',
               icon: 'ni ni-shop text-red',
               path: '/dashboard-admin'
-          }"/>
+            }"
+          />
 
           <!-- statistics -->
           <sidebar-item
@@ -94,9 +101,10 @@
               name: 'Statistiques',
               icon: 'fas fa-chart-line text-info',
               path: '/stats/users'
-          }">
-            <sidebar-item :link="{ name: 'Utilisateurs', path: '/stats/users' }"/>
-            <sidebar-item :link="{ name: 'Tâches', path: '/stats/tasks' }"/>
+            }"
+          >
+            <sidebar-item :link="{ name: 'Utilisateurs', path: '/stats/users' }" />
+            <sidebar-item :link="{ name: 'Tâches', path: '/stats/tasks' }" />
           </sidebar-item>
 
           <!-- user-management -->
@@ -105,13 +113,16 @@
               name: 'Gestion des utilisateurs',
               icon: 'fas fa-users-cog text-primary',
               path: '/user-management'
-          }"/>
+            }"
+          />
         </ul>
       </template>
 
       <template slot="links-after">
         <hr class="my-3">
-        <h6 class="navbar-heading p-0 text-muted">Autres</h6>
+        <h6 class="navbar-heading p-0 text-muted">
+          Autres
+        </h6>
 
         <ul class="navbar-nav mb-md-3">
           <!-- Contact & support -->
@@ -120,15 +131,17 @@
               name: 'Contact & support',
               icon: 'fas fa-question-circle',
               path: '/contact'
-          }"/>
+            }"
+          />
 
           <!-- Changelog -->
           <li class="nav-item">
             <a
               href="https://changelog.calendz.app"
               target="_blank"
-              class="nav-link cursor-pointer">
-              <i class="fas fa-book-open text-grey mt-1"/>
+              class="nav-link cursor-pointer"
+            >
+              <i class="fas fa-book-open text-grey mt-1" />
               <span class="nav-link-text">Changelog</span>
             </a>
           </li>
@@ -137,8 +150,9 @@
           <li class="nav-item">
             <span
               class="nav-link cursor-pointer"
-              @click.prevent="logout">
-              <i class="ni ni-user-run text-grey"/>
+              @click.prevent="logout"
+            >
+              <i class="ni ni-user-run text-grey" />
               <span class="nav-link-text">Se déconnecter</span>
             </span>
           </li>
@@ -147,19 +161,21 @@
     </side-bar>
     <div
       v-touch:swipe.right="handleSwipeRight"
-      class="main-content">
-      <dashboard-navbar/>
+      class="main-content"
+    >
+      <dashboard-navbar />
 
       <div @click="$sidebar.displaySidebar(false)">
         <fade-transition
           :duration="200"
           origin="center top"
-          mode="out-in">
+          mode="out-in"
+        >
           <!-- your content here -->
-          <router-view/>
+          <router-view />
         </fade-transition>
       </div>
-      <content-footer v-if="!$route.meta.hideFooter"/>
+      <content-footer v-if="!$route.meta.hideFooter" />
     </div>
   </div>
 </template>
@@ -172,7 +188,7 @@ import 'perfect-scrollbar/css/perfect-scrollbar.css'
 import DashboardNavbar from './DashboardNavbar.vue'
 import ContentFooter from './ContentFooter.vue'
 import DashboardContent from './Content.vue'
-import { FadeTransition } from 'vue2-transitions'
+import { FadeTransition } from 'vue3-transitions'
 import { mapState } from 'vuex'
 import swal from 'sweetalert2'
 
@@ -205,8 +221,8 @@ export default {
   },
   methods: {
     initScrollbar () {
-      let docClasses = document.body.classList
-      let isWindows = navigator.platform.startsWith('Win')
+      const docClasses = document.body.classList
+      const isWindows = navigator.platform.startsWith('Win')
       if (isWindows) {
         // if we are on windows OS we activate the perfectScrollbar function
         initScrollbar('scrollbar-inner')
@@ -246,7 +262,7 @@ export default {
       swal.fire({
         icon: 'info',
         title: 'Un peu de patience !',
-        text: `Cette fonctionnalité n'est pas encore disponible, mais nous travaillons dur pour la terminer le plus rapidement possible.`,
+        text: 'Cette fonctionnalité n\'est pas encore disponible, mais nous travaillons dur pour la terminer le plus rapidement possible.',
         customClass: {
           cancelButton: 'btn btn-primary'
         },

@@ -12,7 +12,9 @@
       type="checkbox"
     >
     <div class="icon">
-      <slot name="icon"> <i :class="icon"/> </slot>
+      <slot name="icon">
+        <i :class="icon" />
+      </slot>
     </div>
     <slot name="title">
       <h6>{{ title }}</h6>

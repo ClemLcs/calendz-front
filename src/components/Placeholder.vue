@@ -1,7 +1,8 @@
 <template>
   <div
     :class="type === 'circle' ? 'placeholder placeholder-circle avatar avatar-sm rounded-circle' : ''"
-    class="placeholder"/>
+    class="placeholder"
+  />
 </template>
 
 <script>
@@ -11,7 +12,7 @@ export default {
     type: {
       type: String,
       default: 'div',
-      description: `Placeholder's type`
+      description: 'Placeholder\'s type'
     }
   }
 }

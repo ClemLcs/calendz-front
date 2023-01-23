@@ -1,5 +1,5 @@
-import Vue from 'vue'
 import axios from 'axios'
+import { app } from '../main'
 
 const apiCalendar = axios.create()
 
@@ -11,7 +11,7 @@ const ApiCalendarService = {
     }, err => {
       // intercept connection errors
       if (!err.response) {
-        Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> Veuillez vérifier votre connexion internet !` })
+        app.config.globalProperties.$notify({ type: 'danger', message: '<b>Erreur !</b> Veuillez vérifier votre connexion internet !' })
         const error = new Error('Connection failure')
         return Promise.reject(error)
       }

@@ -5,14 +5,18 @@
     <!-- ======================================= -->
     <base-header
       type="primary"
-      class="pb-6">
+      class="pb-6"
+    >
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
-          <h6 class="h2 text-white d-inline-block mb-0">Dashboard</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">
+            Dashboard
+          </h6>
           <nav
             aria-label="breadcrumb"
-            class="d-none d-md-inline-block ml-md-4">
-            <route-bread-crumb/>
+            class="d-none d-md-inline-block ml-md-4"
+          >
+            <route-bread-crumb />
           </nav>
         </div>
       </div>
@@ -25,9 +29,12 @@
       <card
         class="no-border-card"
         body-classes="px-0 pb-1"
-        footer-classes="pb-2">
+        footer-classes="pb-2"
+      >
         <template slot="header">
-          <h3 class="mb-0">Gestion des utilisateurs</h3>
+          <h3 class="mb-0">
+            Gestion des utilisateurs
+          </h3>
           <p class="text-sm mb-0">
             Recherchez, modifiez, ou encore supprimez n'importe quel utilisateur du site.
           </p>
@@ -37,7 +44,8 @@
             <el-select
               v-model="pagination.perPage"
               class="select-primary pagination-select"
-              placeholder="Par page">
+              placeholder="Par page"
+            >
               <el-option
                 v-for="item in pagination.perPageOptions"
                 :key="item"
@@ -51,7 +59,8 @@
               <base-input
                 v-model="searchQuery"
                 prepend-icon="fas fa-search"
-                placeholder="Rechercher..."/>
+                placeholder="Rechercher..."
+              />
             </div>
           </div>
           <el-table
@@ -59,19 +68,21 @@
             :data="queriedData"
             row-key="id"
             header-row-class-name="thead-light"
-            @sort-change="sortChange">
-
+            @sort-change="sortChange"
+          >
             <!-- profile picture -->
             <el-table-column
               width="62px"
               min-width="62px"
-              class="text-center">
-              <template v-slot="{row}">
+              class="text-center"
+            >
+              <template #default="{row}">
                 <div class="d-flex justify-content-center">
                   <img
                     :src="row.avatarUrl || 'img/theme/default-pp.png'"
                     alt="Photo de profil"
-                    class="avatar avatar-sm rounded-circle">
+                    class="avatar avatar-sm rounded-circle"
+                  >
                 </div>
               </template>
             </el-table-column>
@@ -89,8 +100,9 @@
               min-width="126px"
               class="text-center"
               prop="row.creationDate"
-              sortable>
-              <template v-slot="{row}">
+              sortable
+            >
+              <template #default="{row}">
                 <div class="d-flex">
                   <div class="col-auto text-center pl-1 pr-0">
                     {{ dateToDayMonthYear(timestampToDate(row.creationDate)) }}
@@ -106,8 +118,9 @@
               min-width="150px"
               class="text-center"
               prop="row.lastActiveDate"
-              sortable>
-              <template v-slot="{row}">
+              sortable
+            >
+              <template #default="{row}">
                 <div class="d-flex">
                   <div class="col-auto text-center pl-1 pr-0">
                     {{ dateToDayMonthYear(timestampToDate(row.lastActiveDate)) + ' - ' + timeToHour(timestampToDate(row.lastActiveDate)) }}
@@ -123,8 +136,9 @@
               min-width="100px"
               class="text-center"
               prop="row.isActive"
-              sortable>
-              <template v-slot="{row}">
+              sortable
+            >
+              <template #default="{row}">
                 <div class="d-flex">
                   <div class="col-auto text-center pl-1 pr-0">
                     {{ row.isActive ? 'Oui' : 'Non' }}
@@ -138,29 +152,31 @@
               min-width="140px"
               width="140px"
               align="right"
-              label="Actions">
-              <template v-slot="{row}">
+              label="Actions"
+            >
+              <template #default="{row}">
                 <div class="d-flex">
                   <base-button
                     class="edit"
                     type="info"
                     size="sm"
                     icon
-                    @click="editUser(row)">
-                    <i class="text-white ni ni-ruler-pencil"/>
+                    @click="editUser(row)"
+                  >
+                    <i class="text-white ni ni-ruler-pencil" />
                   </base-button>
                   <base-button
                     class="remove btn-link"
                     type="danger"
                     size="sm"
                     icon
-                    @click="deleteUser(row)">
-                    <i class="text-white fas fa-trash"/>
+                    @click="deleteUser(row)"
+                  >
+                    <i class="text-white fas fa-trash" />
                   </base-button>
                 </div>
               </template>
             </el-table-column>
-
           </el-table>
 
           <!-- ================================================= -->
@@ -169,44 +185,49 @@
           <form
             v-if="modal"
             class="needs-validation"
-            @submit.prevent="handleSubmit">
+            @submit.prevent="handleSubmit"
+          >
             <modal :show.sync="modal">
               <template slot="header">
-                <h5 class="modal-title">Modifier les informations de {{ modifyForm.firstname + " " + modifyForm.lastname }}</h5>
+                <h5 class="modal-title">
+                  Modifier les informations de {{ modifyForm.firstname + " " + modifyForm.lastname }}
+                </h5>
               </template>
 
               <div class="row">
                 <div class="col-md-6">
                   <base-input
-                    v-validate="'required|min:3|max:32'"
                     v-model="modifyForm.firstname"
+                    v-validate="'required|min:3|max:32'"
                     :error="getError('prénom')"
                     :valid="isValid('prénom')"
                     name="prénom"
                     class="mb-3"
                     prepend-icon="ni ni-single-02"
                     placeholder="Prénom"
-                    label="Prénom"/>
+                    label="Prénom"
+                  />
                 </div>
                 <div class="col-md-6">
                   <base-input
-                    v-validate="'required|min:3|max:32'"
                     v-model="modifyForm.lastname"
+                    v-validate="'required|min:3|max:32'"
                     :error="getError('nom')"
                     :valid="isValid('nom')"
                     name="nom"
                     class="mb-3"
                     prepend-icon="ni ni-single-02"
                     placeholder="Nom"
-                    label="Nom"/>
+                    label="Nom"
+                  />
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6">
                   <base-input
-                    v-validate="'required|email|email_valid_school|min:12|max:64'"
                     v-model="modifyForm.email"
+                    v-validate="'required|email|email_valid_school|min:12|max:64'"
                     :error="getError('email')"
                     :valid="isValid('email')"
                     name="email"
@@ -214,7 +235,8 @@
                     prepend-icon="ni ni-email-83"
                     placeholder="Adresse mail"
                     label="Adresse mail"
-                    autocapitalize="none"/>
+                    autocapitalize="none"
+                  />
                 </div>
                 <div class="col-md-6">
                   <base-input
@@ -222,15 +244,20 @@
                     :valid="isValid('ville')"
                     class="mb-3"
                     prepend-icon="ni ni-hat-3"
-                    label="Ville">
+                    label="Ville"
+                  >
                     <select
-                      v-validate="'required|valid_city'"
                       v-model="modifyForm.city"
+                      v-validate="'required|valid_city'"
                       name="ville"
-                      class="form-control">
+                      class="form-control"
+                    >
                       <option
                         value=""
-                        hidden>Séléctionnez votre ville</option>
+                        hidden
+                      >
+                        Séléctionnez votre ville
+                      </option>
                       <option>Arras</option>
                       <option>Auxerre</option>
                       <option>Bordeaux</option>
@@ -256,7 +283,8 @@
                     :school="modifyForm.email ? guessSchoolFromEmail(modifyForm.email) : ''"
                     :disabled="false"
                     :legacy="true"
-                    label="Classe"/>
+                    label="Classe"
+                  />
                 </div>
                 <div class="col-md-6">
                   <GroupsSelect
@@ -264,7 +292,8 @@
                     :grade="modifyForm.grade"
                     :disabled="false"
                     :legacy="true"
-                    label="Groupe"/>
+                    label="Groupe"
+                  />
                 </div>
               </div>
 
@@ -275,14 +304,20 @@
                     :valid="isValid('bts')"
                     class="mb-3"
                     label="Option BTS"
-                    prepend-icon="ni ni-book-bookmark">
+                    prepend-icon="ni ni-book-bookmark"
+                  >
                     <select
-                      v-validate="'required|boolean'"
                       v-model="modifyForm.bts"
+                      v-validate="'required|boolean'"
                       name="bts"
-                      class="form-control">
-                      <option :value="true">Oui</option>
-                      <option :value="false">Non</option>
+                      class="form-control"
+                    >
+                      <option :value="true">
+                        Oui
+                      </option>
+                      <option :value="false">
+                        Non
+                      </option>
                     </select>
                   </base-input>
                 </div>
@@ -290,15 +325,20 @@
                   <base-input
                     class="mb-3"
                     label="Rôle"
-                    prepend-icon="ni ni-single-02">
+                    prepend-icon="ni ni-single-02"
+                  >
                     <select
-                      v-validate="'required|valid_role'"
                       v-model="modifyForm.permissionLevel"
+                      v-validate="'required|valid_role'"
                       name="permissions"
-                      class="form-control">
+                      class="form-control"
+                    >
                       <option
                         value="null"
-                        hidden>Selectionner la permission</option>
+                        hidden
+                      >
+                        Selectionner la permission
+                      </option>
                       <option>ADMIN</option>
                       <option>MEMBER</option>
                     </select>
@@ -313,14 +353,20 @@
                     :valid="isValid('informationMails')"
                     class="mb-3"
                     label="Mails d'informations"
-                    prepend-icon="ni ni-check-bold">
+                    prepend-icon="ni ni-check-bold"
+                  >
                     <select
-                      v-validate="'required|boolean'"
                       v-model="modifyForm.hasInformationMails"
+                      v-validate="'required|boolean'"
                       name="actif"
-                      class="form-control">
-                      <option :value="true">Oui</option>
-                      <option :value="false">Non</option>
+                      class="form-control"
+                    >
+                      <option :value="true">
+                        Oui
+                      </option>
+                      <option :value="false">
+                        Non
+                      </option>
                     </select>
                   </base-input>
                 </div>
@@ -330,14 +376,20 @@
                     :valid="isValid('actif')"
                     class="mb-3"
                     label="Actif"
-                    prepend-icon="ni ni-check-bold">
+                    prepend-icon="ni ni-check-bold"
+                  >
                     <select
-                      v-validate="'required|boolean'"
                       v-model="modifyForm.isActive"
+                      v-validate="'required|boolean'"
                       name="actif"
-                      class="form-control">
-                      <option :value="true">Oui</option>
-                      <option :value="false">Non</option>
+                      class="form-control"
+                    >
+                      <option :value="true">
+                        Oui
+                      </option>
+                      <option :value="false">
+                        Non
+                      </option>
                     </select>
                   </base-input>
                 </div>
@@ -347,13 +399,15 @@
                 <base-button
                   size="md"
                   type="secondary"
-                  @click="modal = false">
+                  @click="modal = false"
+                >
                   Fermer
                 </base-button>
                 <base-button
                   size="md"
                   type="primary"
-                  native-type="submit">
+                  native-type="submit"
+                >
                   Sauvegarder
                 </base-button>
               </template>
@@ -362,7 +416,8 @@
         </div>
         <div
           slot="footer"
-          class="col-12 d-flex justify-content-center justify-content-sm-between flex-wrap">
+          class="col-12 d-flex justify-content-center justify-content-sm-between flex-wrap"
+        >
           <p class="card-category">
             Affichage de  {{ from + 1 }} à {{ to }} d'un total de {{ total }} entrées
           </p>
@@ -381,7 +436,7 @@
 <script>
 import swal from 'sweetalert2'
 import { BasePagination, Modal } from '@/components'
-import { Table, TableColumn, Option, Select } from 'element-ui'
+import { ElOption, ElSelect, ElTable, ElTableColumn } from 'element-plus'
 import clientPaginationMixin from '@/mixins/clientPaginationMixin'
 import dateUtilMixin from '@/mixins/dateUtilMixin'
 import UserService from '@/services/user.service'
@@ -393,10 +448,10 @@ import GroupsSelect from '@/components/Inputs/custom/GroupsSelect'
 export default {
   components: {
     BasePagination,
-    [Option.name]: Option,
-    [Select.name]: Select,
-    [Table.name]: Table,
-    [TableColumn.name]: TableColumn,
+    [ElOption.name]: ElOption,
+    [ElSelect.name]: ElSelect,
+    [ElTable.name]: ElTable,
+    [ElTableColumn.name]: ElTableColumn,
     Modal,
     GradeSelect,
     GroupsSelect

@@ -1,5 +1,4 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createStore } from 'vuex'
 import AccountModule from './modules/account.module'
 import NotificationsModule from './modules/notifications.module'
 import CalendarModule from './modules/calendar.module'
@@ -8,9 +7,7 @@ import TasksModule from './modules/tasks.module'
 import GradesModule from './modules/grades.module'
 import LayoutModule from './modules/layout.module'
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+export const store = createStore({
   modules: {
     account: AccountModule,
     calendar: CalendarModule,

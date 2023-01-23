@@ -26,12 +26,14 @@
           class="img-fluid px-3"
           style="max-height: 500px"
           src="https://i.imgur.com/5IC1pe1.png"
-          alt="Capture d'écran emploi du temps">
+          alt="Capture d'écran emploi du temps"
+        >
         <img
           class="img-fluid px-3"
           style="max-height: 500px"
           src="https://i.imgur.com/D6bfLJE.png"
-          alt="Capture d'écran emploi du temps">
+          alt="Capture d'écran emploi du temps"
+        >
       </div>
     </div>
   </div>

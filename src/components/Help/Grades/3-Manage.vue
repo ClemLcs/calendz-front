@@ -12,7 +12,8 @@
       <img
         class="img-fluid mt-2 mb-5"
         src="https://i.imgur.com/O7ARWnU.png"
-        alt="Capture d'écran modification note">
+        alt="Capture d'écran modification note"
+      >
     </div>
 
     <div>
@@ -26,7 +27,8 @@
       <img
         class="img-fluid mt-2"
         src="https://i.imgur.com/X5EoMKh.png"
-        alt="Capture d'écran suppression tâche">
+        alt="Capture d'écran suppression tâche"
+      >
     </div>
   </div>
 </template>

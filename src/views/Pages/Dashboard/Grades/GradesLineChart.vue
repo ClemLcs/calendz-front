@@ -4,21 +4,27 @@
       <div class="row align-items-center">
         <div class="col-sm-8 text-left my-1">
           <!-- Subtitle -->
-          <h6 class="surtitle">Statistiques</h6>
+          <h6 class="surtitle">
+            Statistiques
+          </h6>
           <!-- Title -->
-          <h5 class="h3 mb-0">Évolutions de mes notes</h5>
+          <h5 class="h3 mb-0">
+            Évolutions de mes notes
+          </h5>
         </div>
         <div class="col-sm-4 text-right my-1">
           <el-select
             v-model="selectedSubject"
             placeholder="Toutes les matières"
-            class="select-danger w-100">
+            class="select-danger w-100"
+          >
             <el-option
               v-for="(subject, index) in subjects"
+              :key="index"
               :value="subject"
               :label="subject"
-              :key="index"
-              class="select-danger"/>
+              class="select-danger"
+            />
           </el-select>
         </div>
       </div>
@@ -27,7 +33,8 @@
       <line-chart
         :height="350"
         :chart-data="chart.chartData"
-        :extra-options="chart.extraOptions"/>
+        :extra-options="chart.extraOptions"
+      />
     </div>
   </card>
 </template>
@@ -37,13 +44,13 @@ import { mapGetters } from 'vuex'
 import dateUtilMixin from '@/mixins/dateUtilMixin'
 import LineChart from '@/components/Charts/LineChart'
 import * as chartConfigs from '@/components/Charts/config'
-import { Select, Option } from 'element-ui'
+import { ElSelect, ElOption } from 'element-plus'
 
 export default {
   components: {
     LineChart,
-    [Select.name]: Select,
-    [Option.name]: Option
+    [ElSelect.name]: ElSelect,
+    [ElOption.name]: ElOption
   },
   mixins: [dateUtilMixin],
   data () {
@@ -91,7 +98,7 @@ export default {
       const result = []
       const grades = this.grades.filter(grade => grade.subject === subject)
       grades.forEach(grade => {
-        let date = this.timestampToDate(grade.date)
+        const date = this.timestampToDate(grade.date)
         result.push(this.dateToTinyString(date))
       })
       return result

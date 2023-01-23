@@ -1,15 +1,18 @@
 <template>
   <label
     :class="switchClass"
-    class="custom-toggle">
+    class="custom-toggle"
+  >
     <input
       v-model="model"
       :disabled="disabled"
-      type="checkbox">
+      type="checkbox"
+    >
     <span
       :data-label-off="offText"
       :data-label-on="onText"
-      class="custom-toggle-slider rounded-circle"/>
+      class="custom-toggle-slider rounded-circle"
+    />
   </label>
 </template>
 <script>
@@ -39,7 +42,7 @@ export default {
   },
   computed: {
     switchClass () {
-      let baseClass = 'custom-toggle-'
+      const baseClass = 'custom-toggle-'
       if (this.type) {
         return baseClass + this.type
       }

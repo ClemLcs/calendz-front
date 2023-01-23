@@ -6,7 +6,9 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0">Gestion des notes</h3>
+          <h3 class="mb-0">
+            Gestion des notes
+          </h3>
           <p class="text-sm mb-0">
             Visualisez, éditez et ajoutez des notes...
           </p>
@@ -23,18 +25,20 @@
         :data="tableData"
         row-key="id"
         class="table-responsive table-light"
-        header-row-class-name="thead-light">
-
+        header-row-class-name="thead-light"
+      >
         <!-- icon -->
         <el-table-column
           width="90px"
           min-width="90px"
-          class="text-center">
-          <template v-slot="{row}">
+          class="text-center"
+        >
+          <template #default="{row}">
             <div class="d-flex justify-content-center">
               <i
                 :class="`fas fa-graduation-cap bg-${getColor(average(row))}`"
-                class="avatar avatar-sm rounded-circle"/>
+                class="avatar avatar-sm rounded-circle"
+              />
             </div>
           </template>
         </el-table-column>
@@ -43,8 +47,9 @@
         <el-table-column
           label="Matière"
           min-width="180px"
-          width="180px">
-          <template v-slot="{row}">
+          width="180px"
+        >
+          <template #default="{row}">
             <div class="d-flex">
               <div class="col-auto pl-1 pr-0">
                 {{ row }}
@@ -56,11 +61,12 @@
         <!-- notes + coeffs -->
         <el-table-column
           label="Note"
-          min-width="180px">
-          <template v-slot="{row}">
+          min-width="180px"
+        >
+          <template #default="{row}">
             <div class="d-flex">
               <div class="col-auto pl-1 pr-0">
-                <span v-html="formatGrades(row)"/>
+                <span v-html="formatGrades(row)" />
               </div>
             </div>
           </template>
@@ -70,8 +76,9 @@
         <el-table-column
           label="Moyenne"
           min-width="108px"
-          width="108px">
-          <template v-slot="{row}">
+          width="108px"
+        >
+          <template #default="{row}">
             <div class="d-flex">
               <div class="col-auto pl-1 pr-0">
                 {{ average(row) }}
@@ -85,45 +92,52 @@
           label="Actions"
           min-width="180px"
           width="180px"
-          align="right">
-          <template v-slot="{row}">
+          align="right"
+        >
+          <template #default="{row}">
             <div class="d-flex">
               <el-tooltip
                 content="Ajouter"
-                placement="top">
+                placement="top"
+              >
                 <base-button
                   class="add"
                   type="primary"
                   size="sm"
                   icon
-                  @click="addGrade(row)">
-                  <i class="text-white fas fa-plus"/>
+                  @click="addGrade(row)"
+                >
+                  <i class="text-white fas fa-plus" />
                 </base-button>
               </el-tooltip>
 
               <el-tooltip
                 content="Choisir une note à modifier"
-                placement="top">
+                placement="top"
+              >
                 <base-button
                   class="edit"
                   type="info"
                   size="sm"
                   icon
-                  @click="detailGrade(row)">
-                  <i class="text-white ni ni-ruler-pencil"/>
+                  @click="detailGrade(row)"
+                >
+                  <i class="text-white ni ni-ruler-pencil" />
                 </base-button>
               </el-tooltip>
 
               <el-tooltip
                 content="Choisir une note à supprimer"
-                placement="top">
+                placement="top"
+              >
                 <base-button
                   class="remove btn-link"
                   type="danger"
                   size="sm"
                   icon
-                  @click="openDeleteModal(row)">
-                  <i class="text-white fas fa-trash"/>
+                  @click="openDeleteModal(row)"
+                >
+                  <i class="text-white fas fa-trash" />
                 </base-button>
               </el-tooltip>
             </div>
@@ -137,30 +151,39 @@
     <!-- ==================================================== -->
     <form
       class="needs-validation"
-      @submit.prevent>
+      @submit.prevent
+    >
       <modal
         :show.sync="showEditModal"
-        @close="closeEditModal()">
+        @close="closeEditModal()"
+      >
         <template slot="header">
-          <h5 class="modal-title">{{ selectedSubject }}  : cliquez sur la note à modifier</h5>
+          <h5 class="modal-title">
+            {{ selectedSubject }}  : cliquez sur la note à modifier
+          </h5>
         </template>
 
         <div
           v-if="!editGrade"
-          class="row">
+          class="row"
+        >
           <div
             v-for="(grade, index) in subjectGrades(selectedSubject)"
             :key="index"
-            class="mx-auto text-center">
+            class="mx-auto text-center"
+          >
             <el-tooltip
               :content="dateToFullString(timestampToDate(grade.date))"
-              placement="top">
+              placement="top"
+            >
               <div
                 class="col-auto mx-auto my-2 cursor-pointer"
-                @click="assignEditGrade(grade)">
+                @click="assignEditGrade(grade)"
+              >
                 <i
                   :class="`fas fa-graduation-cap bg-${getColor(grade.value)}`"
-                  class="avatar avatar-sm rounded-circle mb-2"/><br>
+                  class="avatar avatar-sm rounded-circle mb-2"
+                /><br>
                 <span>
                   {{ (grade.value || grade.value === 0) ? grade.value : '?' }}/20 <sub>{{ grade.coefficient }}</sub>
                 </span>
@@ -173,8 +196,8 @@
           <div class="row">
             <div class="col-md-6">
               <base-input
-                v-validate="'min_value:0|max_value:20'"
                 v-model="editGrade.value"
+                v-validate="'min_value:0|max_value:20'"
                 :error="getError('note')"
                 :valid="isValid('note')"
                 type="number"
@@ -182,13 +205,14 @@
                 max="20"
                 name="note"
                 label="Note (facultatif)"
-                placeholder="Votre note (sur 20)"/>
+                placeholder="Votre note (sur 20)"
+              />
             </div>
 
             <div class="col-md-6">
               <base-input
-                v-validate="'min_value:0|max_value:10'"
                 v-model="editGrade.coefficient"
+                v-validate="'min_value:0|max_value:10'"
                 :error="getError('coefficient')"
                 :valid="isValid('coefficient')"
                 type="number"
@@ -196,7 +220,8 @@
                 max="10"
                 name="coefficient"
                 label="Coefficient (facultatif)"
-                placeholder="Coefficient (1 par défaut)"/>
+                placeholder="Coefficient (1 par défaut)"
+              />
             </div>
           </div>
 
@@ -206,15 +231,17 @@
                 :error="getError('date')"
                 :valid="isValid('date')"
                 autocomplete="off"
-                label="Date">
+                label="Date"
+              >
                 <flat-picker
-                  slot-scope="{focus, blur}"
                   v-model="editGrade.date"
+                  slot-scope="{focus, blur}"
                   :config="flatPickerConfig"
                   name="date"
                   class="form-control datepicker"
                   @on-open="focus"
-                  @on-close="blur"/>
+                  @on-close="blur"
+                />
               </base-input>
             </div>
           </div>
@@ -225,14 +252,16 @@
                 :error="getError('description')"
                 :valid="isValid('description')"
                 class="w-100"
-                label="Description (facultatif)">
+                label="Description (facultatif)"
+              >
                 <textarea
-                  v-validate="'max:250'"
                   v-model="editGrade.description"
+                  v-validate="'max:250'"
                   name="description"
                   class="form-control"
                   rows="4"
-                  placeholder="Décrivez à quoi correspond cette note..."/>
+                  placeholder="Décrivez à quoi correspond cette note..."
+                />
               </base-input>
             </div>
           </div>
@@ -242,14 +271,16 @@
           <base-button
             size="md"
             type="secondary"
-            @click="closeEditModal()">
+            @click="closeEditModal()"
+          >
             Fermer
           </base-button>
           <base-button
             v-show="editGrade"
             size="md"
             type="primary"
-            @click="handleEditFormSubmit()">
+            @click="handleEditFormSubmit()"
+          >
             Enregistrer
           </base-button>
         </template>
@@ -261,25 +292,32 @@
     <!-- ==================================================== -->
     <modal
       :show.sync="showDeleteModal"
-      @close="closeDeleteModal()">
+      @close="closeDeleteModal()"
+    >
       <template slot="header">
-        <h5 class="modal-title">{{ selectedSubject }} : cliquez sur la note à supprimer</h5>
+        <h5 class="modal-title">
+          {{ selectedSubject }} : cliquez sur la note à supprimer
+        </h5>
       </template>
 
       <div class="row">
         <div
           v-for="(grade, index) in subjectGrades(selectedSubject)"
           :key="index"
-          class="mx-auto text-center">
+          class="mx-auto text-center"
+        >
           <el-tooltip
             :content="dateToFullString(timestampToDate(grade.date))"
-            placement="top">
+            placement="top"
+          >
             <div
               class="col-auto mx-auto my-2 cursor-pointer"
-              @click="deleteGrade(grade._id)">
+              @click="deleteGrade(grade._id)"
+            >
               <i
                 :class="`fas fa-graduation-cap bg-${getColor(grade.value)}`"
-                class="avatar avatar-sm rounded-circle mb-2"/><br>
+                class="avatar avatar-sm rounded-circle mb-2"
+              /><br>
               <span>
                 {{ (grade.value || grade.value === 0) ? grade.value : '?' }}/20 <sub>{{ grade.coefficient }}</sub>
               </span>
@@ -292,7 +330,8 @@
         <base-button
           size="md"
           type="secondary"
-          @click="closeDeleteModal()">
+          @click="closeDeleteModal()"
+        >
           Fermer
         </base-button>
       </template>
@@ -303,21 +342,21 @@
 <script>
 import swal from 'sweetalert2'
 import { mapGetters } from 'vuex'
-import { BasePagination } from '@/components'
-import { Table, TableColumn, Option } from 'element-ui'
+// import { BasePagination } from '@/components'
+import { ElTable, ElTableColumn, ElOption } from 'element-plus'
 import dateUtilMixin from '@/mixins/dateUtilMixin'
 import FlatPicker from 'vue-flatpickr-component'
 import 'flatpickr/dist/flatpickr.css'
 import { French } from 'flatpickr/dist/l10n/fr.js'
-import { FadeTransition } from 'vue2-transitions'
+// import { FadeTransition } from 'vue3-transitions'
 
 export default {
   components: {
-    BasePagination,
-    [Option.name]: Option,
-    [Table.name]: Table,
-    [TableColumn.name]: TableColumn,
-    FadeTransition,
+    // BasePagination,
+    [ElOption.name]: ElOption,
+    [ElTable.name]: ElTable,
+    [ElTableColumn.name]: ElTableColumn,
+    // FadeTransition,
     FlatPicker
   },
   mixins: [dateUtilMixin],
@@ -430,7 +469,7 @@ export default {
     deleteGrade (gradeId) {
       swal.fire({
         icon: 'warning',
-        title: `Êtes-vous sûr de vouloir supprimer cette note ?`,
+        title: 'Êtes-vous sûr de vouloir supprimer cette note ?',
         text: 'La suppression est définitive, et la mise-à-jour de vos moyennes se fera automatiquement.',
         customClass: {
           confirmButton: 'btn btn-warning mt-2',

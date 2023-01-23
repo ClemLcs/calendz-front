@@ -1,7 +1,8 @@
 <template>
   <div
     :disabled="disabled"
-    class="slider"/>
+    class="slider"
+  />
 </template>
 <script>
 import noUiSlider from 'nouislider'
@@ -87,7 +88,7 @@ export default {
       })
       const slider = this.$el.noUiSlider
       slider.on('slide', () => {
-        let value = slider.get()
+        const value = slider.get()
         if (value !== this.value) {
           this.$emit('input', value)
         }

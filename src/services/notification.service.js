@@ -28,7 +28,7 @@ const NotificationService = {
 
   // create a notification
   create: (target, title, message, icon, type) => {
-    return ApiService.post(`/notifications`, { target, title, message, icon, type })
+    return ApiService.post('/notifications', { target, title, message, icon, type })
       .then(res => res.data)
       .catch(err => Promise.reject(err.data))
   }
