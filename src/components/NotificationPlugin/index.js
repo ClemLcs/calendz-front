@@ -58,7 +58,7 @@ const NotificationStore = {
 
 const NotificationsPlugin = {
   install (app, options) {
-    createApp({
+    const app2 = createApp({
       data: function () {
         return {
           notificationStore: NotificationStore
@@ -70,9 +70,9 @@ const NotificationsPlugin = {
         }
       }
     })
-    app.config.globalProperties.$notify = app.notify
-    app.config.globalProperties.$notifications = app.notificationStore
-    app.component('Notifications', Notifications)
+    app2.config.globalProperties.$notify = app.notify
+    app2.config.globalProperties.$notifications = app.notificationStore
+    app2.component('Notifications', Notifications)
     if (options) {
       NotificationStore.setOptions(options)
     }

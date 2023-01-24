@@ -82,12 +82,7 @@
     </base-nav>
 
     <div class="main-content">
-      <zoom-center-transition
-        :duration="pageTransitionDuration"
-        mode="out-in"
-      >
-        <router-view />
-      </zoom-center-transition>
+      <router-view />
     </div>
 
     <footer

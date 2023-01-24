@@ -1,10 +1,10 @@
-import * as VueRouter from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import routes from './routes'
 import { store } from '../store'
 
 // creates our router
-export const router = VueRouter.createRouter({
-  history: VueRouter.createWebHistory(),
+export const router = createRouter({
+  history: createWebHistory(),
   routes,
   linkActiveClass: 'active',
   scrollBehavior: (to, from, savedPosition) => {
