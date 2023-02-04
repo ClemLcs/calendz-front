@@ -297,16 +297,13 @@
 <script>
 import swal from 'sweetalert2'
 import { mapState, mapGetters } from 'vuex'
-import { CollapseTransition } from 'vue3-transitions'
-import { BaseNav, Modal } from '@/components'
+import { BaseNav } from '@/components'
 import dateUtilMixin from '@/mixins/dateUtilMixin'
 import stringUtilMixin from '@/mixins/stringUtilMixin'
 
 export default {
   components: {
-    CollapseTransition,
-    BaseNav,
-    Modal
+    BaseNav
   },
   mixins: [dateUtilMixin, stringUtilMixin],
   data () {
@@ -333,7 +330,7 @@ export default {
     }
   },
   created () {
-    if (window.innerWidth < 1200) this.hideSidebar()
+    // if (window.innerWidth < 1200) this.hideSidebar()
   },
   mounted () {
     // fetch user's data (notifications, tasks...)
@@ -368,7 +365,7 @@ export default {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
     },
     hideSidebar () {
-      this.$sidebar.displaySidebar(false)
+      this.$store.$sidebar.displaySidebar(false)
     },
     logout () {
       swal.fire({

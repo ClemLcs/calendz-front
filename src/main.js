@@ -8,11 +8,12 @@ import ApiCalendarService from './services/api-calendar.service'
 // DEPRECATED
 // import { VueSpinners } from '@saeris/vue-spinners'
 import Vue3TouchEvents from 'vue3-touch-events'
-import Vue3Transitions from 'vue3-transitions'
 // DEPRECATED
 // import VueAnalytics from 'vue-analytics'
 import './registerServiceWorker'
-import NotificationsPlugin from './components/NotificationPlugin'
+import SidebarStore from './components/SidebarPlugin'
+import Sidebar from './components/SidebarPlugin/SideBar.vue'
+import SidebarItem from './components/SidebarPlugin/SidebarItem.vue'
 
 // const isProd = process.env.NODE_ENV === 'production'
 
@@ -36,8 +37,12 @@ export const app = createApp(App)
 app.use(router)
 app.use(store)
 app.use(DashboardPlugin)
-app.use(NotificationsPlugin)
 app.use(Vue3TouchEvents)
 app.use(Vue3Transitions)
+
+app.use(SidebarStore)
+// app.config.globalProperties.$sidebar = app.sidebarStore
+app.component('SideBar', Sidebar)
+app.component('SidebarItem', SidebarItem)
 
 app.mount('#app')

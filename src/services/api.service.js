@@ -7,7 +7,7 @@ const api = axios.create()
 const ApiService = {
   init (baseURL) {
     api.defaults.baseURL = baseURL
-    api.defaults.withCredentials = 'include'
+    // api.defaults.withCredentials = 'include'
     api.interceptors.response.use(response => {
       return response
     }, err => {

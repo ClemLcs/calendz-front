@@ -126,13 +126,13 @@
 </template>
 <script>
 import { BaseNav } from '@/components'
-import { ZoomCenterTransition } from 'vue3-transitions'
 import packageJson from '../../../package.json'
+import Notifications from '@/components/NotificationPlugin/Notifications.vue'
 
 export default {
   components: {
-    BaseNav,
-    ZoomCenterTransition
+    Notifications,
+    BaseNav
   },
   beforeRouteUpdate (to, from, next) {
     // Close the mobile menu first then transition to next page

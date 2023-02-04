@@ -58,7 +58,7 @@
         </div>
       </li>
 
-      <collapse-transition>
+      <Transition>
         <div v-show="expand">
           <li
             v-for="(user, index) in list.slice(Math.max(users.lastRegisters.length - 7, 0))"
@@ -92,19 +92,15 @@
             </div>
           </li>
         </div>
-      </collapse-transition>
+      </Transition>
     </ul>
   </card>
 </template>
 
 <script>
 import dateUtilMixin from '@/mixins/dateUtilMixin'
-import { CollapseTransition } from 'vue3-transitions'
 
 export default {
-  components: {
-    CollapseTransition
-  },
   mixins: [dateUtilMixin],
   props: {
     users: {
@@ -131,9 +127,10 @@ export default {
 </script>
 
 <style>
-.custom-transform {
-  transition-property: all;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
+  /*@TODO transition: collapse*/
+  .custom-transform {
+    transition-property: all;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
 </style>

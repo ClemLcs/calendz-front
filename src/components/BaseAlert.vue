@@ -1,5 +1,5 @@
 <template>
-  <fade-transition>
+  <Transition>
     <div
       v-if="visible"
       :class="[
@@ -37,16 +37,12 @@
         </slot>
       </template>
     </div>
-  </fade-transition>
+  </Transition>
 </template>
 <script>
-import { FadeTransition } from 'vue3-transitions'
 
 export default {
   name: 'BaseAlert',
-  components: {
-    FadeTransition
-  },
   props: {
     type: {
       type: String,
@@ -76,3 +72,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.2s ease-in-out;
+  }
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
+</style>

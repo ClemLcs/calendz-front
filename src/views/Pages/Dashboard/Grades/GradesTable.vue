@@ -348,7 +348,6 @@ import dateUtilMixin from '@/mixins/dateUtilMixin'
 import FlatPicker from 'vue-flatpickr-component'
 import 'flatpickr/dist/flatpickr.css'
 import { French } from 'flatpickr/dist/l10n/fr.js'
-// import { FadeTransition } from 'vue3-transitions'
 
 export default {
   components: {
@@ -356,7 +355,6 @@ export default {
     [ElOption.name]: ElOption,
     [ElTable.name]: ElTable,
     [ElTableColumn.name]: ElTableColumn,
-    // FadeTransition,
     FlatPicker
   },
   mixins: [dateUtilMixin],

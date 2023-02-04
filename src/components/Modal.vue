@@ -1,5 +1,5 @@
 <template>
-  <SlideYUpTransition :duration="animationDuration">
+  <Transition>
     <div
       v-show="show"
       :class="[{'show d-block': show}, {'d-none': !show}, {'modal-mini': type === 'mini'}]"
@@ -54,16 +54,12 @@
         </div>
       </div>
     </div>
-  </SlideYUpTransition>
+  </Transition>
 </template>
 <script>
-import { SlideYUpTransition } from 'vue3-transitions'
 
 export default {
   name: 'Modal',
-  components: {
-    SlideYUpTransition
-  },
   props: {
     show: {
       type: Boolean,
@@ -147,6 +143,7 @@ export default {
 }
 </script>
 <style>
+/*@TODO transition: SlideYUp :duration="animationDuration"*/
   .modal.show {
     background-color: rgba(0, 0, 0, 0.3);
   }

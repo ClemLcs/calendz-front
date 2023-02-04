@@ -1,10 +1,6 @@
 <template>
   <div class="notifications">
-    <slide-y-up-transition
-      :duration="transitionDuration"
-      group
-      mode="out-in"
-    >
+    <TransitionGroup>
       <notification
         v-for="notification in notifications"
         v-bind="notification"
@@ -12,16 +8,14 @@
         :click-handler="notification.onClick"
         @close="removeNotification"
       />
-    </slide-y-up-transition>
+    </TransitionGroup>
   </div>
 </template>
 <script>
 import Notification from './Notification.vue'
-import { SlideYUpTransition } from 'vue3-transitions'
 
 export default {
   components: {
-    SlideYUpTransition,
     Notification
   },
   props: {
@@ -54,3 +48,6 @@ export default {
   }
 }
 </script>
+<style>
+  /*TODO transition: SlideYUp duration="transitionDuration" group mode="out-in"*/
+</style>

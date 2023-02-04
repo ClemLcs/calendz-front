@@ -166,14 +166,10 @@
       <dashboard-navbar />
 
       <div @click="$sidebar.displaySidebar(false)">
-        <fade-transition
-          :duration="200"
-          origin="center top"
-          mode="out-in"
-        >
+        <Transition>
           <!-- your content here -->
           <router-view />
-        </fade-transition>
+        </Transition>
       </div>
       <content-footer v-if="!$route.meta.hideFooter" />
     </div>
@@ -187,10 +183,9 @@ import 'perfect-scrollbar/css/perfect-scrollbar.css'
 
 import DashboardNavbar from './DashboardNavbar.vue'
 import ContentFooter from './ContentFooter.vue'
-import DashboardContent from './Content.vue'
-import { FadeTransition } from 'vue3-transitions'
 import { mapState } from 'vuex'
 import swal from 'sweetalert2'
+import Notifications from '@/components/NotificationPlugin/Notifications.vue'
 
 function hasElement (className) {
   return document.getElementsByClassName(className).length > 0
@@ -209,10 +204,9 @@ function initScrollbar (className) {
 
 export default {
   components: {
+    Notifications,
     DashboardNavbar,
-    ContentFooter,
-    DashboardContent,
-    FadeTransition
+    ContentFooter
   },
   computed: {
     ...mapState({
@@ -283,5 +277,19 @@ export default {
 <style lang="scss">
   .hover-pointer{
     cursor: pointer !important;
+  }
+
+  //@TODO Original transition
+  // :duration="200"
+  // origin="center top"
+  // mode="out-in"
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
   }
 </style>

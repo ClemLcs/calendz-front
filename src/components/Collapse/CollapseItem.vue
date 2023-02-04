@@ -16,7 +16,7 @@
         <i class="tim-icons icon-minimal-down" />
       </a>
     </div>
-    <collapse-transition :duration="animationDuration">
+    <Transition>
       <div
         v-show="active"
         :id="`content-${itemId}`"
@@ -28,17 +28,13 @@
           <slot />
         </div>
       </div>
-    </collapse-transition>
+    </Transition>
   </div>
 </template>
 <script>
-import { CollapseTransition } from 'vue3-transitions'
 
 export default {
   name: 'CollapseItem',
-  components: {
-    CollapseTransition
-  },
   inject: {
     animationDuration: {
       default: 250
@@ -97,4 +93,6 @@ export default {
   }
 }
 </script>
-<style></style>
+<style>
+/*@TODO transition: collapse :duration="animationDuration"*/
+</style>

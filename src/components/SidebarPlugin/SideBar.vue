@@ -4,8 +4,7 @@
     :data="backgroundColor"
     class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white"
     style="overflow-x: hidden"
-    @mouseenter="$sidebar.onMouseEnter()"
-    @mouseleave="$sidebar.onMouseLeave()"
+
   >
     <div
       ref="sidebarScrollArea"
@@ -23,7 +22,7 @@
         <div class="ml-auto">
           <!-- Sidenav toggler -->
           <div
-            :class="{'active': !$sidebar.isMinimized }"
+            :class="{'active': true }"
             class="sidenav-toggler d-none d-xl-block"
             @click="minimizeSidebar"
           >
@@ -112,23 +111,23 @@ export default {
         'Whether sidebar should autoclose on mobile when clicking an item'
     }
   },
-  mounted () {
-    this.$sidebar.isMinimized = this.$sidebar.breakpoint < window.innerWidth
+  onMounted () {
+    this.$store.$sidebar.isMinimized = this.$store.$sidebar.breakpoint < window.innerWidth
     this.minimizeSidebar()
   },
-  beforeDestroy () {
+  onBeforeUnmounted () {
     if (this.$sidebar.showSidebar) {
       this.$sidebar.showSidebar = false
     }
   },
   methods: {
     minimizeSidebar () {
-      if (this.$sidebar) {
-        this.$sidebar.toggleMinimize()
+      if (this.$store.$sidebar) {
+        this.$store.$sidebar.toggleMinimize()
       }
     },
     handleSwipeLeft () {
-      this.$sidebar.displaySidebar(false)
+      this.$store.$sidebar.displaySidebar(false)
     }
   }
 }

@@ -69,7 +69,7 @@
 
       <div class="row justify-content-center">
         <div class="col-lg-8 mx-auto">
-          <fade-transition group>
+          <TransitionGroup>
             <help-calendar
               v-if="selected === 'calendar'"
               :key="1"
@@ -86,7 +86,7 @@
               v-if="selected === 'others'"
               :key="4"
             />
-          </fade-transition>
+          </TransitionGroup>
         </div>
       </div>
     </div>
@@ -94,7 +94,6 @@
 </template>
 
 <script>
-import { FadeTransition } from 'vue3-transitions'
 import HelpCategory from '@/components/Help/HelpCategory.vue'
 import HelpCalendar from './HelpCalendar.vue'
 import HelpTasks from './HelpTasks.vue'
@@ -103,7 +102,6 @@ import HelpOthers from './HelpOthers.vue'
 
 export default {
   components: {
-    FadeTransition,
     HelpCategory,
     HelpCalendar,
     HelpTasks,
@@ -137,14 +135,23 @@ export default {
 </script>
 
 <style scoped>
-.bg-pattern-dots {
-  z-index: -100;
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 480px;
-  width: 500px;
-  background-color: #f8f9fe;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
+  .bg-pattern-dots {
+    z-index: -100;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 480px;
+    width: 500px;
+    background-color: #f8f9fe;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.2s ease-in-out;
+  }
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
 </style>

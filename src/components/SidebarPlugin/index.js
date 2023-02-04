@@ -1,8 +1,6 @@
-import Sidebar from './SideBar.vue'
-import SidebarItem from './SidebarItem.vue'
-import { createApp } from 'vue'
+import { createStore } from 'vuex'
 
-const SidebarStore = {
+export const SidebarStore = createStore({
   showSidebar: false,
   sidebarLinks: [],
   isMinimized: false,
@@ -60,24 +58,12 @@ const SidebarStore = {
       }, 300)
     }
   }
-}
+})
 
-const SidebarPlugin = {
+export const SidebarPlugin = {
   install (app, options) {
     if (options && options.sidebarLinks) {
       SidebarStore.sidebarLinks = options.sidebarLinks
     }
-    createApp({
-      data: function () {
-        return {
-          sidebarStore: SidebarStore
-        }
-      }
-    })
-    app.config.globalProperties.$sidebar = app.sidebarStore
-    app.component('SideBar', Sidebar)
-    app.component('SidebarItem', SidebarItem)
   }
 }
-
-export default SidebarPlugin

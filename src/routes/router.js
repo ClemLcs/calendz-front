@@ -14,7 +14,7 @@ export const router = createRouter({
   }
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to) => {
   // sets the page's title
   document.title = to.meta.title || 'calendz'
 
@@ -32,8 +32,6 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.adminOnly)) {
     if (store.state.account.user.permissionLevel !== 'ADMIN') return router.push('/dashboard')
   }
-
-  next()
 })
 
 export default router

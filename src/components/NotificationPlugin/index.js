@@ -1,7 +1,6 @@
-import { createApp } from 'vue'
 import Notifications from './Notifications.vue'
 
-const NotificationStore = {
+export const NotificationStore = {
   state: [], // here the notifications will be added
   settings: {
     overlap: false,
@@ -56,27 +55,15 @@ const NotificationStore = {
   }
 }
 
-const NotificationsPlugin = {
+export const NotificationPlugin = {
   install (app, options) {
-    const app2 = createApp({
-      data: function () {
-        return {
-          notificationStore: NotificationStore
-        }
-      },
-      methods: {
-        notify (notification) {
-          this.notificationStore.notify(notification)
-        }
-      }
-    })
-    app2.config.globalProperties.$notify = app.notify
-    app2.config.globalProperties.$notifications = app.notificationStore
-    app2.component('Notifications', Notifications)
+    app.config.globalProperties.$notifications = NotificationStore
+    app.config.globalProperties.$notify = (notification) => {
+      app.config.globalProperties.$notifications.notify(notification)
+    }
+    app.component('Notifications', Notifications)
     if (options) {
       NotificationStore.setOptions(options)
     }
   }
 }
-
-export default NotificationsPlugin

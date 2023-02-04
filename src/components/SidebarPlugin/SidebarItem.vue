@@ -25,7 +25,7 @@
       </template>
     </a>
 
-    <collapse-transition>
+    <Transition>
       <div
         v-if="$slots.default || isMenu"
         v-show="!collapsed"
@@ -35,7 +35,7 @@
           <slot />
         </ul>
       </div>
-    </collapse-transition>
+    </Transition>
 
     <slot
       v-if="children.length === 0 && !$slots.default && link.path"
@@ -62,13 +62,9 @@
   </component>
 </template>
 <script>
-import { CollapseTransition } from 'vue3-transitions'
 
 export default {
   name: 'SidebarItem',
-  components: {
-    CollapseTransition
-  },
   provide () {
     return {
       addLink: this.addChild,
@@ -192,6 +188,7 @@ export default {
 }
 </script>
 <style>
+/*@TODO transition: collapse*/
 .sidebar-menu-item {
   cursor: pointer;
 }

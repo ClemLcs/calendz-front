@@ -26,7 +26,7 @@
     <!-- ====================================== -->
     <!-- == Main slot ========================= -->
     <!-- ====================================== -->
-    <collapse-transition>
+    <Transition>
       <div
         v-show="open"
         class="collapse show"
@@ -34,18 +34,14 @@
         <slot />
         <hr class="my-5">
       </div>
-    </collapse-transition>
+    </Transition>
   </div>
 </template>
 
 <script>
-import { CollapseTransition } from 'vue3-transitions'
 
 export default {
   name: 'HelpSection',
-  components: {
-    CollapseTransition
-  },
   props: {
     open: {
       type: Boolean,
@@ -64,6 +60,7 @@ export default {
 </script>
 
 <style scoped>
+/*@TODO transition: collapse*/
 .section-animate {
   -moz-transition: all .1s linear;
   -webkit-transition: all .1s linear;

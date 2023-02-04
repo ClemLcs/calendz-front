@@ -1,20 +1,21 @@
 <template>
   <div class="content">
-    <FadeTransition
-      :duration="200"
-      mode="out-in"
-    >
+    <Transition>
       <!-- your content here -->
       <router-view />
-    </FadeTransition>
+    </Transition>
   </div>
 </template>
 <script>
-import { FadeTransition } from 'vue3-transitions'
-export default {
-  components: {
-    FadeTransition
-  }
-}
+export default {}
 </script>
-<style></style>
+<style>
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.2s ease-out;
+  }
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
+</style>

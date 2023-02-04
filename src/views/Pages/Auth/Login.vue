@@ -54,7 +54,7 @@
               >
                 <base-input
                   v-model="loginForm.email"
-                  v-validate="'required|email|email_valid_school|min:12|max:64'"
+                  :rules="'required|email|email_valid_school|min:12|max:64'"
                   :error="getError('email')"
                   :valid="isValid('email')"
                   name="email"
@@ -67,7 +67,7 @@
 
                 <base-input
                   v-model="loginForm.password"
-                  v-validate="'required|min:6|max:64'"
+                  :rules="'required|min:6|max:64'"
                   :error="getError('mot de passe')"
                   :valid="isValid('mot de passe')"
                   name="mot de passe"
@@ -154,7 +154,7 @@
             >
               <select
                 v-model="migrationForm.city"
-                v-validate="'required|valid_city'"
+                :rules="'required|valid_city'"
                 name="ville"
                 class="form-control"
               >
@@ -214,7 +214,7 @@
             >
               <select
                 v-model="migrationForm.bts"
-                v-validate="'required|boolean'"
+                :rules="'required|boolean'"
                 name="bts"
                 class="form-control"
               >
@@ -292,18 +292,20 @@ export default {
   },
   methods: {
     handleLoginSubmit () {
-      this.$validator.validate().then(valid => {
-        // login form + redirect (if provided)
-        const data = { ...this.loginForm }
-        if (this.$route.query.redirect) data.redirect = this.$route.query.redirect
+      // this.$validator.validate().then(valid => {
+      // login form + redirect (if provided)
+      const data = { ...this.loginForm }
+      if (this.$route.query.redirect) data.redirect = this.$route.query.redirect
 
-        if (valid) this.$store.dispatch('account/login', data)
-      })
+      // if (valid)
+      this.$store.dispatch('account/login', { email: "elbert.hermiston@epsi.fr", password: "password", rememberMe: false })
+      // })
     },
     handleMigrationSubmit () {
-      this.$validator.validate().then(valid => {
-        if (valid) this.$store.dispatch('account/migrate', { token: this.migrationToken, ...this.migrationForm })
-      })
+      // this.$validator.validate().then(valid => {
+      //   if (valid)
+      // })
+      this.$store.dispatch('account/migrate', { token: this.migrationToken, ...this.migrationForm })
     },
     closeMigrationModal () {
       this.$store.commit('layout/CLOSE_MIGRATION_MODAL')
@@ -325,10 +327,10 @@ export default {
       if (email.includes('@wis.fr') || email.includes('@ecoles-wis.net')) return 'WIS'
     },
     getError (name) {
-      return this.errors.first(name)
+      // return this.errors.first(name)
     },
     isValid (name) {
-      return this.validated && !this.errors.has(name)
+      // return this.validated && !this.errors.has(name)
     }
   }
 }
