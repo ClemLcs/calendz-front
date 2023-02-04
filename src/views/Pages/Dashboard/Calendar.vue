@@ -402,10 +402,16 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import dateUtilMixin from '@/mixins/dateUtilMixin'
 import stringUtilMixin from '@/mixins/stringUtilMixin'
+import BaseHeader from '@/components/BaseHeader.vue'
+import RouteBreadCrumb from '@/components/Breadcrumb/RouteBreadcrumb.vue'
+import BaseButton from '@/components/BaseButton.vue'
 
 export default {
   name: 'Calendar',
   components: {
+    BaseButton,
+    RouteBreadCrumb,
+    BaseHeader,
     FullCalendar,
     Modal
   },
@@ -800,6 +806,8 @@ export default {
     next () {
       let toAdd
       let dateToFetch = this.activeDate
+      const firstOfTheMonth = this.getFirstFridayOfMonth(dateToFetch)
+
       switch (this.activeView) {
         case 'timeGridWeek':
           toAdd = 7
@@ -809,8 +817,6 @@ export default {
           break
         case 'dayGridMonth':
           dateToFetch = this.getMonday(dateToFetch.setMonth(dateToFetch.getMonth() + 1))
-
-          const firstOfTheMonth = this.getFirstFridayOfMonth(dateToFetch)
           this.$store.dispatch('calendar/fetchDate', { date: this.dateToMonthDayYear(firstOfTheMonth.setDate(firstOfTheMonth.getDate())) })
           this.$store.dispatch('calendar/fetchDate', { date: this.dateToMonthDayYear(firstOfTheMonth.setDate(firstOfTheMonth.getDate() + 7)) })
           this.$store.dispatch('calendar/fetchDate', { date: this.dateToMonthDayYear(firstOfTheMonth.setDate(firstOfTheMonth.getDate() + 7)) })
@@ -838,6 +844,7 @@ export default {
     prev () {
       let toRemove = 7
       let dateToFetch = this.activeDate
+      const firstOfTheMonth = this.getFirstFridayOfMonth(dateToFetch)
 
       switch (this.activeView) {
         case 'timeGridWeek':
@@ -848,8 +855,6 @@ export default {
           break
         case 'dayGridMonth':
           dateToFetch = this.getMonday(dateToFetch.setMonth(dateToFetch.getMonth() - 1))
-
-          const firstOfTheMonth = this.getFirstFridayOfMonth(dateToFetch)
           this.$store.dispatch('calendar/fetchDate', { date: this.dateToMonthDayYear(firstOfTheMonth.setDate(firstOfTheMonth.getDate())) })
           this.$store.dispatch('calendar/fetchDate', { date: this.dateToMonthDayYear(firstOfTheMonth.setDate(firstOfTheMonth.getDate() + 7)) })
           this.$store.dispatch('calendar/fetchDate', { date: this.dateToMonthDayYear(firstOfTheMonth.setDate(firstOfTheMonth.getDate() + 7)) })

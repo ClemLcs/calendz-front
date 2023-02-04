@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { app } from '@/main'
 import DateUtil from '../../mixins/dateUtilMixin'
 import CalendarService from '../../services/calendar.service'
 
@@ -77,9 +77,9 @@ const calendarModule = {
         if (process.env.NODE_ENV === 'development') console.log(`Year ${currentWeek.year}, week ${currentWeek.number}: FETCHING`)
 
         const notificationTimestamp = new Date()
-        notificationTimestamp.setMilliseconds(notificationTimestamp.getMilliseconds() + Vue.prototype.$notifications.state.length)
+        notificationTimestamp.setMilliseconds(notificationTimestamp.getMilliseconds() + app.config.globalProperties.$notifications.state.length)
 
-        Vue.prototype.$notify({
+        app.config.globalProperties.$notify({
           type: 'default',
           verticalAlign: 'bottom',
           icon: 'fas fa-circle-notch fa-spin',
@@ -95,14 +95,14 @@ const calendarModule = {
             res => {
               const weekCourses = reformatWeek(res.week, res.weekNumber)
               commit('FETCH_SUCCESS', { weekCourses })
-              Vue.prototype.$notifications.removeNotification(notificationTimestamp)
+              app.config.globalProperties.$notifications.removeNotification(notificationTimestamp)
 
               // if not scrapped today, background actualization
               if (!res.scrappedToday) {
                 const notificationTimestamp2 = new Date()
-                notificationTimestamp2.setMilliseconds(notificationTimestamp2.getMilliseconds() + Vue.prototype.$notifications.state.length)
+                notificationTimestamp2.setMilliseconds(notificationTimestamp2.getMilliseconds() + app.config.globalProperties.$notifications.state.length)
 
-                Vue.prototype.$notify({
+                app.config.globalProperties.$notify({
                   type: 'default',
                   verticalAlign: 'bottom',
                   icon: 'fas fa-circle-notch fa-spin',
@@ -114,24 +114,24 @@ const calendarModule = {
                 CalendarService.updateWeek(userToFetch, date)
                   .then(
                     res2 => {
-                      Vue.prototype.$notifications.removeNotification(notificationTimestamp2)
+                      app.config.globalProperties.$notifications.removeNotification(notificationTimestamp2)
                       if (res2.update) {
                         const weekCourses = reformatWeek(res2.week, res2.weekNumber)
                         commit('UPDATE', { weekCourses, weekNumber: res2.weekNumber })
-                        Vue.prototype.$notify({ type: 'success', message: "Votre emploi du temps vient d'être mis-à-jour !", verticalAlign: 'bottom' })
+                        app.config.globalProperties.$notify({ type: 'success', message: "Votre emploi du temps vient d'être mis-à-jour !", verticalAlign: 'bottom' })
                       }
                     },
                     err2 => {
                       commit('FETCH_FAILURE', { currentWeek, reason: err2.message })
-                      Vue.prototype.$notifications.removeNotification(notificationTimestamp)
-                      Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err2.message || 'Erreur lors du chargement de l\'emploi du temps...'}` })
+                      app.config.globalProperties.$notifications.removeNotification(notificationTimestamp)
+                      app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err2.message || 'Erreur lors du chargement de l\'emploi du temps...'}` })
                     })
               }
             },
             err => {
               commit('FETCH_FAILURE', { currentWeek, reason: err.message })
-              Vue.prototype.$notifications.removeNotification(notificationTimestamp)
-              Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Erreur lors du chargement de l\'emploi du temps...'}` })
+              app.config.globalProperties.$notifications.removeNotification(notificationTimestamp)
+              app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Erreur lors du chargement de l\'emploi du temps...'}` })
             })
       } else {
         if (process.env.NODE_ENV === 'development') console.log(`Year ${currentWeek.year}, week ${currentWeek.number}: ALREADY FETCHED`)
@@ -144,9 +144,9 @@ const calendarModule = {
       commit('FETCH_TEAMS_REQUEST')
 
       const notificationTimestamp = new Date()
-      notificationTimestamp.setMilliseconds(notificationTimestamp.getMilliseconds() + Vue.prototype.$notifications.state.length)
+      notificationTimestamp.setMilliseconds(notificationTimestamp.getMilliseconds() + app.config.globalProperties.$notifications.state.length)
 
-      Vue.prototype.$notify({
+      app.config.globalProperties.$notify({
         type: 'default',
         verticalAlign: 'bottom',
         icon: 'fas fa-circle-notch fa-spin',
@@ -160,12 +160,12 @@ const calendarModule = {
         .then(
           res => {
             commit('FETCH_TEAMS_SUCCESS', res)
-            Vue.prototype.$notifications.removeNotification(notificationTimestamp)
+            app.config.globalProperties.$notifications.removeNotification(notificationTimestamp)
           },
           err => {
             commit('FETCH_TEAMS_FAILURE', { reason: err.message })
-            Vue.prototype.$notifications.removeNotification(notificationTimestamp)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Erreur lors de la récupération des liens Teams...'}` })
+            app.config.globalProperties.$notifications.removeNotification(notificationTimestamp)
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Erreur lors de la récupération des liens Teams...'}` })
           }
         )
     }

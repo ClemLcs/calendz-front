@@ -1,6 +1,6 @@
-import Vue from 'vue'
 import axios from 'axios'
 import { store } from '../store/index'
+import { app } from '@/main'
 
 const api = axios.create()
 
@@ -13,7 +13,7 @@ const ApiService = {
     }, err => {
       // intercept connection errors
       if (!err.response) {
-        Vue.prototype.$notify({ type: 'danger', message: '<b>Erreur !</b> Veuillez vérifier votre connexion internet !' })
+        app.config.globalProperties.$notify({ type: 'danger', message: '<b>Erreur !</b> Veuillez vérifier votre connexion internet !' })
         const error = new Error('Connection failure')
         return Promise.reject(error)
       }

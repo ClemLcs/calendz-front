@@ -1,5 +1,5 @@
 import { parseOptions } from '@/components/Charts/optionHelpers'
-import Chart from 'chart.js'
+import { Chart } from 'chart.js'
 
 export const Charts = {
   mode: 'light', // (themeMode) ? themeMode : 'light';

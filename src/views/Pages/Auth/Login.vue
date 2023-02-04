@@ -249,9 +249,21 @@ import ApiService from '../../../services/api.service'
 
 import GradeSelect from '@/components/Inputs/custom/GradeSelect'
 import GroupsSelect from '@/components/Inputs/custom/GroupsSelect'
+import Modal from '@/components/Modal.vue'
+import BaseAlert from '@/components/BaseAlert.vue'
+import BaseInput from '@/components/Inputs/BaseInput.vue'
+import BaseCheckbox from '@/components/Inputs/BaseCheckbox.vue'
+import ApiErrors from '@/components/ApiErrors.vue'
+import BaseButton from '@/components/BaseButton.vue'
 
 export default {
   components: {
+    BaseButton,
+    ApiErrors,
+    BaseCheckbox,
+    BaseInput,
+    BaseAlert,
+    Modal,
     GradeSelect,
     GroupsSelect
   },
@@ -298,7 +310,8 @@ export default {
       if (this.$route.query.redirect) data.redirect = this.$route.query.redirect
 
       // if (valid)
-      this.$store.dispatch('account/login', { email: "elbert.hermiston@epsi.fr", password: "password", rememberMe: false })
+      // @TODO remember to replace this with input data
+      this.$store.dispatch('account/login', { email: 'elbert.hermiston@epsi.fr', password: 'password', rememberMe: false })
       // })
     },
     handleMigrationSubmit () {

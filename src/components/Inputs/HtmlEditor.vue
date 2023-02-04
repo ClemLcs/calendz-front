@@ -86,7 +86,7 @@ export default {
         let html = node.innerHTML
 
         if (html === '<p><br></p>') html = ''
-        html = html.replace(new RegExp('<p><br></p>', 'g'), '')
+        html = html.replace(/<p><br><\/p>/g, '')
 
         this.content = html
         this.$emit('input', this.content)

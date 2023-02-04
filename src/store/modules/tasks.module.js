@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { app } from '@/main'
 import swal from 'sweetalert2'
 import DateUtil from '../../mixins/dateUtilMixin'
 import TaskService from '../../services/task.service'
@@ -86,7 +86,7 @@ const tasksModule = {
           },
           err => {
             commit('FETCH_ALL_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
           })
     },
 
@@ -138,11 +138,11 @@ const tasksModule = {
         .then(
           res => {
             commit('TASK_DELETE_SUCCESS', taskId)
-            Vue.prototype.$notify({ type: 'success', message: 'La tâche a bien été supprimée !' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'La tâche a bien été supprimée !' })
           },
           err => {
             commit('TASK_DELETE_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
           })
     },
 

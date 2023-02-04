@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { app } from '@/main'
 import GradesService from '../../services/grades.service'
 import DateUtil from '../../mixins/dateUtilMixin'
 
@@ -49,7 +49,7 @@ const gradesModule = {
     GRADE_UPDATE_SUCCESS: (state, { id, grade }) => {
       state.status = {}
       const index = state.grades.findIndex(grade => grade._id === id)
-      Vue.set(state.grades, index, grade)
+      state.grades[index] = grade
     },
     GRADE_UPDATE_FAILURE: (state, reason) => {
       state.status = { error: reason }
@@ -72,7 +72,7 @@ const gradesModule = {
     GRADE_FILL_SUCCESS: (state, { id, grade }) => {
       state.status = {}
       const index = state.grades.findIndex(grade => grade._id === id)
-      Vue.set(state.grades, index, grade)
+      state.grades[index] = grade
     },
     GRADE_FILL_FAILURE: (state, reason) => {
       state.status = { error: reason }
@@ -90,11 +90,11 @@ const gradesModule = {
         .then(
           res => {
             commit('GRADE_CREATE_SUCCESS', res.grade)
-            Vue.prototype.$notify({ type: 'success', message: 'Note ajoutée avec succès !' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Note ajoutée avec succès !' })
           },
           err => {
             commit('GRADE_CREATE_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
           })
     },
 
@@ -105,11 +105,11 @@ const gradesModule = {
         .then(
           res => {
             commit('GRADE_UPDATE_SUCCESS', { id: _id, grade: res.grade })
-            Vue.prototype.$notify({ type: 'success', message: 'Note mise-à-jour avec succès !' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Note mise-à-jour avec succès !' })
           },
           err => {
             commit('GRADE_UPDATE_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
           })
     },
 
@@ -119,11 +119,11 @@ const gradesModule = {
         .then(
           res => {
             commit('GRADE_DELETE_SUCCESS', gradeId)
-            Vue.prototype.$notify({ type: 'success', message: 'La note a bien été supprimée !' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'La note a bien été supprimée !' })
           },
           err => {
             commit('GRADE_DELETE_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
           })
     },
 
@@ -134,11 +134,11 @@ const gradesModule = {
         .then(
           res => {
             commit('GRADE_FILL_SUCCESS', { id: _id, grade: res.grade })
-            Vue.prototype.$notify({ type: 'success', message: 'Note mise-à-jour avec succès !' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Note mise-à-jour avec succès !' })
           },
           err => {
             commit('GRADE_FILL_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
           })
     }
   },

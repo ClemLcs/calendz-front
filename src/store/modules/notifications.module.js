@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { app } from '@/main'
 import swal from 'sweetalert2'
 import NotificationService from '../../services/notification.service'
 
@@ -102,7 +102,7 @@ const notificationsModule = {
           },
           err => {
             commit('NOTIF_READ_FAILURE', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: '<b>Erreur !</b>Une erreur est survenue, veuillez réessayer...' })
+            app.config.globalProperties.$notify({ type: 'danger', message: '<b>Erreur !</b>Une erreur est survenue, veuillez réessayer...' })
           })
     },
 
@@ -115,7 +115,7 @@ const notificationsModule = {
           },
           err => {
             commit('NOTIF_READALL_FAILURE', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: '<b>Erreur !</b>Une erreur est survenue, veuillez réessayer...' })
+            app.config.globalProperties.$notify({ type: 'danger', message: '<b>Erreur !</b>Une erreur est survenue, veuillez réessayer...' })
           })
     },
 
@@ -129,7 +129,7 @@ const notificationsModule = {
           },
           err => {
             commit('NOTIF_UNREAD_FAILURE', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: '<b>Erreur !</b>Une erreur est survenue, veuillez réessayer...' })
+            app.config.globalProperties.$notify({ type: 'danger', message: '<b>Erreur !</b>Une erreur est survenue, veuillez réessayer...' })
           })
     },
 

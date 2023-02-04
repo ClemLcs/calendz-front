@@ -1,4 +1,3 @@
-// import Vue from 'vue'
 
 const layoutModule = {
   namespaced: true,

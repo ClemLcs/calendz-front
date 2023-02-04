@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { app } from '@/main'
 import SysconfService from '@/services/sysconf.service'
 
 const sysconfModule = {
@@ -152,7 +152,7 @@ const sysconfModule = {
           },
           err => {
             commit('FETCH_SETTINGS_FAILURE', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: '<b>Erreur !</b>Une erreur est survenue, veuillez réessayer...' })
+            app.config.globalProperties.$notify({ type: 'danger', message: '<b>Erreur !</b>Une erreur est survenue, veuillez réessayer...' })
           })
     },
     fetchStats: ({ commit }) => {
@@ -164,7 +164,7 @@ const sysconfModule = {
           },
           err => {
             commit('FETCH_STATS_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
           })
     },
     toggleLogin: ({ commit }, { value }) => {
@@ -179,11 +179,11 @@ const sysconfModule = {
               ? 'success'
               : 'warning'
             commit('TOGGLE_LOGIN_SUCCESS', value)
-            Vue.prototype.$notify({ type, message })
+            app.config.globalProperties.$notify({ type, message })
           },
           err => {
             commit('TOGGLE_LOGIN_FAILURE', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
           })
     },
     toggleRegister: ({ commit }, { value }) => {
@@ -198,11 +198,11 @@ const sysconfModule = {
               ? 'success'
               : 'warning'
             commit('TOGGLE_REGISTER_SUCCESS', value)
-            Vue.prototype.$notify({ type, message })
+            app.config.globalProperties.$notify({ type, message })
           },
           err => {
             commit('TOGGLE_REGISTER_FAILURE', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
           })
     },
     toggleEditGroup: ({ commit }, { value }) => {
@@ -217,11 +217,11 @@ const sysconfModule = {
               ? 'success'
               : 'warning'
             commit('TOGGLE_EDITGROUP_SUCCESS', value)
-            Vue.prototype.$notify({ type, message })
+            app.config.globalProperties.$notify({ type, message })
           },
           err => {
             commit('TOGGLE_EDITGROUP_FAILURE', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
           })
     },
     disconnectAllUsers: ({ commit }) => {
@@ -230,11 +230,11 @@ const sysconfModule = {
         .then(
           res => {
             commit('DISCONNECT_USERS_SUCCESS')
-            Vue.prototype.$notify({ type: 'success', message: 'Les utilisateurs ont bien été déconnectés.' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Les utilisateurs ont bien été déconnectés.' })
           },
           err => {
             commit('DISCONNECT_USERS_FAILURE', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
           })
     },
     migrateAllUsers: ({ commit }) => {
@@ -243,11 +243,11 @@ const sysconfModule = {
         .then(
           res => {
             commit('MIGRATE_USERS_SUCCESS')
-            Vue.prototype.$notify({ type: 'success', message: 'La migration a bien été effectuée.' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'La migration a bien été effectuée.' })
           },
           err => {
             commit('MIGRATE_USERS_FAILURE', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
           })
     },
     sendMail: ({ commit }, { subject, title, content, ctaLabel, ctaUrl }) => {
@@ -256,11 +256,11 @@ const sysconfModule = {
         .then(
           res => {
             commit('SENDMAIL_SUCCESS')
-            Vue.prototype.$notify({ type: 'success', message: 'Emails envoyés avec succès.' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Emails envoyés avec succès.' })
           },
           err => {
             commit('SENDMAIL_ERROR', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
           })
     },
     deleteAllGrades: ({ commit }) => {
@@ -270,11 +270,11 @@ const sysconfModule = {
           res => {
             commit('grades/RESET', {}, { root: true })
             commit('DELETE_ALLGRADES_SUCCESS')
-            Vue.prototype.$notify({ type: 'success', message: 'Notes supprimées avec succès.' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Notes supprimées avec succès.' })
           },
           err => {
             commit('DELETE_ALLGRADES_ERROR', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
           })
     },
     deleteAllTasks: ({ commit }) => {
@@ -284,11 +284,11 @@ const sysconfModule = {
           res => {
             commit('tasks/RESET', {}, { root: true })
             commit('DELETE_ALLTASKS_SUCCESS')
-            Vue.prototype.$notify({ type: 'success', message: 'Devoirs/tâches supprimés avec succès.' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Devoirs/tâches supprimés avec succès.' })
           },
           err => {
             commit('DELETE_ALLTASKS_ERROR', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Une erreur est survenue...'}` })
           })
     }
   },

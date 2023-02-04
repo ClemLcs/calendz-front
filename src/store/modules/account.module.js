@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { app } from '@/main'
 import swal from 'sweetalert2'
 import router from '../../routes/router'
 import UserService from '../../services/user.service'
@@ -199,8 +199,8 @@ const accountModule = {
         .then(
           res => {
             commit('REGISTER_SUCCESS')
-            Vue.prototype.$notify({ type: 'success', timeout: 10000, message: 'Votre compte a bien été créé !' })
-            Vue.prototype.$notify({ type: 'info', timeout: 10000, message: 'Veuillez <b>vérifier vos mails</b> afin de confirmer votre adresse avant de vous connecter.' })
+            app.config.globalProperties.$notify({ type: 'success', timeout: 10000, message: 'Votre compte a bien été créé !' })
+            app.config.globalProperties.$notify({ type: 'info', timeout: 10000, message: 'Veuillez <b>vérifier vos mails</b> afin de confirmer votre adresse avant de vous connecter.' })
             router.push('/login')
           },
           err => {
@@ -218,7 +218,7 @@ const accountModule = {
           res => {
             localStorage.setItem('user', JSON.stringify(res.user))
             commit('LOGIN_SUCCESS', res.user)
-            Vue.prototype.$notify({ type: 'success', message: 'Vous êtes désormais connecté.' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Vous êtes désormais connecté.' })
 
             // si ?redirect est défini
             redirect
@@ -302,7 +302,7 @@ const accountModule = {
           },
           err => {
             commit('MIGRATION_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Erreur inconnue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Erreur inconnue...'}` })
           })
     },
 
@@ -319,13 +319,13 @@ const accountModule = {
           },
           err => {
             commit('FETCH_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Erreur inconnue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Erreur inconnue...'}` })
           })
     },
 
     logout: ({ commit }, { reason }) => {
       if (reason) {
-        Vue.prototype.$notify({ type: 'danger', message: `${reason}.` })
+        app.config.globalProperties.$notify({ type: 'danger', message: `${reason}.` })
       }
       ApiService.post('/auth/logout')
       localStorage.removeItem('user')
@@ -347,11 +347,11 @@ const accountModule = {
             user.bts = bts
             user.group = group
             localStorage.user = JSON.stringify(user)
-            Vue.prototype.$notify({ type: 'success', message: 'Modification effectuée avec succès !' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Modification effectuée avec succès !' })
           },
           err => {
             commit('UPDATE_PROFILE_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Erreur inconnue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Erreur inconnue...'}` })
           })
     },
 
@@ -370,7 +370,7 @@ const accountModule = {
           },
           err => {
             commit('CHANGE_PASSWORD_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Erreur inconnue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Erreur inconnue...'}` })
           })
     },
 
@@ -383,11 +383,11 @@ const accountModule = {
             const user = JSON.parse(localStorage.user)
             user.hasInformationMails = value
             localStorage.user = JSON.stringify(user)
-            Vue.prototype.$notify({ type: 'success', message: 'Changement effectué avec succès.' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Changement effectué avec succès.' })
           },
           err => {
             commit('CHANGE_PARAMETER_FAILURE', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Erreur inconnue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Erreur inconnue...'}` })
           })
     },
 
@@ -400,11 +400,11 @@ const accountModule = {
             const user = JSON.parse(localStorage.user)
             user.settings.mail.taskCreate = value
             localStorage.user = JSON.stringify(user)
-            Vue.prototype.$notify({ type: 'success', message: 'Changement effectué avec succès.' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Changement effectué avec succès.' })
           },
           err => {
             commit('CHANGE_SETTINGS_MAIL_TASK_CREATE_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Erreur inconnue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Erreur inconnue...'}` })
           })
     },
 
@@ -417,11 +417,11 @@ const accountModule = {
             const user = JSON.parse(localStorage.user)
             user.settings.calendarColor = value
             localStorage.user = JSON.stringify(user)
-            Vue.prototype.$notify({ type: 'success', message: 'Couleur de l\'emploi du temps modifiée avec succès.' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Couleur de l\'emploi du temps modifiée avec succès.' })
           },
           err => {
             commit('CHANGE_CALENDAR_COLOR_FAILURE', err.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Erreur inconnue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.message || 'Erreur inconnue...'}` })
           })
     },
 
@@ -479,7 +479,7 @@ const accountModule = {
         .then(
           res => {
             commit('DELETE_USER_SUCCESS')
-            Vue.prototype.$notify({ type: 'success', message: 'Votre compte a bien été supprimé...' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Votre compte a bien été supprimé...' })
             dispatch('logout', {})
           },
           err => {
@@ -502,11 +502,11 @@ const accountModule = {
             const user = JSON.parse(localStorage.user)
             user.avatarUrl = avatar
             localStorage.user = JSON.stringify(user)
-            Vue.prototype.$notify({ type: 'success', message: 'Avatar modifié avec succès.' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Avatar modifié avec succès.' })
           },
           err => {
             commit('CHANGE_AVATAR_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
           })
     },
 
@@ -519,11 +519,11 @@ const accountModule = {
             user.tasks.done = user.tasks.done.filter(id => id !== taskId)
             localStorage.user = JSON.stringify(user)
             commit('SET_NOTDONE_SUCCESS', taskId)
-            Vue.prototype.$notify({ type: 'success', message: 'Tâche marquée comme non-faite !' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Tâche marquée comme non-faite !' })
           },
           err => {
             commit('SET_NOTDONE_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
           })
     },
 
@@ -536,11 +536,11 @@ const accountModule = {
             user.tasks.done.push(taskId)
             localStorage.user = JSON.stringify(user)
             commit('SET_DONE_SUCCESS', taskId)
-            Vue.prototype.$notify({ type: 'success', message: 'Tâche marquée comme faite !' })
+            app.config.globalProperties.$notify({ type: 'success', message: 'Tâche marquée comme faite !' })
           },
           err => {
             commit('SET_DONE_FAILURE', err.data.message)
-            Vue.prototype.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
+            app.config.globalProperties.$notify({ type: 'danger', message: `<b>Erreur !</b> ${err.data.message || 'Une erreur est survenue...'}` })
           })
     }
   },

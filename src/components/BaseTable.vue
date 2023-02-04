@@ -28,8 +28,7 @@
           :index="index"
         >
           <td
-            v-for="(column, index) in columns"
-            v-if="hasValue(item, column)"
+            v-for="(column, index) in filteredColumns(columns, item)"
             :key="index"
           >
             {{ itemValue(item, column) }}
@@ -72,6 +71,9 @@ export default {
   computed: {
     tableClass () {
       return this.type && `table-${this.type}`
+    },
+    filteredColumns (columns, item) {
+      return this.columns.filter(column => item[column.toLowerCase()] !== 'undefined')
     }
   },
   methods: {

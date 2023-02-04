@@ -120,6 +120,7 @@ export default {
         case 'tasks': return 'Devoirs et tâches'
         case 'grades': return 'Gestion des notes'
         case 'others': return 'Autres (divers)'
+        default: return 'Autres'
       }
     },
     selectedDescription () {
@@ -128,6 +129,7 @@ export default {
         case 'tasks': return 'Gérez vos devoirs avec votre classe.'
         case 'grades': return 'Gardez une trace des notes obtenues durant votre année.'
         case 'others': return 'Autres astuces pour utilisateurs avancés.'
+        default: return 'Autres'
       }
     }
   }

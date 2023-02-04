@@ -712,6 +712,7 @@ export default {
         case 2: return 'Liste de vos tâches faites'
         case 3: return 'Liste de vos tâches expirées (faites ou non)'
         case 4: return 'L\'ensemble de vos tâches, expirées ou non'
+        default: return 'Liste de vos tâches'
       }
     }
   },

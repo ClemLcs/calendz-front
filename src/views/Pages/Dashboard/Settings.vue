@@ -359,13 +359,21 @@
 <script>
 import swal from 'sweetalert2'
 import { mapState } from 'vuex'
-import { Select, Option } from 'element-plus'
+import { ElSelect, ElOption } from 'element-plus'
+import BaseHeader from '@/components/BaseHeader.vue'
+import RouteBreadCrumb from '@/components/Breadcrumb/RouteBreadcrumb.vue'
+import BaseButton from '@/components/BaseButton.vue'
+import BaseSwitch from '@/components/BaseSwitch.vue'
 
 export default {
   name: 'Settings',
   components: {
-    [Select.name]: Select,
-    [Option.name]: Option
+    BaseSwitch,
+    BaseButton,
+    RouteBreadCrumb,
+    BaseHeader,
+    [ElSelect.name]: ElSelect,
+    [ElOption.name]: ElOption
   },
   data () {
     return {

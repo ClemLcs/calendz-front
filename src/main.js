@@ -11,7 +11,7 @@ import Vue3TouchEvents from 'vue3-touch-events'
 // DEPRECATED
 // import VueAnalytics from 'vue-analytics'
 import './registerServiceWorker'
-import SidebarStore from './components/SidebarPlugin'
+import { SidebarStore } from './components/SidebarPlugin'
 import Sidebar from './components/SidebarPlugin/SideBar.vue'
 import SidebarItem from './components/SidebarPlugin/SidebarItem.vue'
 
@@ -38,7 +38,6 @@ app.use(router)
 app.use(store)
 app.use(DashboardPlugin)
 app.use(Vue3TouchEvents)
-app.use(Vue3Transitions)
 
 app.use(SidebarStore)
 // app.config.globalProperties.$sidebar = app.sidebarStore

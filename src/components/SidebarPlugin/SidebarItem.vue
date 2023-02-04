@@ -113,6 +113,7 @@ export default {
         const words = this.link.name.split(' ')
         return words.map(word => word.substring(0, 1)).join('')
       }
+      return this.link.name
     },
     isMenu () {
       return this.children.length > 0 || this.menu === true
