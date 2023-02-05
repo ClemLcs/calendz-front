@@ -1,10 +1,11 @@
-import { Bar, mixins } from 'vue-chartjs'
-import globalOptionsMixin from '@/components/Charts/globalOptionsMixin'
+import { Bar } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
   name: 'bar-chart',
-  extends: Bar,
-  mixins: [mixins.reactiveProp, globalOptionsMixin],
+  components: { Bar },
   props: {
     extraOptions: {
       type: Object,
@@ -16,15 +17,12 @@ export default {
       ctx: null
     }
   },
-  mounted () {
-    this.$watch(
-      'chartData',
-      (newVal, oldVal) => {
-        if (!oldVal) {
-          this.renderChart(this.chartData, this.extraOptions)
-        }
-      },
-      { immediate: true }
-    )
+  computed: {
+    chartData () {
+      return this.data
+    },
+    extraOptions () {
+      return this.extraOptions
+    }
   }
 }

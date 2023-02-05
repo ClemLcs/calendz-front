@@ -25,7 +25,8 @@
         </router-link>
       </div>
 
-      <template>
+      <!-- @TODO below div was a <template>, check if it works after -->
+      <div>
         <div class="navbar-collapse-header">
           <div class="row">
             <div class="col-6 collapse-brand">
@@ -78,7 +79,7 @@
             </router-link>
           </li>
         </ul>
-      </template>
+      </div>
     </base-nav>
 
     <div class="main-content">

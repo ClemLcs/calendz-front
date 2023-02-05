@@ -103,7 +103,7 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  /deep/ i {
+  :deep(i) {
     padding: 0 3px;
   }
 }

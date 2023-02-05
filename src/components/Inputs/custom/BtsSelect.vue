@@ -22,11 +22,13 @@
 </template>
 
 <script>
-import store from '@/store'
+import { store } from '@/store'
 import { ElSelect, ElOption } from 'element-plus'
+import BaseInput from '@/components/Inputs/BaseInput.vue'
 
 export default {
   components: {
+    BaseInput,
     [ElSelect.name]: ElSelect,
     [ElOption.name]: ElOption
   },

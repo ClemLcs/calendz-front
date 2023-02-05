@@ -28,8 +28,8 @@
           :index="index"
         >
           <td
-            v-for="(column, index) in filteredColumns(columns, item)"
-            :key="index"
+            v-for="(column, index2) in filteredColumns(columns, item)"
+            :key="index2"
           >
             {{ itemValue(item, column) }}
           </td>
@@ -77,9 +77,9 @@ export default {
     }
   },
   methods: {
-    hasValue (item, column) {
-      return item[column.toLowerCase()] !== 'undefined'
-    },
+    // hasValue (item, column) {
+    //   return item[column.toLowerCase()] !== 'undefined'
+    // },
     itemValue (item, column) {
       return item[column.toLowerCase()]
     }

@@ -69,7 +69,8 @@ function chartOptions () {
             borderCapStyle: 'rounded'
           },
           rectangle: {
-            backgroundColor: colors.theme.warning
+            backgroundColor: colors.theme.warning,
+            borderRadius: 5
           },
           arc: {
             backgroundColor: colors.theme.primary,

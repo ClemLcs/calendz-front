@@ -1,10 +1,10 @@
-import { Doughnut, mixins } from 'vue-chartjs'
-import globalOptionsMixin from '@/components/Charts/globalOptionsMixin'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Doughnut } from 'vue-chartjs'
 
+ChartJS.register(ArcElement, Tooltip, Legend)
 export default {
   name: 'doughnut-chart',
-  extends: Doughnut,
-  mixins: [mixins.reactiveProp, globalOptionsMixin],
+  components: { Doughnut },
   props: {
     extraOptions: {
       type: Object,
@@ -16,15 +16,12 @@ export default {
       ctx: null
     }
   },
-  mounted () {
-    this.$watch(
-      'chartData',
-      (newVal, oldVal) => {
-        if (!oldVal) {
-          this.renderChart(this.chartData, this.extraOptions)
-        }
-      },
-      { immediate: true }
-    )
+  computed: {
+    chartData () {
+      return this.data
+    },
+    extraOptions () {
+      return this.extraOptions
+    }
   }
 }
