@@ -14,7 +14,7 @@ import GlobalComponents from './globalComponents'
 import GlobalDirectives from './globalDirectives'
 
 // Sidebar on the right. Used as a local plugin in DashboardLayout.vue
-import { SidebarPlugin } from '@/components/SidebarPlugin'
+import {SidebarPlugin, SidebarStore} from '@/components/SidebarPlugin'
 
 // element ui language configuration
 // import lang from 'element-plus/lib/locale/lang/fr'
@@ -28,7 +28,7 @@ export default {
   install (app) {
     app.use(GlobalComponents)
     app.use(GlobalDirectives)
-    app.use(SidebarPlugin)
+    app.use(SidebarStore).use(SidebarPlugin)
     app.use(NotificationStore).use(NotificationPlugin)
     app.use(VeeValidate, {
       fieldsBagName: 'veeFields',

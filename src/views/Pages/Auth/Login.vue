@@ -48,16 +48,15 @@
               </div>
             </div>
             <div class="card-body px-lg-5 py-lg-5">
-              <ValidationObserver v-slot="{ handleSubmit }">
+              <Form v-slot="{ handleSubmit }">
                 <form
                   role="form"
-                  @submit.prevent="handleSubmit(loginSubmit)"
+                  @submit="handleSubmit($event, loginSubmit)"
                 >
-                  <ValidationProvider
+                  <Field
                     v-slot="{ errors, valid }"
-                    name="email"
-                    rules="'required|email|email_valid_school|min:12|max:64'"
-                  >
+                    name="email">
+<!--                    rules="'required|email|email_valid_school|min:12|max:64'"-->
                     <base-input
                       v-model="loginForm.email"
                       :error="errors[0]"
@@ -69,12 +68,12 @@
                       placeholder="Adresse mail"
                       autocapitalize="none"
                     />
-                  </ValidationProvider>
-                  <ValidationProvider
+                  </Field>
+                  <Field
                     v-slot="{ errors, valid }"
                     name="email"
-                    rules="'required|min:6|max:64'"
                   >
+                    <!--                    rules="'required|min:6|max:64'"-->
                     <base-input
                       v-model="loginForm.password"
                       :error="errors[0]"
@@ -85,7 +84,7 @@
                       type="password"
                       placeholder="Mot de passe"
                     />
-                  </ValidationProvider>
+                  </Field>
 
                   <base-checkbox v-model="loginForm.rememberMe">
                     Se souvenir de moi
@@ -121,7 +120,7 @@
                     </base-button>
                   </div>
                 </form>
-              </ValidationObserver>
+              </Form>
             </div>
           </div>
           <!-- TODO: delete /password-reset et peut-être /register -->
@@ -132,135 +131,135 @@
     <!-- ================================================== -->
     <!-- == ACCOUNT MIGRATION MODAL ======================= -->
     <!-- ================================================== -->
-    <ValidationObserver v-slot="{ handleSubmit }">
-      <form
-        v-if="openMigrationModal"
-        class="needs-validation"
-        @submit.prevent="handleSubmit(migrationSubmit)"
-      >
-        <modal
-          :show="openMigrationModal"
-          @close="closeMigrationModal()"
-        >
-          <template slot="header">
-            <h5 class="modal-title">
-              Mise à jour du profil
-            </h5>
-          </template>
+<!--    <ValidationObserver v-slot="{ handleSubmit }">-->
+<!--      <form-->
+<!--        v-if="openMigrationModal"-->
+<!--        class="needs-validation"-->
+<!--        @submit.prevent="handleSubmit(migrationSubmit)"-->
+<!--      >-->
+<!--        <modal-->
+<!--          :show="openMigrationModal"-->
+<!--          @close="closeMigrationModal()"-->
+<!--        >-->
+<!--          <template slot="header">-->
+<!--            <h5 class="modal-title">-->
+<!--              Mise à jour du profil-->
+<!--            </h5>-->
+<!--          </template>-->
 
-          <base-alert
-            type="secondary"
-            class=" mb-5 text-center"
-          >
-            <strong>Attention!</strong> Ces informations ne pourront plus êtres modifiées ! En cas de problèmes, contactez un admin.
-          </base-alert>
+<!--          <base-alert-->
+<!--            type="secondary"-->
+<!--            class=" mb-5 text-center"-->
+<!--          >-->
+<!--            <strong>Attention!</strong> Ces informations ne pourront plus êtres modifiées ! En cas de problèmes, contactez un admin.-->
+<!--          </base-alert>-->
 
-          <div class="row">
-            <div class="col-md-6">
-              <ValidationProvider
-                v-slot="{ errors, valid }"
-                name="ville"
-                rules="'required|valid_city'"
-              >
-                <base-input
-                  :error="errors[0]"
-                  :valid="valid && !errors.include('ville')"
-                  class="mb-3"
-                  prepend-icon="ni ni-hat-3"
-                  label="Séléctionnez votre ville"
-                >
-                  <select
-                    v-model="migrationForm.city"
-                    class="form-control"
-                  >
-                    <option
-                      value=""
-                      hidden
-                    >
-                      Votre ville
-                    </option>
-                    <option>Arras</option>
-                    <option>Auxerre</option>
-                    <option>Bordeaux</option>
-                    <option>Brest</option>
-                    <option>Grenoble</option>
-                    <option>Lille</option>
-                    <option>Lyon</option>
-                    <option>Montpellier</option>
-                    <option>Nantes</option>
-                    <option>Rennes</option>
-                    <option>Toulouse</option>
-                    <option>Paris</option>
-                    <option>Dakar</option>
-                  </select>
-                </base-input>
-              </ValidationProvider>
-            </div>
-            <div class="col-md-6">
-              <GradeSelect
-                v-model="migrationForm.grade"
-                :school="migrationUserEmail ? guessSchoolFromEmail(migrationUserEmail) : ''"
-                :disabled="false"
-                :legacy="true"
-                label="Séléctionnez votre classe"
-              />
-            </div>
-          </div>
+<!--          <div class="row">-->
+<!--            <div class="col-md-6">-->
+<!--              <ValidationProvider-->
+<!--                v-slot="{ errors, valid }"-->
+<!--                name="ville"-->
+<!--                rules="'required|valid_city'"-->
+<!--              >-->
+<!--                <base-input-->
+<!--                  :error="errors[0]"-->
+<!--                  :valid="valid && !errors.include('ville')"-->
+<!--                  class="mb-3"-->
+<!--                  prepend-icon="ni ni-hat-3"-->
+<!--                  label="Séléctionnez votre ville"-->
+<!--                >-->
+<!--                  <select-->
+<!--                    v-model="migrationForm.city"-->
+<!--                    class="form-control"-->
+<!--                  >-->
+<!--                    <option-->
+<!--                      value=""-->
+<!--                      hidden-->
+<!--                    >-->
+<!--                      Votre ville-->
+<!--                    </option>-->
+<!--                    <option>Arras</option>-->
+<!--                    <option>Auxerre</option>-->
+<!--                    <option>Bordeaux</option>-->
+<!--                    <option>Brest</option>-->
+<!--                    <option>Grenoble</option>-->
+<!--                    <option>Lille</option>-->
+<!--                    <option>Lyon</option>-->
+<!--                    <option>Montpellier</option>-->
+<!--                    <option>Nantes</option>-->
+<!--                    <option>Rennes</option>-->
+<!--                    <option>Toulouse</option>-->
+<!--                    <option>Paris</option>-->
+<!--                    <option>Dakar</option>-->
+<!--                  </select>-->
+<!--                </base-input>-->
+<!--              </ValidationProvider>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--              <GradeSelect-->
+<!--                v-model="migrationForm.grade"-->
+<!--                :school="migrationUserEmail ? guessSchoolFromEmail(migrationUserEmail) : ''"-->
+<!--                :disabled="false"-->
+<!--                :legacy="true"-->
+<!--                label="Séléctionnez votre classe"-->
+<!--              />-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="row">
-            <div class="col-md-6">
-              <GroupsSelect
-                v-model="migrationForm.group"
-                :grade="migrationForm.grade"
-                :disabled="false"
-                :legacy="true"
-                label="Séléctionnez votre groupe"
-              />
-            </div>
-            <div
-              v-if="migrationForm.grade === 'SN1' || migrationForm.grade === 'SN2'"
-              class="col-md-6"
-            >
-              <ValidationProvider
-                v-slot="{ errors, valid }"
-                name="bts"
-                rules="'required|boolean'"
-              >
-                <base-input
-                  :error="errors[0]"
-                  :valid="valid && !errors.include('bts')"
-                  class="mb-3"
-                  label="Option BTS"
-                  prepend-icon="ni ni-book-bookmark"
-                >
-                  <select
-                    v-model="migrationForm.bts"
-                    class="form-control"
-                  >
-                    <option :value="true">
-                      Oui
-                    </option>
-                    <option :value="false">
-                      Non
-                    </option>
-                  </select>
-                </base-input>
-              </ValidationProvider>
-            </div>
-          </div>
+<!--          <div class="row">-->
+<!--            <div class="col-md-6">-->
+<!--              <GroupsSelect-->
+<!--                v-model="migrationForm.group"-->
+<!--                :grade="migrationForm.grade"-->
+<!--                :disabled="false"-->
+<!--                :legacy="true"-->
+<!--                label="Séléctionnez votre groupe"-->
+<!--              />-->
+<!--            </div>-->
+<!--            <div-->
+<!--              v-if="migrationForm.grade === 'SN1' || migrationForm.grade === 'SN2'"-->
+<!--              class="col-md-6"-->
+<!--            >-->
+<!--              <ValidationProvider-->
+<!--                v-slot="{ errors, valid }"-->
+<!--                name="bts"-->
+<!--                rules="'required|boolean'"-->
+<!--              >-->
+<!--                <base-input-->
+<!--                  :error="errors[0]"-->
+<!--                  :valid="valid && !errors.include('bts')"-->
+<!--                  class="mb-3"-->
+<!--                  label="Option BTS"-->
+<!--                  prepend-icon="ni ni-book-bookmark"-->
+<!--                >-->
+<!--                  <select-->
+<!--                    v-model="migrationForm.bts"-->
+<!--                    class="form-control"-->
+<!--                  >-->
+<!--                    <option :value="true">-->
+<!--                      Oui-->
+<!--                    </option>-->
+<!--                    <option :value="false">-->
+<!--                      Non-->
+<!--                    </option>-->
+<!--                  </select>-->
+<!--                </base-input>-->
+<!--              </ValidationProvider>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <template slot="footer">
-            <base-button
-              size="md"
-              type="primary"
-              native-type="submit"
-            >
-              Enregistrer
-            </base-button>
-          </template>
-        </modal>
-      </form>
-    </ValidationObserver>
+<!--          <template slot="footer">-->
+<!--            <base-button-->
+<!--              size="md"-->
+<!--              type="primary"-->
+<!--              native-type="submit"-->
+<!--            >-->
+<!--              Enregistrer-->
+<!--            </base-button>-->
+<!--          </template>-->
+<!--        </modal>-->
+<!--      </form>-->
+<!--    </ValidationObserver>-->
   </div>
 </template>
 
@@ -276,6 +275,7 @@ import BaseInput from '@/components/Inputs/BaseInput.vue'
 import BaseCheckbox from '@/components/Inputs/BaseCheckbox.vue'
 import ApiErrors from '@/components/ApiErrors.vue'
 import BaseButton from '@/components/BaseButton.vue'
+import { Field, Form } from 'vee-validate';
 
 export default {
   components: {
@@ -286,7 +286,9 @@ export default {
     BaseAlert,
     Modal,
     GradeSelect,
-    GroupsSelect
+    GroupsSelect,
+    Field,
+    Form
   },
   data () {
     return {
@@ -308,11 +310,11 @@ export default {
       loginError: state => state.account.status.loginError,
       loggingIn: state => state.account.status.isLoggingIn,
       userId: state => state.account.status.userId,
-      openMigrationModal: state => state.layout.migrationModal.isOpen,
-      migrationToken: state => state.layout.migrationModal.token,
-      migrationUserEmail: state => state.layout.migrationModal.userEmail,
-      migrationUserCity: state => state.layout.migrationModal.userCity,
-      migrationUserGrade: state => state.layout.migrationModal.userGrade
+      // openMigrationModal: state => state.layout.migrationModal.isOpen,
+      // migrationToken: state => state.layout.migrationModal.token,
+      // migrationUserEmail: state => state.layout.migrationModal.userEmail,
+      // migrationUserCity: state => state.layout.migrationModal.userCity,
+      // migrationUserGrade: state => state.layout.migrationModal.userGrade
     })
   },
   watch: {

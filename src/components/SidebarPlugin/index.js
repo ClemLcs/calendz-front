@@ -1,6 +1,6 @@
-import { createStore } from 'vuex'
+import {NotificationStore} from "@/components/NotificationPlugin";
 
-export const SidebarStore = createStore({
+export const SidebarStore = {
   showSidebar: false,
   sidebarLinks: [],
   isMinimized: false,
@@ -58,10 +58,11 @@ export const SidebarStore = createStore({
       }, 300)
     }
   }
-})
+}
 
 export const SidebarPlugin = {
   install (app, options) {
+    app.config.globalProperties.$sidebar = SidebarStore
     if (options && options.sidebarLinks) {
       SidebarStore.sidebarLinks = options.sidebarLinks
     }
