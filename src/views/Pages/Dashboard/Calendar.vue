@@ -147,28 +147,8 @@
               <full-calendar
                 id="calendar"
                 ref="fullCalendar"
-                :events="isLoading ? placeholderEvents : fullcalendarEvents"
-                :plugins="calendarPlugins"
-                :editable="false"
-                :theme="false"
-                :selectable="false"
-                :select-helper="true"
-                :default-view="activeView"
-                :weekends="false"
-                :all-day-slot="true"
-                :all-day-text="'Tâches'"
-                :column-header-format="getColumnHeaderFormat()"
-                :event-render="customRender"
-                :now-indicator="true"
-                :fixed-week-count="false"
-                :event-color="`#${user.settings.calendarColor}`"
-                content-height="auto"
-                slot-duration="01:00:00"
-                min-time="08:00:00"
-                max-time="20:00:00"
+                :options="calendarOptions"
                 class="calendar"
-                @eventClick="handleEventClick"
-                @dateClick="handleDateClick"
               />
             </div>
           </div>
@@ -418,6 +398,35 @@ export default {
   mixins: [dateUtilMixin, stringUtilMixin],
   data () {
     return {
+      calendarOptions: {
+        plugins: [
+          ...this.calendarPlugins
+        ],
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        initialView: this.activeView ?? 'timeGridWeek',
+        slotLabelFormat: 'Tâches',
+        dayHeaderFormat: this.getColumnHeaderFormat(),
+        eventContent: this.customRender(),
+        nowIndicator: true,
+        fixedWeekCount: false,
+        eventColor: `#${this.user.settings.calendarColor}`,
+        contentHeight: 'auto',
+        slotDuration: '01:00:00',
+        slotMinTime: '08:00:00',
+        slotMaxTime: '20:00:00',
+        events: this.isLoading ? this.placeholderEvents : this.fullcalendarEvents, // alternatively, use the `events` setting to fetch from a feed
+        editable: false,
+        selectable: false,
+        selectMirror: true,
+        dayMaxEvents: true,
+        weekends: false,
+        eventClick: this.handleEventClick,
+        // dateClick: this.handleDateClick
+      },
       placeholderEvents: [{
         title: '',
         daysOfWeek: ['1'],
@@ -734,7 +743,7 @@ export default {
       }
 
       // apply new style
-      element.el.innerHTML = html
+      return { html }
     },
     handleDateClick (clicked) {
       if (this.activeView === 'dayGridMonth') {

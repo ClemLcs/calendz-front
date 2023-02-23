@@ -19,15 +19,16 @@
     </div>
 
     <div class="card-body blur">
-      <full-calendar
-        ref="fullCalendar"
-        :events="events"
-        :plugins="calendarPlugins"
-        :theme="false"
-        :default-view="defaultView"
-        default-date="2018-12-01"
-        content-height="auto"
-      />
+      <!--      @TODO uncomment this later -->
+      <!--      <full-calendar-->
+      <!--        ref="fullCalendar"-->
+      <!--        :events="events"-->
+      <!--        :plugins="calendarPlugins"-->
+      <!--        :theme="false"-->
+      <!--        :default-view="defaultView"-->
+      <!--        default-date="2018-12-01"-->
+      <!--        content-height="auto"-->
+      <!--      />-->
     </div>
   </div>
 </template>
