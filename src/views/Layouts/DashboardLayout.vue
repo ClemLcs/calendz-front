@@ -3,7 +3,7 @@
     <notifications />
     <side-bar>
       <template
-        slot="links-after"
+        #main-links
       >
         <hr class="mt-0 mb-3">
         <h6 class="navbar-heading p-0 text-muted">
@@ -78,7 +78,7 @@
 
       <template
         v-if="user && user.permissionLevel === 'ADMIN'"
-        slot="links-after"
+        #admin-links
       >
         <hr class="my-3">
         <h6 class="navbar-heading p-0 text-muted">
@@ -118,7 +118,7 @@
         </ul>
       </template>
 
-      <template slot="links-after">
+      <template #secondary-links>
         <hr class="my-3">
         <h6 class="navbar-heading p-0 text-muted">
           Autres
@@ -275,7 +275,7 @@ export default {
 </script>
 
 <style lang="scss">
-  .hover-pointer{
+  .hover-pointer {
     cursor: pointer !important;
   }
 

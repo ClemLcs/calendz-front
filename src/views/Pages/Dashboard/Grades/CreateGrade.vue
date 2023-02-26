@@ -168,7 +168,7 @@
           </div>
         </div>
 
-        <template slot="footer">
+        <template #footer>
           <base-button
             size="md"
             type="secondary"
@@ -239,22 +239,26 @@ export default {
       this.$store.commit('layout/CLOSE_CREATEGRADE_MODAL')
     },
     handleGradeCreateSubmit () {
+      // @TODO vee-validate
       // vérification validation des champs
-      this.$validator.validateAll().then(valid => {
-        if (!valid) return
-        this.$store.dispatch('grades/create', this.gradeCreationForm).then(response => {
-          this.gradeCreationForm = {
-            date: this.dateToDayMonthYear(new Date())
-          }
-          this.closeModal()
-        })
+      // this.$validator.validateAll().then(valid => {
+      //   if (!valid)
+      // })
+
+      return this.$store.dispatch('grades/create', this.gradeCreationForm).then(response => {
+        this.gradeCreationForm = {
+          date: this.dateToDayMonthYear(new Date())
+        }
+        this.closeModal()
       })
     },
     getError (name) {
-      return this.errors.first(name)
+      // return this.errors.first(name)
+      return false
     },
     isValid (name) {
-      return this.validated && !this.errors.has(name)
+      // return this.validated && !this.errors.has(name)
+      return true
     }
   }
 }

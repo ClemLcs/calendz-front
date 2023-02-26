@@ -55,7 +55,7 @@
 
               <!-- modal -->
               <modal :show.sync="modal">
-                <template slot="header">
+                <template #header>
                   <h5 class="modal-title">
                     Modifier mon image de profil
                   </h5>
@@ -93,7 +93,7 @@
                   />
                 </div>
 
-                <template slot="footer">
+                <template #footer>
                   <base-button
                     type="secondary"
                     size="md"
@@ -207,17 +207,18 @@
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-md-12 mx-auto">
-                    <GroupsSelect
-                      v-model="group"
-                      :disabled="!settings.editGroupEnabled"
-                      :grade="user.grade"
-                      label="Changer groupe"
-                      vee-scope="updateProfileForm"
-                    />
-                  </div>
-                </div>
+<!--                @TODO fix this -->
+<!--                <div class="row">-->
+<!--                  <div class="col-md-12 mx-auto">-->
+<!--                    <GroupsSelect-->
+<!--                      v-model="group"-->
+<!--                      :disabled="!settings.editGroupEnabled"-->
+<!--                      :grade="user.grade"-->
+<!--                      label="Changer groupe"-->
+<!--                      vee-scope="updateProfileForm"-->
+<!--                    />-->
+<!--                  </div>-->
+<!--                </div>-->
 
                 <div class="row">
                   <base-button
@@ -393,38 +394,40 @@ export default {
   methods: {
     handlePasswordSubmit (scope) {
       // vérification validation des champs
-      this.$validator.validateAll(scope).then(valid => {
-        if (!valid) return
+      // @TODO vee-validate
+      // this.$validator.validateAll(scope).then(valid => {
+      //   if (!valid) return
+      // })
 
-        swal.fire({
-          icon: 'warning',
-          title: 'Êtes-vous sûr de vouloir changer votre mot de passe ?',
-          text: 'Vous serez déconnecté du site !',
-          customClass: {
-            confirmButton: 'btn btn-warning',
-            cancelButton: 'btn btn-secondary'
-          },
-          buttonsStyling: false,
-          showCancelButton: true,
-          cancelButtonText: 'Annuler',
-          confirmButtonText: 'Oui'
-        }).then((result) => {
-          if (result.value) {
-            this.$store.dispatch('account/changePassword', this.changePasswordForm)
-          }
-        })
+      return swal.fire({
+        icon: 'warning',
+        title: 'Êtes-vous sûr de vouloir changer votre mot de passe ?',
+        text: 'Vous serez déconnecté du site !',
+        customClass: {
+          confirmButton: 'btn btn-warning',
+          cancelButton: 'btn btn-secondary'
+        },
+        buttonsStyling: false,
+        showCancelButton: true,
+        cancelButtonText: 'Annuler',
+        confirmButtonText: 'Oui'
+      }).then((result) => {
+        if (result.value) {
+          this.$store.dispatch('account/changePassword', this.changePasswordForm)
+        }
       })
     },
     handleProfileSubmit (scope) {
-      this.$validator.validateAll(scope).then(valid => {
-        if (!valid) return
-        this.$store.dispatch('account/updateProfile', { bts: this.bts, group: this.group }).then(() => {
-          this.$store.dispatch('account/fetch')
-          this.profileFormDisabled = true
-          setTimeout(() => {
-            this.profileFormDisabled = false
-          }, 5000)
-        })
+      // @TODO vee-validate
+      // this.$validator.validateAll(scope).then(valid => {
+      //   if (!valid)
+      // })
+      return this.$store.dispatch('account/updateProfile', { bts: this.bts, group: this.group }).then(() => {
+        this.$store.dispatch('account/fetch')
+        this.profileFormDisabled = true
+        setTimeout(() => {
+          this.profileFormDisabled = false
+        }, 5000)
       })
     },
     handleAvatarSubmit () {
@@ -432,10 +435,12 @@ export default {
       this.$store.dispatch('account/changeAvatar', { avatar: this.avatar })
     },
     getError (name) {
-      return this.errors.first(name)
+      // return this.errors.first(name)
+      return false
     },
     isValid (name) {
-      return this.validated && !this.errors.has(name)
+      // return this.validated && !this.errors.has(name)
+      return true
     }
   }
 }

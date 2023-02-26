@@ -153,11 +153,14 @@ export default {
     }
   },
   methods: {
+    // @TODO vee-validate
     getError (name) {
-      return this.errors.first(name)
+      // return this.errors.first(name)
+      return false
     },
     isValid (name) {
-      return this.validated && !this.errors.has(name)
+      // return this.validated && !this.errors.has(name)
+      return true
     }
   }
 }

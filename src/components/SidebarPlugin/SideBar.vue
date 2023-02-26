@@ -50,7 +50,9 @@
             </sidebar-item>
           </slot>
         </ul>
-        <slot name="links-after" />
+        <slot name="main-links" />
+        <slot name="admin-links" />
+        <slot name="secondary-links" />
       </div>
     </div>
   </div>
