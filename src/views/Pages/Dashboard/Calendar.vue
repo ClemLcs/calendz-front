@@ -401,16 +401,12 @@ export default {
       calendarOptions: {
         initialDate: new Date(),
         plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
+        headerToolbar: false,
         initialView: 'timeGridWeek',
-        // slotLabelFormat: 'Tâches',
         dayHeaderFormat: this.getColumnHeaderFormat(),
         nowIndicator: true,
         fixedWeekCount: false,
+        //@TODO: fix the calendar color
         eventColor: '#f1f1f1',//`#${this.user.settings.calendarColor}`,
         contentHeight: 'auto',
         slotDuration: '01:00:00',
@@ -425,7 +421,6 @@ export default {
         eventClick: this.handleEventClick,
         dateClick: this.handleDateClick,
         eventDidMount: function (element) {
-          console.log('hello')
           // render tasks
           if (element.event.allDay) {
             if (this.windowWidth < 800) {
