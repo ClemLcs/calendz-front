@@ -39,7 +39,7 @@ app.use(store)
 app.use(DashboardPlugin)
 app.use(Vue3TouchEvents)
 
-// app.config.globalProperties.$sidebar = SidebarStore
+app.config.globalProperties.$sidebar = SidebarStore
 app.component('SideBar', Sidebar)
 app.component('SidebarItem', SidebarItem)
 

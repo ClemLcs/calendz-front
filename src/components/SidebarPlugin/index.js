@@ -62,7 +62,7 @@ export const SidebarStore = {
 
 export const SidebarPlugin = {
   install (app, options) {
-    app.config.globalProperties.$sidebar = SidebarStore
+    // app.config.globalProperties.$sidebar = SidebarStore
     if (options && options.sidebarLinks) {
       SidebarStore.sidebarLinks = options.sidebarLinks
     }

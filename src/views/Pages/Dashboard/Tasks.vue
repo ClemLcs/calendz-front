@@ -348,7 +348,7 @@
       @submit.prevent
     >
       <modal :show.sync="showTaskCreationModal">
-        <template slot="header">
+        <template #header>
           <h5 class="modal-title">
             Créer une tâche
           </h5>
@@ -472,7 +472,7 @@
           </div>
         </div>
 
-        <template slot="footer">
+        <template #footer>
           <base-button
             size="md"
             type="secondary"
@@ -500,7 +500,7 @@
       @submit.prevent
     >
       <modal :show.sync="showTaskModificationModal">
-        <template slot="header">
+        <template #header>
           <h5 class="modal-title">
             Modification
           </h5>
@@ -625,16 +625,16 @@
           </div>
         </div>
 
-        <template slot="footer">
+        <template #footer>
           <base-button
-            size="md"
+            size="lg"
             type="secondary"
             @click="showTaskModificationModal = false"
           >
             Fermer
           </base-button>
           <base-button
-            size="md"
+            size="sm"
             type="primary"
             @click="handleTaskModifySubmit('modification-form')"
           >
@@ -659,10 +659,12 @@ import HtmlEditor from '@/components/Inputs/HtmlEditor'
 import clientPaginationMixin from '@/mixins/clientPaginationMixin'
 import dateUtilMixin from '@/mixins/dateUtilMixin'
 import stringUtilMixin from '@/mixins/stringUtilMixin'
+import BaseButton from "@/components/BaseButton.vue";
 
 export default {
   name: 'Settings',
   components: {
+    BaseButton,
     HtmlEditor,
     FlatPicker,
     BasePagination,
@@ -744,10 +746,14 @@ export default {
   },
   methods: {
     getError (name) {
-      return this.errors.first(name)
+      // @TODO vee-validate
+      // return this.errors.first(name)
+      return false
     },
     isValid (name) {
-      return this.validated && !this.errors.has(name)
+      // @TODO vee-validate
+      // return this.validated && !this.errors.has(name)
+      return true
     },
     isDone (taskId) {
       return this.allDoneTasks.some(task => task._id === taskId)
@@ -765,33 +771,32 @@ export default {
       }, 200)
     },
     handleTaskCreateSubmit (scope) {
-      // vérification validation des champs
-      this.$validator.validateAll(scope).then(valid => {
-        if (!valid) return
+      // @TODO vee-validate
+      // this.$validator.validateAll(scope).then(valid => {
+      //   if (!valid)
+      // })
+      return this.$store.dispatch('tasks/create', this.taskCreationForm).then(response => {
+        // reset the form
+        this.taskCreationForm = { type: '', date: new Date(), targets: [] }
+        // close the modal
+        this.showTaskCreationModal = false
 
-        this.$store.dispatch('tasks/create', this.taskCreationForm).then(response => {
-          // reset the form
-          this.taskCreationForm = { type: '', date: new Date(), targets: [] }
-          // close the modal
-          this.showTaskCreationModal = false
-
-          this.reloadTable()
-        })
+        this.reloadTable()
       })
     },
     handleTaskModifySubmit (scope) {
-      // vérification validation des champs
-      this.$validator.validateAll(scope).then(valid => {
-        if (!valid) return
+      // @TODO vee-validate
+      // this.$validator.validateAll(scope).then(valid => {
+      //   if (!valid)
+      // })
 
-        this.$store.dispatch('tasks/modify', this.taskModificationForm).then(response => {
-          // reset the form
-          this.taskModificationForm = { type: '', date: new Date(), targets: [] }
-          // close the modal
-          this.showTaskModificationModal = false
+      return this.$store.dispatch('tasks/modify', this.taskModificationForm).then(response => {
+        // reset the form
+        this.taskModificationForm = { type: '', date: new Date(), targets: [] }
+        // close the modal
+        this.showTaskModificationModal = false
 
-          this.reloadTable()
-        })
+        this.reloadTable()
       })
     },
     toggleDone (taskId) {

@@ -399,21 +399,19 @@ export default {
   data () {
     return {
       calendarOptions: {
-        plugins: [
-          ...this.calendarPlugins
-        ],
+        initialDate: new Date(),
+        plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
-        initialView: this.activeView ?? 'timeGridWeek',
-        slotLabelFormat: 'Tâches',
+        initialView: 'timeGridWeek',
+        // slotLabelFormat: 'Tâches',
         dayHeaderFormat: this.getColumnHeaderFormat(),
-        eventContent: this.customRender(),
         nowIndicator: true,
         fixedWeekCount: false,
-        eventColor: `#${this.user.settings.calendarColor}`,
+        eventColor: '#f1f1f1',//`#${this.user.settings.calendarColor}`,
         contentHeight: 'auto',
         slotDuration: '01:00:00',
         slotMinTime: '08:00:00',
@@ -425,7 +423,141 @@ export default {
         dayMaxEvents: true,
         weekends: false,
         eventClick: this.handleEventClick,
-        // dateClick: this.handleDateClick
+        dateClick: this.handleDateClick,
+        eventDidMount: function (element) {
+          console.log('hello')
+          // render tasks
+          if (element.event.allDay) {
+            if (this.windowWidth < 800) {
+              // mobile month view
+              if (this.activeView === 'dayGridMonth') {
+                element.el.innerHTML = `
+            <div class="h5 custom-allday-event float-right my-0 mt--4-5">
+              <span class="badge badge-sm badge-default badge-circle badge-floating border-white">${element.event.extendedProps.amount}</span>
+            </div>`
+                return
+                // mobile week view
+              } else if (this.activeView === 'timeGridWeek') {
+                element.el.innerHTML = `
+            <div class="h5 custom-allday-event text-center mt-2">
+              <span class="badge badge-sm badge-default badge-circle badge-floating border-white">${element.event.extendedProps.amount}</span>
+            </div>`
+                return
+              }
+            }
+
+            // desktop month view
+            if (this.activeView === 'dayGridMonth' && this.windowWidth > 800) {
+              element.el.innerHTML = `
+          <div class="h4 custom-allday-event float-right my-0 mt--4-5">
+            <div class="badge badge-lg badge-primary py-1">
+              <span class="pr-2">Tâches</span>
+              <span class="badge badge-sm badge-default badge-circle badge-floating border-white">${element.event.extendedProps.amount}</span>
+            </div>
+          </div>`
+              return
+            }
+
+            element.el.innerHTML = `
+          <div class="h3 custom-allday-event text-center my-0 hover-pointer">
+            <div class="badge badge-lg badge-primary py-1">
+              <span class="pr-2">Afficher les devoirs</span>
+              <span class="badge badge-sm badge-default badge-circle badge-floating border-white">${element.event.extendedProps.amount}</span>
+            </div>
+          </div>`
+            return
+          }
+
+          let html = ''
+          // add task badge on course
+          if (!(this.activeView === 'dayGridMonth' && this.windowWidth < 800)) {
+            // if course has corresponsponding task
+            if (this.allTasks.some(task => {
+              const sameDay = this.isSameDay(this.timestampToDate(task.date), element.event.start)
+              const sameSubject = task.subject ? element.event.title.toLowerCase().includes(task.subject.toLowerCase()) : false
+              return (sameDay && sameSubject)
+            })) {
+              html += `
+            <span class="h5-5 mr-2 mt-2 badge badge-light badge-circle float-right" style="width: 12px; height: 12px;"> </span>
+          `
+            }
+          }
+
+          // render events
+          switch (this.activeView) {
+            // ============================
+            // == MONTH VIEW
+            // ============================
+            case 'dayGridMonth':
+              if (this.windowWidth < 800) {
+                html += `
+              <div>
+                <h5 class="pl-1 mb-0 text-white w-auto">
+                  ${this.timeToHour(element.event.start, 'h').slice(0, -3)}-${this.timeToHour(element.event.end, 'h').slice(0, -2)}
+                </h5>
+              </div>`
+              } else {
+                html += `
+              <div>
+                <h5 class="pl-1 mb-0 text-white w-auto">
+                  ${this.timeToHour(element.event.start, 'h').slice(0, -2)}
+                  <span class="ml-1 h5 text-white">${element.event.title}</span>
+                </h5>
+              </div>`
+              }
+              break
+            // ============================
+            // == WEEK VIEW
+            // ============================
+            case 'timeGridWeek':
+              if (this.windowWidth < 800) {
+                html += `
+              <div>
+                <h4 class="text-white text-center w-100" style="position: absolute; top: 50%; transform: translateY(-50%);">${element.event.title}</h4>
+              </div>`
+              } else {
+                html += `
+              <div>
+                <h5 class="h5-5 pl-2 mt-1 text-white">${this.timeToHour(element.event.start)} - ${this.timeToHour(element.event.end)}</h5>
+                ${element.event.extendedProps.bts ? '<div class="ribbon ribbon-top-right"><span>BTS</span></div>' : ''}
+                ${element.event.extendedProps.remote ? '<div class="ribbon ribbon-bottom-right"><span>TEAMS</span></div>' : ''}
+                <h3 class="px-2 text-white text-center" style="max-width: 90%; width: 90%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">${element.event.title}</h3>
+                <h5 class="h5-5 pl-2 mb-1 text-white col-7" style="position: absolute; bottom: 0; left: 0">${this.capitalizeFirstLetterEachWords(element.event.extendedProps.professor)}<h5>
+                ${element.event.extendedProps.remote ? '' : `<h5 class="h5-5 pr-2 mb-1 text-white col-3 text-right" style="position: absolute; bottom: 0; right: 0">${element.event.extendedProps.room}<h5>`}
+              </div>`
+              }
+              break
+            // ============================
+            // == DAY VIEW
+            // ============================
+            case 'timeGridDay':
+              if (this.windowWidth < 800) {
+                html += `
+              <div>
+                <h5 class="h5-5 pl-2 mt-1 text-white">${this.timeToHour(element.event.start)} - ${this.timeToHour(element.event.end)}</h5>
+                ${element.event.extendedProps.bts ? '<div class="ribbon ribbon-top-right"><span>BTS</span></div>' : ''}
+                ${element.event.extendedProps.remote ? '<div class="ribbon ribbon-bottom-right"><span>TEAMS</span></div>' : ''}
+                <h2 class="text-white text-center w-100" style="position: absolute; top: 50%; transform: translateY(-50%);">${element.event.title}</h2>
+                <h5 class="h5-5 pl-2 mb-1 text-white" style="position: absolute; bottom: 0; left: 0">${this.capitalizeFirstLetterEachWords(element.event.extendedProps.professor)}<h5>
+                ${element.event.extendedProps.remote ? '' : `<h5 class="h5-5 pr-2 mb-1 text-white col-3 text-right" style="position: absolute; bottom: 0; right: 0">${element.event.extendedProps.room}<h5>`}
+              </div>`
+              } else {
+                html += `
+              <div>
+                <h5 class="h5-5 pl-2 mt-1 text-white">${this.timeToHour(element.event.start)} - ${this.timeToHour(element.event.end)}</h5>
+                ${element.event.extendedProps.bts ? '<div class="ribbon ribbon-top-right"><span>BTS</span></div>' : ''}
+                ${element.event.extendedProps.remote ? '<div class="ribbon ribbon-bottom-right"><span>TEAMS</span></div>' : ''}
+                <h3 class="px-2 text-white text-center" style="max-width: 90%; width: 90%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">${element.event.title}</h3>
+                <h5 class="h5-5 pl-2 mb-1 text-white col-7" style="position: absolute; bottom: 0; left: 0">${this.capitalizeFirstLetterEachWords(element.event.extendedProps.professor)}<h5>
+                ${element.event.extendedProps.remote ? '' : `<h5 class="h5-5 pr-2 mb-1 text-white col-3 text-right" style="position: absolute; bottom: 0; right: 0">${element.event.extendedProps.room}<h5>`}
+              </div>`
+              }
+              break
+          }
+
+          // apply new style
+          return { html }
+        },
       },
       placeholderEvents: [{
         title: '',
@@ -512,9 +644,6 @@ export default {
       courseModal: {},
       showTaskModal: false,
       showCourseModal: false,
-      calendarPlugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-      activeView: 'timeGridWeek',
-      activeDate: new Date(),
       windowWidth: window.innerWidth,
       headerDate: '',
       searchInput: '',
@@ -612,139 +741,7 @@ export default {
     // ======================================
     // == CALENDAR RENDERING
     // ======================================
-    customRender (element) {
-      // render tasks
-      if (element.event.allDay) {
-        if (this.windowWidth < 800) {
-          // mobile month view
-          if (this.activeView === 'dayGridMonth') {
-            element.el.innerHTML = `
-            <div class="h5 custom-allday-event float-right my-0 mt--4-5">
-              <span class="badge badge-sm badge-default badge-circle badge-floating border-white">${element.event.extendedProps.amount}</span>
-            </div>`
-            return
-          // mobile week view
-          } else if (this.activeView === 'timeGridWeek') {
-            element.el.innerHTML = `
-            <div class="h5 custom-allday-event text-center mt-2">
-              <span class="badge badge-sm badge-default badge-circle badge-floating border-white">${element.event.extendedProps.amount}</span>
-            </div>`
-            return
-          }
-        }
 
-        // desktop month view
-        if (this.activeView === 'dayGridMonth' && this.windowWidth > 800) {
-          element.el.innerHTML = `
-          <div class="h4 custom-allday-event float-right my-0 mt--4-5">
-            <div class="badge badge-lg badge-primary py-1">
-              <span class="pr-2">Tâches</span>
-              <span class="badge badge-sm badge-default badge-circle badge-floating border-white">${element.event.extendedProps.amount}</span>
-            </div>
-          </div>`
-          return
-        }
-
-        element.el.innerHTML = `
-          <div class="h3 custom-allday-event text-center my-0 hover-pointer">
-            <div class="badge badge-lg badge-primary py-1">
-              <span class="pr-2">Afficher les devoirs</span>
-              <span class="badge badge-sm badge-default badge-circle badge-floating border-white">${element.event.extendedProps.amount}</span>
-            </div>
-          </div>`
-        return
-      }
-
-      let html = ''
-      // add task badge on course
-      if (!(this.activeView === 'dayGridMonth' && this.windowWidth < 800)) {
-        // if course has corresponsponding task
-        if (this.allTasks.some(task => {
-          const sameDay = this.isSameDay(this.timestampToDate(task.date), element.event.start)
-          const sameSubject = task.subject ? element.event.title.toLowerCase().includes(task.subject.toLowerCase()) : false
-          return (sameDay && sameSubject)
-        })) {
-          html += `
-            <span class="h5-5 mr-2 mt-2 badge badge-light badge-circle float-right" style="width: 12px; height: 12px;"> </span>
-          `
-        }
-      }
-
-      // render events
-      switch (this.activeView) {
-        // ============================
-        // == MONTH VIEW
-        // ============================
-        case 'dayGridMonth':
-          if (this.windowWidth < 800) {
-            html += `
-              <div>
-                <h5 class="pl-1 mb-0 text-white w-auto">
-                  ${this.timeToHour(element.event.start, 'h').slice(0, -3)}-${this.timeToHour(element.event.end, 'h').slice(0, -2)}
-                </h5>
-              </div>`
-          } else {
-            html += `
-              <div>
-                <h5 class="pl-1 mb-0 text-white w-auto">
-                  ${this.timeToHour(element.event.start, 'h').slice(0, -2)}
-                  <span class="ml-1 h5 text-white">${element.event.title}</span>
-                </h5>
-              </div>`
-          }
-          break
-        // ============================
-        // == WEEK VIEW
-        // ============================
-        case 'timeGridWeek':
-          if (this.windowWidth < 800) {
-            html += `
-              <div>
-                <h4 class="text-white text-center w-100" style="position: absolute; top: 50%; transform: translateY(-50%);">${element.event.title}</h4>
-              </div>`
-          } else {
-            html += `
-              <div>
-                <h5 class="h5-5 pl-2 mt-1 text-white">${this.timeToHour(element.event.start)} - ${this.timeToHour(element.event.end)}</h5>
-                ${element.event.extendedProps.bts ? '<div class="ribbon ribbon-top-right"><span>BTS</span></div>' : ''}
-                ${element.event.extendedProps.remote ? '<div class="ribbon ribbon-bottom-right"><span>TEAMS</span></div>' : ''}
-                <h3 class="px-2 text-white text-center" style="max-width: 90%; width: 90%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">${element.event.title}</h3>
-                <h5 class="h5-5 pl-2 mb-1 text-white col-7" style="position: absolute; bottom: 0; left: 0">${this.capitalizeFirstLetterEachWords(element.event.extendedProps.professor)}<h5>
-                ${element.event.extendedProps.remote ? '' : `<h5 class="h5-5 pr-2 mb-1 text-white col-3 text-right" style="position: absolute; bottom: 0; right: 0">${element.event.extendedProps.room}<h5>`}
-              </div>`
-          }
-          break
-        // ============================
-        // == DAY VIEW
-        // ============================
-        case 'timeGridDay':
-          if (this.windowWidth < 800) {
-            html += `
-              <div>
-                <h5 class="h5-5 pl-2 mt-1 text-white">${this.timeToHour(element.event.start)} - ${this.timeToHour(element.event.end)}</h5>
-                ${element.event.extendedProps.bts ? '<div class="ribbon ribbon-top-right"><span>BTS</span></div>' : ''}
-                ${element.event.extendedProps.remote ? '<div class="ribbon ribbon-bottom-right"><span>TEAMS</span></div>' : ''}
-                <h2 class="text-white text-center w-100" style="position: absolute; top: 50%; transform: translateY(-50%);">${element.event.title}</h2>
-                <h5 class="h5-5 pl-2 mb-1 text-white" style="position: absolute; bottom: 0; left: 0">${this.capitalizeFirstLetterEachWords(element.event.extendedProps.professor)}<h5>
-                ${element.event.extendedProps.remote ? '' : `<h5 class="h5-5 pr-2 mb-1 text-white col-3 text-right" style="position: absolute; bottom: 0; right: 0">${element.event.extendedProps.room}<h5>`}
-              </div>`
-          } else {
-            html += `
-              <div>
-                <h5 class="h5-5 pl-2 mt-1 text-white">${this.timeToHour(element.event.start)} - ${this.timeToHour(element.event.end)}</h5>
-                ${element.event.extendedProps.bts ? '<div class="ribbon ribbon-top-right"><span>BTS</span></div>' : ''}
-                ${element.event.extendedProps.remote ? '<div class="ribbon ribbon-bottom-right"><span>TEAMS</span></div>' : ''}
-                <h3 class="px-2 text-white text-center" style="max-width: 90%; width: 90%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">${element.event.title}</h3>
-                <h5 class="h5-5 pl-2 mb-1 text-white col-7" style="position: absolute; bottom: 0; left: 0">${this.capitalizeFirstLetterEachWords(element.event.extendedProps.professor)}<h5>
-                ${element.event.extendedProps.remote ? '' : `<h5 class="h5-5 pr-2 mb-1 text-white col-3 text-right" style="position: absolute; bottom: 0; right: 0">${element.event.extendedProps.room}<h5>`}
-              </div>`
-          }
-          break
-      }
-
-      // apply new style
-      return { html }
-    },
     handleDateClick (clicked) {
       if (this.activeView === 'dayGridMonth') {
         this.calendarApi().gotoDate(clicked.date)
@@ -787,7 +784,7 @@ export default {
       })
     },
     // ===========================================
-    // == Naviguation functions
+    // == Navigation functions
     // ===========================================
     changeView (viewType) {
       this.activeView = viewType
