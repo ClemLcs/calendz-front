@@ -274,7 +274,7 @@ import BaseInput from '@/components/Inputs/BaseInput.vue'
 import BaseCheckbox from '@/components/Inputs/BaseCheckbox.vue'
 import ApiErrors from '@/components/ApiErrors.vue'
 import BaseButton from '@/components/BaseButton.vue'
-import { Field, Form } from 'vee-validate';
+import { Field, Form } from 'vee-validate'
 
 export default {
   components: {
@@ -308,7 +308,7 @@ export default {
     ...mapState({
       loginError: state => state.account.status.loginError,
       loggingIn: state => state.account.status.isLoggingIn,
-      userId: state => state.account.status.userId,
+      userId: state => state.account.status.userId
       // openMigrationModal: state => state.layout.migrationModal.isOpen,
       // migrationToken: state => state.layout.migrationModal.token,
       // migrationUserEmail: state => state.layout.migrationModal.userEmail,

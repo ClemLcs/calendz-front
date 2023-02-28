@@ -36,7 +36,6 @@
           :required="required"
           :class="[{'is-valid': valid === true}, {'is-invalid': error}, inputClasses]"
           class="form-control"
-          v-on="listeners"
         >
       </slot>
       <div
@@ -154,7 +153,8 @@ export default {
   computed: {
     listeners () {
       return {
-        ...this.$listeners,
+        // @TODO: $listeners is deprecated, but i don't know what to replace it with
+        // ...this.$listeners,
         input: this.updateValue,
         focus: this.onFocus,
         blur: this.onBlur

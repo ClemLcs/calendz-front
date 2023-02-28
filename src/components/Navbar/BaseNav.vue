@@ -102,9 +102,10 @@ export default {
         { 'navbar-transparent': this.transparent },
         { [`navbar-expand-${this.expand}`]: this.expand }
       ]
-      if (this.position) {
-        classes.push(`navbar-${this.position}`)
-      }
+      // @TODO check why position is not in props anymore
+      // if (this.position) {
+      //   classes.push(`navbar-${this.position}`)
+      // }
       if (!this.transparent) {
         classes.push(color)
       }

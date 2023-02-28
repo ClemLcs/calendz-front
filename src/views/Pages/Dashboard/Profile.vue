@@ -207,18 +207,18 @@
                   </div>
                 </div>
 
-<!--                @TODO fix this -->
-<!--                <div class="row">-->
-<!--                  <div class="col-md-12 mx-auto">-->
-<!--                    <GroupsSelect-->
-<!--                      v-model="group"-->
-<!--                      :disabled="!settings.editGroupEnabled"-->
-<!--                      :grade="user.grade"-->
-<!--                      label="Changer groupe"-->
-<!--                      vee-scope="updateProfileForm"-->
-<!--                    />-->
-<!--                  </div>-->
-<!--                </div>-->
+                <!--                @TODO fix this -->
+                <!--                <div class="row">-->
+                <!--                  <div class="col-md-12 mx-auto">-->
+                <!--                    <GroupsSelect-->
+                <!--                      v-model="group"-->
+                <!--                      :disabled="!settings.editGroupEnabled"-->
+                <!--                      :grade="user.grade"-->
+                <!--                      label="Changer groupe"-->
+                <!--                      vee-scope="updateProfileForm"-->
+                <!--                    />-->
+                <!--                  </div>-->
+                <!--                </div>-->
 
                 <div class="row">
                   <base-button

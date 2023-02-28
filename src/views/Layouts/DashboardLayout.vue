@@ -166,10 +166,11 @@
       <dashboard-navbar />
 
       <div @click="$sidebar.displaySidebar(false)">
-        <Transition>
+        <!--        @TODO router view cannot be used inside of a transition anymore like that-->
+        <!--                <Transition>-->
           <!-- your content here -->
-          <router-view />
-        </Transition>
+        <!--                </Transition>-->
+        <router-view />
       </div>
       <content-footer v-if="!$route.meta.hideFooter" />
     </div>

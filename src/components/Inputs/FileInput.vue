@@ -6,7 +6,6 @@
       type="file"
       class="custom-file-input"
       lang="en"
-      v-on="listeners"
     >
     <label
       class="custom-file-label"
@@ -34,7 +33,8 @@ export default {
   computed: {
     listeners () {
       return {
-        ...this.$listeners,
+        // @TODO: $listeners is deprecated, but i don't know what to replace it with
+        // ...this.$listeners,
         change: this.fileChange
       }
     },

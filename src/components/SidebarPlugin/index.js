@@ -1,5 +1,3 @@
-import {NotificationStore} from "@/components/NotificationPlugin";
-
 export const SidebarStore = {
   showSidebar: false,
   sidebarLinks: [],

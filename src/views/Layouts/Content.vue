@@ -1,9 +1,10 @@
 <template>
   <div class="content">
-    <Transition>
-      <!-- your content here -->
-      <router-view />
-    </Transition>
+    <!--   @TODO router view cannot be used inside of a transition anymore like that -->
+    <!--    <Transition>-->
+    <!--      &lt;!&ndash; your content here &ndash;&gt;-->
+    <!--      <router-view />-->
+    <!--    </Transition>-->
   </div>
 </template>
 <script>

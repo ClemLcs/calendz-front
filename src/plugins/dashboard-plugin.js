@@ -2,10 +2,7 @@
 import '@/polyfills'
 
 // Notifications plugin. Used on Notifications page
-import { NotificationPlugin, NotificationStore } from '@/components/NotificationPlugin'
-
-// Validation plugin used to validate forms
-import VeeValidate from 'vee-validate'
+import NotificationPlugin, { NotificationStore } from '@/components/NotificationPlugin'
 
 // A plugin file where you could register global components
 import GlobalComponents from './globalComponents'
@@ -14,7 +11,7 @@ import GlobalComponents from './globalComponents'
 import GlobalDirectives from './globalDirectives'
 
 // Sidebar on the right. Used as a local plugin in DashboardLayout.vue
-import {SidebarPlugin, SidebarStore} from '@/components/SidebarPlugin'
+import SidebarPlugin, { SidebarStore } from '@/components/SidebarPlugin'
 
 // element ui language configuration
 // import lang from 'element-plus/lib/locale/lang/fr'
@@ -30,14 +27,5 @@ export default {
     app.use(GlobalDirectives)
     app.use(SidebarStore).use(SidebarPlugin)
     app.use(NotificationStore).use(NotificationPlugin)
-    app.use(VeeValidate, {
-      fieldsBagName: 'veeFields',
-      classes: true,
-      validity: true,
-      classNames: {
-        valid: 'is-valid',
-        invalid: 'is-invalid'
-      }
-    })
   }
 }

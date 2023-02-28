@@ -71,21 +71,21 @@
               <i class="fas fa-angle-right" />
             </a>
             <base-button
-              :class="{'active': activeView === 'dayGridMonth'}"
+              :class="{'active': initialView === 'dayGridMonth'}"
               class="btn btn-sm btn-default my-1"
               @click="changeView('dayGridMonth')"
             >
               Mois
             </base-button>
             <base-button
-              :class="{'active': activeView === 'timeGridWeek'}"
+              :class="{'active': initialView === 'timeGridWeek'}"
               class="btn btn-sm btn-defaul my-1"
               @click="changeView('timeGridWeek')"
             >
               Semaine
             </base-button>
             <base-button
-              :class="{'active': activeView === 'timeGridDay'}"
+              :class="{'active': initialView === 'timeGridDay'}"
               class="btn btn-sm btn-default mr-2 my-1"
               @click="changeView('timeGridDay')"
             >
@@ -398,16 +398,17 @@ export default {
   mixins: [dateUtilMixin, stringUtilMixin],
   data () {
     return {
+      initialView: 'timeGridWeek',
       calendarOptions: {
         initialDate: new Date(),
         plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
         headerToolbar: false,
-        initialView: 'timeGridWeek',
+        initialView: this.initialView,
         dayHeaderFormat: this.getColumnHeaderFormat(),
         nowIndicator: true,
         fixedWeekCount: false,
-        //@TODO: fix the calendar color
-        eventColor: '#f1f1f1',//`#${this.user.settings.calendarColor}`,
+        // @TODO: fix the calendar color
+        eventColor: '#f1f1f1', // `#${this.user.settings.calendarColor}`,
         contentHeight: 'auto',
         slotDuration: '01:00:00',
         slotMinTime: '08:00:00',
@@ -425,14 +426,14 @@ export default {
           if (element.event.allDay) {
             if (this.windowWidth < 800) {
               // mobile month view
-              if (this.activeView === 'dayGridMonth') {
+              if (this.initialView === 'dayGridMonth') {
                 element.el.innerHTML = `
             <div class="h5 custom-allday-event float-right my-0 mt--4-5">
               <span class="badge badge-sm badge-default badge-circle badge-floating border-white">${element.event.extendedProps.amount}</span>
             </div>`
                 return
                 // mobile week view
-              } else if (this.activeView === 'timeGridWeek') {
+              } else if (this.initialView === 'timeGridWeek') {
                 element.el.innerHTML = `
             <div class="h5 custom-allday-event text-center mt-2">
               <span class="badge badge-sm badge-default badge-circle badge-floating border-white">${element.event.extendedProps.amount}</span>
@@ -442,7 +443,7 @@ export default {
             }
 
             // desktop month view
-            if (this.activeView === 'dayGridMonth' && this.windowWidth > 800) {
+            if (this.initialView === 'dayGridMonth' && this.windowWidth > 800) {
               element.el.innerHTML = `
           <div class="h4 custom-allday-event float-right my-0 mt--4-5">
             <div class="badge badge-lg badge-primary py-1">
@@ -465,7 +466,7 @@ export default {
 
           let html = ''
           // add task badge on course
-          if (!(this.activeView === 'dayGridMonth' && this.windowWidth < 800)) {
+          if (!(this.initialView === 'dayGridMonth' && this.windowWidth < 800)) {
             // if course has corresponsponding task
             if (this.allTasks.some(task => {
               const sameDay = this.isSameDay(this.timestampToDate(task.date), element.event.start)
@@ -479,7 +480,7 @@ export default {
           }
 
           // render events
-          switch (this.activeView) {
+          switch (this.initialView) {
             // ============================
             // == MONTH VIEW
             // ============================
@@ -552,7 +553,7 @@ export default {
 
           // apply new style
           return { html }
-        },
+        }
       },
       placeholderEvents: [{
         title: '',
@@ -738,7 +739,7 @@ export default {
     // ======================================
 
     handleDateClick (clicked) {
-      if (this.activeView === 'dayGridMonth') {
+      if (this.initialView === 'dayGridMonth') {
         this.calendarApi().gotoDate(clicked.date)
         this.changeView('timeGridWeek')
       }
@@ -747,7 +748,7 @@ export default {
       // task
       if (clicked.event.allDay) {
         // do nothing in mobile month view
-        if (this.activeView === 'dayGridMonth' && this.windowWidth < 800) return
+        if (this.initialView === 'dayGridMonth' && this.windowWidth < 800) return
 
         this.showTaskModal = true
         this.taskModal.date = this.dateToFullString(clicked.event.start)
@@ -757,7 +758,7 @@ export default {
       }
 
       // event
-      if (this.activeView === 'dayGridMonth') {
+      if (this.initialView === 'dayGridMonth') {
         this.calendarApi().gotoDate(clicked.event.start)
         this.changeView('timeGridWeek')
         return
@@ -782,7 +783,7 @@ export default {
     // == Navigation functions
     // ===========================================
     changeView (viewType) {
-      this.activeView = viewType
+      this.initialView = viewType
       this.activeDate = this.calendarApi().getDate()
 
       if (viewType === 'dayGridMonth') {
@@ -809,7 +810,7 @@ export default {
       let dateToFetch = this.activeDate
       const firstOfTheMonth = this.getFirstFridayOfMonth(dateToFetch)
 
-      switch (this.activeView) {
+      switch (this.initialView) {
         case 'timeGridWeek':
           toAdd = 7
           if (dateToFetch.getDay() === 6) toAdd = 8
@@ -847,7 +848,7 @@ export default {
       let dateToFetch = this.activeDate
       const firstOfTheMonth = this.getFirstFridayOfMonth(dateToFetch)
 
-      switch (this.activeView) {
+      switch (this.initialView) {
         case 'timeGridWeek':
           toRemove = 7
           if (dateToFetch.getDay() === 6) toRemove = 6
@@ -920,7 +921,7 @@ export default {
       this.headerDate = this.getMonthFromDate(this.calendarApi().getDate()) + ' ' + this.calendarApi().getDate().getFullYear()
     },
     getColumnHeaderFormat () {
-      switch (this.activeView) {
+      switch (this.initialView) {
         // week
         case 'timeGridWeek':
           if (this.windowWidth < 800) return { month: 'numeric', day: 'numeric', omitCommas: true }

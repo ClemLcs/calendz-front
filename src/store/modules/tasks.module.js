@@ -26,7 +26,7 @@ const tasksModule = {
       state.status = { isRetrieving: true }
     },
     FETCH_ALL_SUCCESS: (state, tasks) => {
-      state.tasks = tasks ?? [] //@TODO remove later
+      state.tasks = tasks ?? [] // @TODO remove later
       state.status = {}
     },
     FETCH_ALL_FAILURE: (state, reason) => {
@@ -201,7 +201,7 @@ const tasksModule = {
     getAll: (state) => {
       const array = [...state.tasks]
       array.sort((a, b) => (a.date > b.date) ? -1 : 1)
-      return array ?? [] //@TODO remove later
+      return array ?? [] // @TODO remove later
     },
     // all done tasks
     getAllDone: (state, getters, rootState) => {
@@ -223,7 +223,7 @@ const tasksModule = {
     },
     // done tasks, in the future
     getDone: (state, getters, rootState) => {
-      //@TODO uncomment later
+      // @TODO uncomment later
       // const doneTasks = rootState.account.user.tasks.done
       // const array = [...getters.getUpcommings].filter(task => doneTasks.includes(task._id))
       // array.sort((a, b) => (a.date > b.date) ? -1 : 1)
@@ -232,7 +232,7 @@ const tasksModule = {
     },
     // not done tasks, in the future
     getTodo: (state, getters, rootState) => {
-      //@TODO uncomment later
+      // @TODO uncomment later
       // const now = new Date().getTime()
       // const doneTasks = rootState.account.user.tasks.done
       // let array = [...getters.getUpcommings].filter(task => now <= parseInt(task.date) + 3600000 * 24)

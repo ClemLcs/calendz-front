@@ -55,7 +55,7 @@ export const NotificationStore = {
   }
 }
 
-export const NotificationPlugin = {
+export default {
   install (app, options) {
     app.config.globalProperties.$notifications = NotificationStore
     app.config.globalProperties.$notify = (notification) => {

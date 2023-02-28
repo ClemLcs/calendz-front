@@ -659,7 +659,7 @@ import HtmlEditor from '@/components/Inputs/HtmlEditor'
 import clientPaginationMixin from '@/mixins/clientPaginationMixin'
 import dateUtilMixin from '@/mixins/dateUtilMixin'
 import stringUtilMixin from '@/mixins/stringUtilMixin'
-import BaseButton from "@/components/BaseButton.vue";
+import BaseButton from '@/components/BaseButton.vue'
 
 export default {
   name: 'Settings',

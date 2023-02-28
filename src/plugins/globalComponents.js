@@ -26,7 +26,6 @@ import TaskType from '@/components/Tasks/TaskType'
 import TaskCore from '@/components/Tasks/TaskCore'
 
 import { ElInput, ElTooltip, ElPopover } from 'element-plus'
-import { ValidationProvider } from 'vee-validate'
 
 // Help
 import HelpSection from '@/components/Help/HelpSection'
@@ -54,7 +53,6 @@ const GlobalComponents = {
     app.component(PasswordStrength.name, PasswordStrength)
     app.component(ApiErrors.name, ApiErrors)
     app.component(Placeholder.name, Placeholder)
-    app.component('ValidationProvider', ValidationProvider)
 
     app.component(TaskType.name, TaskType)
     app.component(TaskCore.name, TaskCore)
