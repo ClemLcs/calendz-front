@@ -1,6 +1,6 @@
 # Node latest LTS 12.18.2 with alpine
 # (a lightweight distribution)
-FROM node:19.4.0-alpine
+FROM node:lts-alpine
 LABEL maintainer="Calendz. <https://calendz.app/>"
 
 # creates a directory for the app
