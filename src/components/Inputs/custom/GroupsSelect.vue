@@ -116,19 +116,17 @@ export default {
           return [
             { value: 'G1 (dev)' },
             { value: 'G2 (dev)' },
-            { value: 'G3 (dev)' },
-            { value: 'G1 (infra-réseau)' },
-            { value: 'G2 (infra-réseau)' },
-            { value: 'G3 (infra-réseau)' }
+            { value: 'G1 (infra)' },
+            { value: 'G2 (cyber)' },
+            { value: 'G3 (data)' }
           ]
         case 'I2':
           return [
             { value: 'G1 (dev)' },
             { value: 'G2 (dev)' },
-            { value: 'G1 (infra-réseau)' },
-            { value: 'G2 (infra-réseau)' },
-            { value: 'G1 (ERP)' },
-            { value: 'G2 (ERP)' }
+            { value: 'G1 (infra)' },
+            { value: 'G2 (cyber)' },
+            { value: 'G3 (data)' }
           ]
         default:
           return [

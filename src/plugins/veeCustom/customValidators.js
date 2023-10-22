@@ -1,7 +1,7 @@
 import { Validator } from 'vee-validate'
 
 Validator.extend('email_valid_school', {
-  validate: value => value.includes('@epsi.fr') || value.includes('@wis.fr') || value.includes('@ecoles-wis.net' || value.includes('@ecoles-wis.net'))
+  validate: value => value.includes('@ecoles-epsi.net') || value.includes('@ecoles-wis.net' || value.includes('@ecoles-wis.net'))
 })
 
 Validator.extend('contains_one_number', {
@@ -21,8 +21,8 @@ Validator.extend('valid_grade', {
 Validator.extend('valid_group', {
   validate: value => [
     'G1', 'G2', 'G3',
-    'G1 (dev)', 'G2 (dev)', 'G3 (dev)',
-    'G1 (infra-réseau)', 'G2 (infra-réseau)', 'G3 (infra-réseau)',
+    'G1 (dev)', 'G2 (dev)', 'G3 (data)',
+    'G1 (infra-réseau)', 'G2 (cyber)',
     'G1 (ERP)', 'G2 (ERP)'
   ].indexOf(value) !== -1
 })

@@ -523,7 +523,7 @@ export default {
       })
     },
     guessSchoolFromEmail (email) {
-      if (email.includes('@epsi.fr')) return 'EPSI'
+      if (email.includes('@epsi.fr') || email.includes('@ecoles-epsi.net')) return 'EPSI'
       if (email.includes('@wis.fr') || email.includes('@ecoles-wis.net')) return 'WIS'
     }
   }
