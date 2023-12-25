@@ -24,6 +24,41 @@
             rel="noreferrer noopener"
             class="font-weight-bold ml-1"
             target="_blank">Doryan Chaigneau</a>
+          <a
+            href="https://www.linkedin.com/in/cl%C3%A9ment-pierre-xavier-l-4b0646141/"
+            rel="noreferrer noopener"
+            class="font-weight-bold ml-1"
+            target="_blank">Clément Lo-Cascio</a>
+          <a
+            href="https://www.linkedin.com/in/clement-lafon"
+            rel="noreferrer noopener"
+            class="font-weight-bold ml-1"
+            target="_blank">Clément Lafon</a>
+          <a
+            href="https://www.linkedin.com/in/nathan-moussiron-134b2b223/"
+            rel="noreferrer noopener"
+            class="font-weight-bold ml-1"
+            target="_blank">Nathan Moussiron</a>
+          <a
+            href="https://www.linkedin.com/in/ali-saleh-483076236/"
+            rel="noreferrer noopener"
+            class="font-weight-bold ml-1"
+            target="_blank">Ali Saleh</a>
+          <a
+            href="https://www.linkedin.com/in/aissatou-adab/"
+            rel="noreferrer noopener"
+            class="font-weight-bold ml-1"
+            target="_blank">Diallo Aissatou</a>
+          <a
+            href="https://www.linkedin.com/in/hugo-ferry-471984207/"
+            rel="noreferrer noopener"
+            class="font-weight-bold ml-1"
+            target="_blank">Hugo Ferry</a>
+          <a
+            href="https://www.linkedin.com/in/thomas-lebas-3a0129209/"
+            rel="noreferrer noopener"
+            class="font-weight-bold ml-1"
+            target="_blank">Thomas Lebas</a>
         </div>
       </div>
       <div class="col-lg-6">
